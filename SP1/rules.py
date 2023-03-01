@@ -1,4 +1,5 @@
-EPA_ALPHABET = {
+# EPA alphabet,...
+BASIC_RULES = {
     # vocals
     'i': 'i',
     'e': 'e',
@@ -52,7 +53,6 @@ EPA_ALPHABET = {
     'dz': 'w',
     'dž': 'W',
 
-    'ě': 'je',
 
     # interpunction
     '. ': '|$|',
@@ -62,4 +62,18 @@ EPA_ALPHABET = {
 
     ',': '|#|',
     ', ': '|#|',
+
+
+    'di': 'Di',
+    'dí': 'DI',
+    'ti': 'Ti',
+    'tí': 'TI',
+    'ni': 'Ji',
+    'ní': 'JI',
+
+    'ě': 'je',
+    'dě': 'De',
+    'tě': 'Te',
+    'ně': 'Je',
+    'mě': 'mJe',
 }

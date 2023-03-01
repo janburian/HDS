@@ -26,7 +26,7 @@ def save_output_file(sentences, filename: str):
 def create_start_end_pauses(sentences_list):
     pass
 
-def create_transcript(sentences_list, EPA_alphabet):
+def apply_basic_rules(sentences_list: list, basic_rules: dict):
     res = []
     for sentence in sentences_list:
         sentence_transcript = ['|$|']
@@ -36,10 +36,11 @@ def create_transcript(sentences_list, EPA_alphabet):
             word_list = list(word)
             for i in range(len(word_list)):
                 char = word[i]
-                char_EPA = EPA_alphabet[char]
+                char_EPA = basic_rules[char]
                 word_list[i] = char_EPA
 
             word_str = ''.join(word_list)
+
             sentence_transcript.append(word_str + "|")
 
         res.append(sentence_transcript)
@@ -47,14 +48,15 @@ def create_transcript(sentences_list, EPA_alphabet):
     return res
 
 if __name__ == "__main__":
-    #filename = "vety_HDS.ortho.txt"
-    filename = "ukazka_HDS.ortho.txt"
+    #input_filename = "vety_HDS.ortho.txt"
+    input_filename = "ukazka_HDS.ortho.txt"
+    output_filename = "vety_HDS_transcript.txt"
 
-    sentences_list_orig = read_input_file(filename)
-    EPA_alphabet = rules.EPA_ALPHABET
-    res = create_transcript(sentences_list_orig.copy(), EPA_alphabet)
+    sentences_list_orig = read_input_file(input_filename)
+    basic_rules = rules.BASIC_RULES
+    res = apply_basic_rules(sentences_list_orig.copy(), basic_rules)
 
-    save_output_file(res, "vety_HDS_transcript.txt")
+    save_output_file(res, output_filename)
     print()
 
 
