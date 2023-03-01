@@ -63,6 +63,8 @@ BASIC_RULES = {
     ',': '|#|',
     ', ': '|#|',
 
+    # whitespace
+    ' ': '|',
 
     'di': 'Di',
     'dí': 'DI',

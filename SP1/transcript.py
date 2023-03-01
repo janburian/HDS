@@ -17,9 +17,8 @@ def save_output_file(sentences, filename: str):
     f = open(filename, 'w', encoding='utf-8')
 
     for sentence in sentences:
-        sentence.append('\n')
-        sentence_str = ''.join(sentence)
-        f.write(sentence_str)
+        sentence = sentence + '\n'
+        f.write(sentence)
 
     f.close()
 
@@ -29,21 +28,11 @@ def create_start_end_pauses(sentences_list):
 def apply_basic_rules(sentences_list: list, basic_rules: dict):
     res = []
     for sentence in sentences_list:
-        sentence_transcript = ['|$|']
-        words_list = sentence.split(" ")
-        for word in words_list:
-            word = word.lower()
-            word_list = list(word)
-            for i in range(len(word_list)):
-                char = word[i]
-                char_EPA = basic_rules[char]
-                word_list[i] = char_EPA
+        for char in basic_rules:
+            char_transcript = basic_rules[char]
+            sentence = sentence.replace(char, char_transcript)
 
-            word_str = ''.join(word_list)
-
-            sentence_transcript.append(word_str + "|")
-
-        res.append(sentence_transcript)
+        res.append('|$|' + sentence)
 
     return res
 
