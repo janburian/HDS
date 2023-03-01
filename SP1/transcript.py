@@ -28,6 +28,7 @@ def create_start_end_pauses(sentences_list):
 def apply_basic_rules(sentences_list: list, basic_rules: dict):
     res = []
     for sentence in sentences_list:
+        sentence = sentence.lower()
         for char in basic_rules:
             char_transcript = basic_rules[char]
             sentence = sentence.replace(char, char_transcript)
