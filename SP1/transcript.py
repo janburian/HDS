@@ -22,18 +22,16 @@ def save_output_file(sentences, filename: str):
 
     f.close()
 
-def create_start_end_pauses(sentences_list):
-    pass
-
 def apply_basic_rules(sentences_list: list, basic_rules: dict):
     res = []
     for sentence in sentences_list:
-        sentence = sentence.lower()
+        pause = '|$|'
+        sentence = pause + sentence.lower()
         for char in basic_rules:
             char_transcript = basic_rules[char]
             sentence = sentence.replace(char, char_transcript)
 
-        res.append('|$|' + sentence)
+        res.append(sentence)
 
     return res
 

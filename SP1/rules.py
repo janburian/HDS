@@ -7,25 +7,31 @@ BASIC_RULES = {
     'ni': 'Ji',
     'ní': 'JI',
 
-    # 'ě': 'je',
     'dě': 'De',
     'tě': 'Te',
     'ně': 'Je',
     'mě': 'mJe',
+    'bě': 'bje',
+    'pě': 'pje',
+    'vě': 'vje',
+
 
     # vocals
-    'i': 'i',
-    'e': 'e',
     'a': 'a',
+    'e': 'e',
+    'i': 'i',
     'o': 'o',
     'u': 'u',
-    'í': 'I',
-    'é': 'E',
+
     'á': 'A',
+    'é': 'E',
+    'í': 'I',
     'ó': 'O',
     'ú': 'U',
     'ů': 'U',
+
     'y': 'i',
+    'ý': 'I',
 
     # diphtongs
     'ou': 'y',
@@ -77,4 +83,17 @@ BASIC_RULES = {
 
     # whitespace
     ' ': '|',
+
+    # glottal stops (if word starts with vocal, we add glottal stop (= !))
+    '|a': '|!a',
+    '|e': '|!e',
+    '|i': '|!i',
+    '|o': '|!o',
+    '|u': '|!u',
+
+    '|A': '|!A',
+    '|E': '|!E',
+    '|I': '|!I',
+    '|O': '|!O',
+    '|U': '|!U',
 }
