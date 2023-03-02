@@ -15,7 +15,6 @@ BASIC_RULES = {
     'pě': 'pje',
     'vě': 'vje',
 
-
     # vocals
     'a': 'a',
     'e': 'e',
@@ -96,4 +95,52 @@ BASIC_RULES = {
     '|I': '|!I',
     '|O': '|!O',
     '|U': '|!U',
+}
+
+# ALOPHONES = {
+#     'n': 'N',
+#     'm': 'M',
+#     'ch': 'G',
+#     'ř': 'Q',
+#     'l': 'L',
+#     'm': 'H'
+# }
+
+# 'b', 'd', 'ď', 'g', 'v', 'z', 'ž', 'h', 'dz', 'dž', 'ř'
+VOICED_CONSONANTS_PAIR = ['b', 'd', 'D', 'g', 'v', 'z', 'Z', 'h', 'w', 'W', 'R']
+
+# 'p', 't', 'ť', 'k', 'f', 's', 'š', 'ch', 'c', 'č', 'ř'
+VOICELESS_CONSONANTS_PAIR = ['p', 't', 'T', 'k', 'f', 's', 'S', 'x', 'c', 'C', 'Q']
+
+# 'm', 'n', 'ň', 'l', 'r', 'j'
+VOICED_CONSONANTS = ['m', 'n', 'J', 'l', 'r', 'j']
+
+# Conversion VOICED_CONSONANTS_PAIR to VOICELESS_CONSONANTS_PAIR
+VOICED_CONSONANTS_PAIR_to_VOICELESS_CONSONANTS_PAIR = {
+    'b': 'p',
+    'd': 't',
+    'D': 'T',
+    'g': 'k',
+    'v': 'f',
+    'z': 's',
+    'Z': 'S',
+    'h': 'x',
+    'w': 'c',
+    'W': 'C',
+    'R': 'Q',
+}
+
+# Conversion VOICELESS_CONSONANTS_PAIR to VOICED_CONSONANTS_PAIR
+VOICELESS_CONSONANTS_PAIR_to_VOICED_CONSONANTS_PAIR = {
+    'p': 'b',
+    't': 'd',
+    'T': 'D',
+    'k': 'g',
+    'f': 'v',
+    's': 'z',
+    'S': 'Z',
+    'x': 'h',
+    'c': 'w',
+    'C': 'W',
+    'Q': 'R',
 }

@@ -1,6 +1,3 @@
-from pathlib import Path
-import os
-
 import rules
 
 def read_input_file(filename: str):
