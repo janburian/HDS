@@ -123,7 +123,7 @@ def apply_chain_rule(sentences_list: list):
             if current_char in rules.VOICED_CONSONANTS_PAIR and (next_char in rules.VOICELESS_CONSONANTS_PAIR or next_char == '|' or next_char == '#'):
                 if next_char == '|' and i < len(sentence)-1:
                     char_after_pause = sentence[i+2]
-                    if char_after_pause in rules.VOWELS or char_after_pause in rules.VOICELESS_CONSONANTS_PAIR or char_after_pause in rules.VOICED_CONSONANTS or char_after_pause in special_chars:
+                    if char_after_pause in rules.VOWELS or char_after_pause in rules.VOICELESS_CONSONANTS_PAIR or char_after_pause in special_chars: # char_after_pause in rules.VOICED_CONSONANTS
                         current_char_idx = i
                         new_char = rules.VOICED_CONSONANTS_PAIR_to_VOICELESS_CONSONANTS_PAIR[current_char]
                         sentence = sentence[:current_char_idx] + new_char + sentence[current_char_idx + 1:]
@@ -135,7 +135,7 @@ def apply_chain_rule(sentences_list: list):
             if current_char in rules.VOICELESS_CONSONANTS_PAIR and (next_char in rules.VOICED_CONSONANTS_PAIR or next_char == '|'):
                 if next_char == '|' and i < len(sentence)-1:
                     char_after_pause = sentence[i+2]
-                    if char_after_pause in rules.VOICED_CONSONANTS:
+                    if char_after_pause in rules.VOICED_CONSONANTS_PAIR:
                         current_char_idx = i
                         new_char = rules.VOICELESS_CONSONANTS_PAIR_to_VOICED_CONSONANTS_PAIR[current_char]
                         sentence = sentence[:current_char_idx] + new_char + sentence[current_char_idx + 1:]
