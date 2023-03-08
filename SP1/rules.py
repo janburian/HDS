@@ -15,6 +15,8 @@ BASIC_RULES = {
     'pě': 'pje',
     'vě': 'vje',
 
+    'ě': 'je',
+
     'js': 's',
 
     # vocals
@@ -39,6 +41,8 @@ BASIC_RULES = {
     'au': 'Y',
     'eu': 'F',
 
+    'x': 'ks',
+
     # fricatives
     'f': 'f',
     'v': 'v',
@@ -60,6 +64,10 @@ BASIC_RULES = {
     'ď': 'D',
     'k': 'k',
     'g': 'g',
+
+    # specialities
+    'q': 'kv',
+    'w': 'v',
 
     # nasals
     'm': 'm',
@@ -110,15 +118,17 @@ ALOPHONES = {
 }
 
 # 'b', 'd', 'ď', 'g', 'v', 'z', 'ž', 'h', 'dz', 'dž', 'ř'
-VOICED_CONSONANTS_PAIR = ['b', 'd', 'D', 'g', 'v', 'z', 'Z', 'h', 'w', 'W', 'Q']
+VOICED_CONSONANTS_PAIR = ['b', 'd', 'D', 'g', 'v', 'z', 'Z', 'h', 'w', 'W', 'R']
 
 # 'p', 't', 'ť', 'k', 'f', 's', 'š', 'ch', 'c', 'č', 'ř'
-VOICELESS_CONSONANTS_PAIR = ['p', 't', 'T', 'k', 'f', 's', 'S', 'x', 'c', 'C', 'R']
+VOICELESS_CONSONANTS_PAIR = ['p', 't', 'T', 'k', 'f', 's', 'S', 'x', 'c', 'C', 'Q']
 
 # 'm', 'n', 'ň', 'l', 'r', 'j'
 VOICED_CONSONANTS = ['m', 'n', 'J', 'l', 'r', 'j']
 
 CONSONANTS_ALL = VOICED_CONSONANTS + VOICELESS_CONSONANTS_PAIR + VOICED_CONSONANTS_PAIR
+
+VOWELS = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
 
 # Conversion VOICED_CONSONANTS_PAIR to VOICELESS_CONSONANTS_PAIR
 VOICED_CONSONANTS_PAIR_to_VOICELESS_CONSONANTS_PAIR = {

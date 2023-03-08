@@ -24,9 +24,9 @@ def apply_basic_rules(sentences_list: list, basic_rules: dict):
     for sentence in sentences_list:
         pause = '|$|'
         sentence = pause + sentence.lower()
-        for char in basic_rules:
-            char_transcript = basic_rules[char]
-            sentence = sentence.replace(char, char_transcript)
+        for phoneme in basic_rules:
+            char_transcript = basic_rules[phoneme]
+            sentence = sentence.replace(phoneme, char_transcript)
 
         res.append(sentence)
 
@@ -46,8 +46,8 @@ def apply_alophones(sentences_list: list):
                 word = change_char(word, 'n', next_chars=['k', 'g'], replacement='N')
             if 'm' in word:
                 word = change_char(word, 'm', next_chars=['v', 'f'], replacement='M')
-            if 'm' in word:
-                word = change_char_between_consonants(word, 'm', consonants_all, replacement='H')
+            # if 'm' in word:
+            #     word = change_char_between_consonants(word, 'm', consonants_all, replacement='H')
             if 'r' in word:
                 word = change_char_between_consonants(word, 'r', consonants_all, replacement='P')
             if 'l' in word:
@@ -112,8 +112,40 @@ def change_char(word, char, next_chars, replacement):
     return word
 
 
-def apply_chain_rule():
-    pass
+def apply_chain_rule(sentences_list: list):
+    res = []
+    for sentence in sentences_list:
+        words = sentence.split('|')
+        useless_words = ['', '$']
+        idx = 0
+        words_temp = []
+        for word in words:
+            word_list = list(word)
+            if word in useless_words:
+                continue
+
+            for char in word_list:
+                if char in rules.VOICED_CONSONANTS_PAIR:
+                    char_idx = word_list.index(char)
+                    if char_idx < len(word)-2:
+                        next_char = word_list[char_idx+1]
+                        if next_char in rules.VOICELESS_CONSONANTS_PAIR:
+                            word_list[char_idx] = rules.VOICED_CONSONANTS_PAIR_to_VOICELESS_CONSONANTS_PAIR[char]
+                    if char_idx == len(word)-1:
+                        word_list[char_idx] = rules.VOICED_CONSONANTS_PAIR_to_VOICELESS_CONSONANTS_PAIR[char]
+
+                if char in rules.VOICELESS_CONSONANTS_PAIR:
+                    char_idx = word_list.index(char)
+                    if char_idx < len(word) - 2:
+                        next_char = word_list[char_idx + 1]
+                        if next_char in rules.VOICED_CONSONANTS_PAIR:
+                            word_list[char_idx] = rules.VOICELESS_CONSONANTS_PAIR_to_VOICED_CONSONANTS_PAIR[char]
+
+            word = "".join(word_list)
+            words_temp.append(word)
+        res.append('|$|' + '|'.join(words_temp) + '|$|')
+
+    return res
 
 if __name__ == "__main__":
     #input_filename = "vety_HDS.ortho.txt"
@@ -125,6 +157,7 @@ if __name__ == "__main__":
     basic_rules = rules.BASIC_RULES
     res = apply_basic_rules(sentences_list_orig.copy(), basic_rules)
     res = apply_alophones(res)
+    res = apply_chain_rule(res)
 
     save_output_file(res, output_filename)
     print()

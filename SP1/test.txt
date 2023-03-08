@@ -1,6 +1,3 @@
-tango.
-tramvaj.
-tři.
-krk.
-vlk.
-osm.
+plavky.
+leckdo.
+odkládat.
