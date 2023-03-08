@@ -114,36 +114,37 @@ def change_char(word, char, next_chars, replacement):
 
 def apply_chain_rule(sentences_list: list):
     res = []
+    special_chars = ['#', '!']
     for sentence in sentences_list:
-        words = sentence.split('|')
-        useless_words = ['', '$']
-        idx = 0
-        words_temp = []
-        for word in words:
-            word_list = list(word)
-            if word in useless_words:
-                continue
+        for i in range(len(sentence)-1):
+            current_char = sentence[i]
+            next_char = sentence[i+1]
 
-            for char in word_list:
-                if char in rules.VOICED_CONSONANTS_PAIR:
-                    char_idx = word_list.index(char)
-                    if char_idx < len(word)-2:
-                        next_char = word_list[char_idx+1]
-                        if next_char in rules.VOICELESS_CONSONANTS_PAIR:
-                            word_list[char_idx] = rules.VOICED_CONSONANTS_PAIR_to_VOICELESS_CONSONANTS_PAIR[char]
-                    if char_idx == len(word)-1:
-                        word_list[char_idx] = rules.VOICED_CONSONANTS_PAIR_to_VOICELESS_CONSONANTS_PAIR[char]
+            if current_char in rules.VOICED_CONSONANTS_PAIR and (next_char in rules.VOICELESS_CONSONANTS_PAIR or next_char == '|' or next_char == '#'):
+                if next_char == '|' and i < len(sentence)-1:
+                    char_after_pause = sentence[i+2]
+                    if char_after_pause in rules.VOWELS or char_after_pause in rules.VOICELESS_CONSONANTS_PAIR or char_after_pause in rules.VOICED_CONSONANTS or char_after_pause in special_chars:
+                        current_char_idx = i
+                        new_char = rules.VOICED_CONSONANTS_PAIR_to_VOICELESS_CONSONANTS_PAIR[current_char]
+                        sentence = sentence[:current_char_idx] + new_char + sentence[current_char_idx + 1:]
+                else:
+                    current_char_idx = i
+                    new_char = rules.VOICED_CONSONANTS_PAIR_to_VOICELESS_CONSONANTS_PAIR[current_char]
+                    sentence = sentence[:current_char_idx] + new_char + sentence[current_char_idx + 1:]
 
-                if char in rules.VOICELESS_CONSONANTS_PAIR:
-                    char_idx = word_list.index(char)
-                    if char_idx < len(word) - 2:
-                        next_char = word_list[char_idx + 1]
-                        if next_char in rules.VOICED_CONSONANTS_PAIR:
-                            word_list[char_idx] = rules.VOICELESS_CONSONANTS_PAIR_to_VOICED_CONSONANTS_PAIR[char]
+            if current_char in rules.VOICELESS_CONSONANTS_PAIR and (next_char in rules.VOICED_CONSONANTS_PAIR or next_char == '|'):
+                if next_char == '|' and i < len(sentence)-1:
+                    char_after_pause = sentence[i+2]
+                    if char_after_pause in rules.VOICED_CONSONANTS:
+                        current_char_idx = i
+                        new_char = rules.VOICELESS_CONSONANTS_PAIR_to_VOICED_CONSONANTS_PAIR[current_char]
+                        sentence = sentence[:current_char_idx] + new_char + sentence[current_char_idx + 1:]
+                else:
+                    current_char_idx = i
+                    new_char = rules.VOICELESS_CONSONANTS_PAIR_to_VOICED_CONSONANTS_PAIR[current_char]
+                    sentence = sentence[:current_char_idx] + new_char + sentence[current_char_idx + 1:]
 
-            word = "".join(word_list)
-            words_temp.append(word)
-        res.append('|$|' + '|'.join(words_temp) + '|$|')
+        res.append(sentence)
 
     return res
 
