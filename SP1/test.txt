@@ -36,3 +36,4 @@ nadlesní.
 nashledanou.
 shoda.
 v práci.
+kresba.

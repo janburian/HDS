@@ -149,9 +149,9 @@ def apply_chain_rule(sentences_list: list):
     return res
 
 if __name__ == "__main__":
-    #input_filename = "vety_HDS.ortho.txt"
-    input_filename = "ukazka_HDS.ortho.txt"
-    # input_filename = "test.txt"
+    # input_filename = "vety_HDS.ortho.txt"
+    # input_filename = "ukazka_HDS.ortho.txt"
+    input_filename = "test.txt"
     output_filename = "vety_HDS_transcript.txt"
 
     sentences_list_orig = read_input_file(input_filename)
