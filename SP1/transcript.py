@@ -116,37 +116,49 @@ def apply_chain_rule(sentences_list: list):
     res = []
     special_chars = ['#', '!', '$']
     for sentence in sentences_list:
-        for i in range(len(sentence)-2, 1, -1): # reversed for cycle
+        for i in range(len(sentence)-2, 1, -1): # reversed for cycle (from the end to the beginning of the sentence: str)
             current_char = sentence[i]
             prev_char = sentence[i + 1]
 
-            if current_char in rules.VOICED_CONSONANTS_PAIR and (prev_char in rules.VOICELESS_CONSONANTS_PAIR or prev_char == '|'):
-                if prev_char == '|' and i > 0:
-                    char_after_vertical_bar = sentence[i + 2]
-                    if char_after_vertical_bar in rules.VOWELS or char_after_vertical_bar in rules.VOICELESS_CONSONANTS_PAIR or char_after_vertical_bar in special_chars or char_after_vertical_bar in rules.VOICED_CONSONANTS:
-                        current_char_idx = i
-                        new_char = rules.VOICED_CONSONANTS_PAIR_to_VOICELESS_CONSONANTS_PAIR[current_char]
-                        sentence = sentence[:current_char_idx] + new_char + sentence[current_char_idx + 1:]
-                else:
-                    current_char_idx = i
-                    new_char = rules.VOICED_CONSONANTS_PAIR_to_VOICELESS_CONSONANTS_PAIR[current_char]
-                    sentence = sentence[:current_char_idx] + new_char + sentence[current_char_idx + 1:]
-
-            if current_char in rules.VOICELESS_CONSONANTS_PAIR and (prev_char in rules.VOICED_CONSONANTS_PAIR or prev_char == '|'):
-                if prev_char == '|' and i > 0:
-                    char_after_vertical_bar = sentence[i + 2]
-                    if char_after_vertical_bar in rules.VOICED_CONSONANTS_PAIR:
-                        current_char_idx = i
-                        new_char = rules.VOICELESS_CONSONANTS_PAIR_to_VOICED_CONSONANTS_PAIR[current_char]
-                        sentence = sentence[:current_char_idx] + new_char + sentence[current_char_idx + 1:]
-                elif prev_char != 'v':
-                    current_char_idx = i
-                    new_char = rules.VOICELESS_CONSONANTS_PAIR_to_VOICED_CONSONANTS_PAIR[current_char]
-                    sentence = sentence[:current_char_idx] + new_char + sentence[current_char_idx + 1:]
+            sentence = chain_rule_voiced_consonants(current_char, i, prev_char, sentence, special_chars)
+            sentence = chain_rule_voiceless_consonants(current_char, i, prev_char, sentence)
 
         res.append(sentence)
 
     return res
+
+
+def chain_rule_voiceless_consonants(current_char, i, prev_char, sentence):
+    if current_char in rules.VOICELESS_CONSONANTS_PAIR and (
+            prev_char in rules.VOICED_CONSONANTS_PAIR or prev_char == '|'):
+        if prev_char == '|' and i > 0:
+            char_after_vertical_bar = sentence[i + 2]
+            if char_after_vertical_bar in rules.VOICED_CONSONANTS_PAIR:
+                current_char_idx = i
+                new_char = rules.VOICELESS_CONSONANTS_PAIR_to_VOICED_CONSONANTS_PAIR[current_char]
+                sentence = sentence[:current_char_idx] + new_char + sentence[current_char_idx + 1:]
+        elif prev_char != 'v':
+            current_char_idx = i
+            new_char = rules.VOICELESS_CONSONANTS_PAIR_to_VOICED_CONSONANTS_PAIR[current_char]
+            sentence = sentence[:current_char_idx] + new_char + sentence[current_char_idx + 1:]
+    return sentence
+
+
+def chain_rule_voiced_consonants(current_char, i, prev_char, sentence, special_chars):
+    if current_char in rules.VOICED_CONSONANTS_PAIR and (
+            prev_char in rules.VOICELESS_CONSONANTS_PAIR or prev_char == '|'):
+        if prev_char == '|' and i > 0:
+            char_after_vertical_bar = sentence[i + 2]
+            if char_after_vertical_bar in rules.VOWELS or char_after_vertical_bar in rules.VOICELESS_CONSONANTS_PAIR or char_after_vertical_bar in special_chars or char_after_vertical_bar in rules.VOICED_CONSONANTS:
+                current_char_idx = i
+                new_char = rules.VOICED_CONSONANTS_PAIR_to_VOICELESS_CONSONANTS_PAIR[current_char]
+                sentence = sentence[:current_char_idx] + new_char + sentence[current_char_idx + 1:]
+        else:
+            current_char_idx = i
+            new_char = rules.VOICED_CONSONANTS_PAIR_to_VOICELESS_CONSONANTS_PAIR[current_char]
+            sentence = sentence[:current_char_idx] + new_char + sentence[current_char_idx + 1:]
+    return sentence
+
 
 if __name__ == "__main__":
     # input_filename = "vety_HDS.ortho.txt"
@@ -161,6 +173,5 @@ if __name__ == "__main__":
     res = apply_chain_rule(res)
 
     save_output_file(res, output_filename)
-    print()
 
 
