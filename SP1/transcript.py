@@ -1,5 +1,6 @@
 import rules
 
+
 def read_input_file(filename: str):
     sentences_list = []
     with open(filename, 'r', encoding='utf-8') as file:
@@ -10,6 +11,7 @@ def read_input_file(filename: str):
 
     return sentences_list
 
+
 def save_output_file(sentences, filename: str):
     f = open(filename, 'w', encoding='utf-8')
 
@@ -18,6 +20,7 @@ def save_output_file(sentences, filename: str):
         f.write(sentence)
 
     f.close()
+
 
 def apply_basic_rules(sentences_list: list, basic_rules: dict):
     res = []
@@ -31,6 +34,7 @@ def apply_basic_rules(sentences_list: list, basic_rules: dict):
         res.append(sentence)
 
     return res
+
 
 def apply_alophones(sentences_list: list):
     # alophones = ['n', 'm', 'R', 'r', 'l']
@@ -61,6 +65,7 @@ def apply_alophones(sentences_list: list):
         res.append(sentence)
 
     return res
+
 
 def change_phoneme_between_consonants_2(word, phoneme, consonants, replacement):
     phoneme_idx = word.index(phoneme)
@@ -112,11 +117,11 @@ def change_phoneme(word, phoneme, next_phonemes, replacement):
     return word
 
 
-def apply_chain_rule(sentences_list: list):
+def apply_chain_rules(sentences_list: list):
     res = []
     special_chars = ['#', '!', '$']
     for sentence in sentences_list:
-        for i in range(len(sentence)-2, 1, -1): # reversed for cycle (from the end to the beginning of the sentence: str)
+        for i in range(len(sentence)-2, 1, -1):  # reversed for cycle (from the end to the beginning of the sentence)
             current_char = sentence[i]
             prev_char = sentence[i + 1]
 
@@ -149,7 +154,8 @@ def chain_rule_voiced_consonants(current_char, i, prev_char, sentence, special_c
             prev_char in rules.VOICELESS_CONSONANTS_PAIR or prev_char == '|'):
         if prev_char == '|' and i > 0:
             char_after_vertical_bar = sentence[i + 2]
-            if char_after_vertical_bar in rules.VOWELS or char_after_vertical_bar in rules.VOICELESS_CONSONANTS_PAIR or char_after_vertical_bar in special_chars or char_after_vertical_bar in rules.VOICED_CONSONANTS:
+            if (char_after_vertical_bar in rules.VOWELS or char_after_vertical_bar in rules.VOICELESS_CONSONANTS_PAIR or
+                    char_after_vertical_bar in special_chars or char_after_vertical_bar in rules.VOICED_CONSONANTS):
                 current_char_idx = i
                 new_char = rules.VOICED_CONSONANTS_PAIR_to_VOICELESS_CONSONANTS_PAIR[current_char]
                 sentence = sentence[:current_char_idx] + new_char + sentence[current_char_idx + 1:]
@@ -168,10 +174,11 @@ if __name__ == "__main__":
 
     sentences_list_orig = read_input_file(input_filename)
     basic_rules = rules.BASIC_RULES
+
+    # Processing
     res = apply_basic_rules(sentences_list_orig.copy(), basic_rules)
     res = apply_alophones(res)
-    res = apply_chain_rule(res)
+    res = apply_chain_rules(res)
 
+    # Saving output
     save_output_file(res, output_filename)
-
-
