@@ -150,7 +150,7 @@ def chain_rule_voiceless_consonants(current_char: str, i: int, prev_char: str, s
     return sentence
 
 
-def chain_rule_voiced_consonants(current_char: str, i: int, prev_char: str, sentence: str, special_chars: list): # assimilation - voiced consonants
+def chain_rule_voiced_consonants(current_char: str, i: int, prev_char: str, sentence: str, special_chars: list):  # assimilation - voiced consonants
     if current_char in rules.VOICED_CONSONANTS_PAIR and (
             prev_char in rules.VOICELESS_CONSONANTS_PAIR or prev_char == '|'):
         if prev_char == '|' and i > 0:
