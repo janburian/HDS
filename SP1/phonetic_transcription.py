@@ -12,7 +12,7 @@ def read_input_file(filename: str):
     return sentences_list
 
 
-def save_output_file(sentences, filename: str):
+def save_output_file(sentences: list, filename: str):
     f = open(filename, 'w', encoding='utf-8')
 
     for sentence in sentences:
@@ -47,9 +47,9 @@ def apply_alophones(sentences_list: list):
         words_temp = []
         for word in words:
             if 'n' in word:
-                word = change_char(word, 'n', next_char=['k', 'g'], replacement='N')
+                word = change_char(word, 'n', next_chars=['k', 'g'], replacement='N')
             if 'm' in word:
-                word = change_char(word, 'm', next_char=['v', 'f'], replacement='M')
+                word = change_char(word, 'm', next_chars=['v', 'f'], replacement='M')
             # if 'm' in word:
             #     word = change_char_between_consonants(word, 'm', consonants_all, replacement='H')
             if 'r' in word:
@@ -67,7 +67,7 @@ def apply_alophones(sentences_list: list):
     return res
 
 
-def change_char_between_consonants_2(word, char, consonants, replacement):
+def change_char_between_consonants_2(word: str, char: str, consonants: list, replacement: str):
     char_idx = word.index(char)
     if char_idx == len(word) - 1:
         word_list = list(word)
@@ -86,7 +86,7 @@ def change_char_between_consonants_2(word, char, consonants, replacement):
     return word
 
 
-def change_char_between_consonants(word, char, consonants, replacement):
+def change_char_between_consonants(word: str, char: str, consonants: list, replacement: str):
     char_idx = word.index(char)
     if char_idx == len(word) - 1 and word[char_idx - 1] in consonants:
         word_list = list(word)
@@ -105,11 +105,11 @@ def change_char_between_consonants(word, char, consonants, replacement):
     return word
 
 
-def change_char(word, char, next_char, replacement):
+def change_char(word: str, char: str, next_chars: list, replacement: str):
     char_idx = word.index(char)
     if char_idx < len(word) - 2:
         next_phoneme = word[char_idx + 1]
-        if next_phoneme == next_char[0] or next_phoneme == next_char[1]: # TODO
+        if next_phoneme in next_chars:
             word_list = list(word)
             word_list[char_idx] = replacement
             word = "".join(word_list)
@@ -133,7 +133,7 @@ def apply_chain_rules(sentences_list: list):
     return res
 
 
-def chain_rule_voiceless_consonants(current_char, i, prev_char, sentence):
+def chain_rule_voiceless_consonants(current_char: str, i: int, prev_char: str, sentence: str):
     if current_char in rules.VOICELESS_CONSONANTS_PAIR and (
             prev_char in rules.VOICED_CONSONANTS_PAIR or prev_char == '|'):
         if prev_char == '|' and i > 0:
@@ -149,7 +149,7 @@ def chain_rule_voiceless_consonants(current_char, i, prev_char, sentence):
     return sentence
 
 
-def chain_rule_voiced_consonants(current_char, i, prev_char, sentence, special_chars):
+def chain_rule_voiced_consonants(current_char: str, i: int, prev_char: str, sentence: str, special_chars: list):
     if current_char in rules.VOICED_CONSONANTS_PAIR and (
             prev_char in rules.VOICELESS_CONSONANTS_PAIR or prev_char == '|'):
         if prev_char == '|' and i > 0:
