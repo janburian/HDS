@@ -29,11 +29,14 @@ if __name__ == "__main__":
         output_path = os.path.join(input_path.parent, output_filename)
 
     # input_filename = "vety_HDS.ortho.txt"
-    # # input_filename = "ukazka_HDS.ortho.txt"
-    # # input_filename = "test.txt"
+    # input_filename = "ukazka_HDS.ortho.txt"
+    # input_filename = "test.txt"
     # output_filename = "vety_HDS_transcript.txt"
 
+    # Reading sentences
     sentences_list_orig = phonetic_transcription.read_input_file(input_path)
+
+    # Importing basic rules
     basic_rules = rules.BASIC_RULES
 
     # Processing
