@@ -24,7 +24,7 @@ if __name__ == "__main__":
     input_path = Path(args.path_input_text)
     output_path = args.path_phntrn
 
-    if output_path == None:
+    if output_path is None:
         output_filename = input_path.name.replace("ortho", "phntrn")
         output_path = os.path.join(input_path.parent, output_filename)
 
