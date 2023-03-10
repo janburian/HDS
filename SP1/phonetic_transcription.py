@@ -164,21 +164,3 @@ def chain_rule_voiced_consonants(current_char, i, prev_char, sentence, special_c
             new_char = rules.VOICED_CONSONANTS_PAIR_to_VOICELESS_CONSONANTS_PAIR[current_char]
             sentence = sentence[:current_char_idx] + new_char + sentence[current_char_idx + 1:]
     return sentence
-
-
-if __name__ == "__main__":
-    # input_filename = "vety_HDS.ortho.txt"
-    input_filename = "ukazka_HDS.ortho.txt"
-    # input_filename = "test.txt"
-    output_filename = "vety_HDS_transcript.txt"
-
-    sentences_list_orig = read_input_file(input_filename)
-    basic_rules = rules.BASIC_RULES
-
-    # Processing
-    res = apply_basic_rules(sentences_list_orig.copy(), basic_rules)
-    res = apply_alophones(res)
-    res = apply_chain_rules(res)
-
-    # Saving output
-    save_output_file(res, output_filename)

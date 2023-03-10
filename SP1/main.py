@@ -1,0 +1,46 @@
+import argparse
+from pathlib import Path
+import os
+
+# Modules import
+import rules
+import phonetic_transcription
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        prog='Phonetic transcription',
+        description='Creates phonetic transcription from the input text.',
+        #epilog='Write a path to directory, where the phonetic transcription will be saved.'
+    )
+
+    parser.add_argument('-p', '--path_input_text', metavar='path_input', type=str,
+                        help='a path to the input file')
+
+    parser.add_argument('-s', '--path_phntrn', metavar='path_phntrn', type=str,
+                        help='a path to the output file')
+
+    args = parser.parse_args()
+
+    # From CMD
+    input_path = Path(args.path_input_text)
+    output_path = args.path_phntrn
+
+    if output_path == None:
+        output_filename = input_path.name.replace("ortho", "phntrn")
+        output_path = os.path.join(input_path.parent, output_filename)
+
+    # input_filename = "vety_HDS.ortho.txt"
+    # # input_filename = "ukazka_HDS.ortho.txt"
+    # # input_filename = "test.txt"
+    # output_filename = "vety_HDS_transcript.txt"
+
+    sentences_list_orig = phonetic_transcription.read_input_file(input_path)
+    basic_rules = rules.BASIC_RULES
+
+    # Processing
+    res = phonetic_transcription.apply_basic_rules(sentences_list_orig.copy(), basic_rules)
+    res = phonetic_transcription.apply_alophones(res)
+    res = phonetic_transcription.apply_chain_rules(res)
+
+    # Saving output
+    phonetic_transcription.save_output_file(res, output_path)
