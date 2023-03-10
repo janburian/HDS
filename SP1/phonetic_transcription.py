@@ -47,17 +47,17 @@ def apply_alophones(sentences_list: list):
         words_temp = []
         for word in words:
             if 'n' in word:
-                word = change_phoneme(word, 'n', next_phonemes=['k', 'g'], replacement='N')
+                word = change_char(word, 'n', next_char=['k', 'g'], replacement='N')
             if 'm' in word:
-                word = change_phoneme(word, 'm', next_phonemes=['v', 'f'], replacement='M')
+                word = change_char(word, 'm', next_char=['v', 'f'], replacement='M')
             # if 'm' in word:
             #     word = change_char_between_consonants(word, 'm', consonants_all, replacement='H')
             if 'r' in word:
-                word = change_phoneme_between_consonants(word, 'r', consonants_all, replacement='P')
+                word = change_char_between_consonants(word, 'r', consonants_all, replacement='P')
             if 'l' in word:
-                word = change_phoneme_between_consonants(word, 'l', consonants_all, replacement='L')
+                word = change_char_between_consonants(word, 'l', consonants_all, replacement='L')
             if 'R' in word:
-                word = change_phoneme_between_consonants_2(word, 'R', consonants_voiceless, replacement='Q')
+                word = change_char_between_consonants_2(word, 'R', consonants_voiceless, replacement='Q')
 
             words_temp.append(word)
 
@@ -67,37 +67,18 @@ def apply_alophones(sentences_list: list):
     return res
 
 
-def change_phoneme_between_consonants_2(word, phoneme, consonants, replacement):
-    phoneme_idx = word.index(phoneme)
-    if phoneme_idx == len(word) - 1:
+def change_char_between_consonants_2(word, char, consonants, replacement):
+    char_idx = word.index(char)
+    if char_idx == len(word) - 1:
         word_list = list(word)
-        word_list[phoneme_idx] = replacement
+        word_list[char_idx] = replacement
         word = "".join(word_list)
 
         return word
 
-    if phoneme_idx > 0 and word[phoneme_idx - 1] in consonants:
+    if char_idx > 0 and word[char_idx - 1] in consonants:
         word_list = list(word)
-        word_list[phoneme_idx] = replacement
-        word = "".join(word_list)
-
-        return word
-
-    return word
-
-
-def change_phoneme_between_consonants(word, phoneme, consonants, replacement):
-    phoneme_idx = word.index(phoneme)
-    if phoneme_idx == len(word) - 1 and word[phoneme_idx - 1] in consonants:
-        word_list = list(word)
-        word_list[phoneme_idx] = replacement
-        word = "".join(word_list)
-
-        return word
-
-    if phoneme_idx > 0 and word[phoneme_idx - 1] in consonants and word[phoneme_idx + 1] in consonants:
-        word_list = list(word)
-        word_list[phoneme_idx] = replacement
+        word_list[char_idx] = replacement
         word = "".join(word_list)
 
         return word
@@ -105,13 +86,32 @@ def change_phoneme_between_consonants(word, phoneme, consonants, replacement):
     return word
 
 
-def change_phoneme(word, phoneme, next_phonemes, replacement):
-    phoneme_idx = word.index(phoneme)
-    if phoneme_idx < len(word) - 2:
-        next_phoneme = word[phoneme_idx + 1]
-        if next_phoneme == next_phonemes[0] or next_phoneme == next_phonemes[1]:
+def change_char_between_consonants(word, char, consonants, replacement):
+    char_idx = word.index(char)
+    if char_idx == len(word) - 1 and word[char_idx - 1] in consonants:
+        word_list = list(word)
+        word_list[char_idx] = replacement
+        word = "".join(word_list)
+
+        return word
+
+    if char_idx > 0 and word[char_idx - 1] in consonants and word[char_idx + 1] in consonants:
+        word_list = list(word)
+        word_list[char_idx] = replacement
+        word = "".join(word_list)
+
+        return word
+
+    return word
+
+
+def change_char(word, char, next_char, replacement):
+    char_idx = word.index(char)
+    if char_idx < len(word) - 2:
+        next_phoneme = word[char_idx + 1]
+        if next_phoneme == next_char[0] or next_phoneme == next_char[1]: # TODO
             word_list = list(word)
-            word_list[phoneme_idx] = replacement
+            word_list[char_idx] = replacement
             word = "".join(word_list)
 
     return word

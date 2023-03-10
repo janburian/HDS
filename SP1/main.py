@@ -10,7 +10,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         prog='Phonetic transcription',
         description='Creates phonetic transcription from the input text.',
-        #epilog='Write a path to directory, where the phonetic transcription will be saved.'
     )
 
     parser.add_argument('-p', '--path_input_text', metavar='path_input', type=str,
