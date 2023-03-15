@@ -139,7 +139,7 @@ def chain_rule_voiceless_consonants(current_char: str, i: int, prev_char: str, s
             prev_char in rules.VOICED_CONSONANTS_PAIR or prev_char == '|'):
         if prev_char == '|' and i > 0:
             char_after_vertical_bar = sentence[i + 2]
-            if char_after_vertical_bar in rules.VOICED_CONSONANTS_PAIR:
+            if char_after_vertical_bar in rules.VOICED_CONSONANTS_PAIR and char_after_vertical_bar != 'v':
                 current_char_idx = i
                 new_char = rules.VOICELESS_CONSONANTS_PAIR_to_VOICED_CONSONANTS_PAIR[current_char]
                 sentence = sentence[:current_char_idx] + new_char + sentence[current_char_idx + 1:]
@@ -151,16 +151,17 @@ def chain_rule_voiceless_consonants(current_char: str, i: int, prev_char: str, s
 
 
 def chain_rule_voiced_consonants(current_char: str, i: int, prev_char: str, sentence: str, special_chars: list):  # assimilation - voiced consonants
+    char_after_vertical_bar = ''
     if current_char in rules.VOICED_CONSONANTS_PAIR and (
             prev_char in rules.VOICELESS_CONSONANTS_PAIR or prev_char == '|'):
         if prev_char == '|' and i > 0:
             char_after_vertical_bar = sentence[i + 2]
             if (char_after_vertical_bar in rules.VOWELS or char_after_vertical_bar in rules.VOICELESS_CONSONANTS_PAIR or
-                    char_after_vertical_bar in special_chars or char_after_vertical_bar in rules.VOICED_CONSONANTS):
+                    char_after_vertical_bar in special_chars or char_after_vertical_bar in rules.VOICED_CONSONANTS or char_after_vertical_bar == 'v'):
                 current_char_idx = i
                 new_char = rules.VOICED_CONSONANTS_PAIR_to_VOICELESS_CONSONANTS_PAIR[current_char]
                 sentence = sentence[:current_char_idx] + new_char + sentence[current_char_idx + 1:]
-        else:
+        elif char_after_vertical_bar != 'v':
             current_char_idx = i
             new_char = rules.VOICED_CONSONANTS_PAIR_to_VOICELESS_CONSONANTS_PAIR[current_char]
             sentence = sentence[:current_char_idx] + new_char + sentence[current_char_idx + 1:]
