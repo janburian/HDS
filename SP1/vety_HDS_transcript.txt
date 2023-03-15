@@ -1,6 +1,6 @@
 |$|za|svUj|gOl|fSak|musIm|poDekovat|pQedefSIm|kovalevovi|$|
 |$|!aJi|po|zhryceJI|fSak|svoboda|nebude|na|cele|sAm|$|
-|$|policistE|zjisTili|#|Ze|!UtoCJIg|vistQelil|na|svy|!objeT|nejmEJe|Sest|ran|$|
+|$|policistE|zjisTili|#|Ze|!UtoCJIk|vistQelil|na|svy|!objeT|nejmEJe|Sest|ran|$|
 |$|takE|!aleS|krAtoSka|vjeRI|#|Ze|se|zablIskalo|na|lepSI|Casi|$|
 |$|CAzd|bi|mohL|ReSit|kabinet|#|CAst|parlament|#|dopLJil|fencL|$|
 |$|syhlasil|sem|proto|s|TIm|#|Ze|mu|pQi|jeho|trenErskEm|rozjezdu|pomohu|$|
@@ -22,14 +22,14 @@
 |$|!uplinul|rok|#|neS|sem|se|se|svy|novy|tvARI|dokonale|zZila|$|
 |$|ve|Skodofce|budu|stejJe|jako|f|jance|RIDid|zhruba|sedm|liDI|$|
 |$|nArodJI|hospodAQstvI|mUZeme|zjednoduSeJe|rozDelit|na|domAcnosTi|#|podJiki|!a|stAtJI|sektor|$|
-|$|na|rozDIl|!ot|komerCJIG|mEdijI|nemusIme|Delad|visIlAJI|pro|peJIze|$|
+|$|na|rozDIl|!ot|komerCJIG|mEdijI|nemusIme|Delat|visIlAJI|pro|peJIze|$|
 |$|s|Jekolika|domU|#|kterE|sy|bes|nAjemJIkU|#|mizI|stQexi|$|
 |$|jenZe|jA|na|takovE|vjeci|vUbec|nemislIm|#|dodAvA|bezelstJe|$|
 |$|demonstranTi|fSak|majI|na|reakci|policistU|rozDIlnI|nAzor|$|
 |$|!a|Jikoli|snat|jen|na|papIRe|#|!ale|!opravdu|#|!a|tuDIS|po|pravDe|$|
 |$|pQitom|!opxodovAJI|na|devizovEm|tPhu|bilo|kvUli|masivJImu|pQevisu|poptAfki|prakticki|znemoZJeno|$|
 |$|jeDinE|#|co|na|Jem|vaDI|#|je|prAvje|ta|Sablona|$|
-|$|namIsto|JIskEho|populizmu|sy|sxopJi|!obhajovat|nepopulArJI|kroki|!a|spoleCnozd|vEst|$|
+|$|namIsto|JIskEho|populizmu|sy|sxopJi|!obhajovat|nepopulArJI|kroki|!a|spoleCnost|vEst|$|
 |$|po|neviDitelnE|#|!ale|fSudipQItomnE|sITi|!udavaCU|!a|fIzlU?
 |$|zAsadJe|!odmItAme|jakEkoli|naQCeJI|syvisejIcI|s|korupcI|Ci|!Uplatkem|$|
 |$|JiSSI|daJe|dAle|nesmI|bIt|kompenzovAni|poklesem|rospoCtovIG|vIdajU|$|
@@ -45,7 +45,7 @@
 |$|Zivoti|ClenU|spoleCenstvI|sobje|rovnIG|musI|bIt|xrAJeni|$|
 |$|!otstartoval|toTiS|#|!aJiZ|bi|k|tomu|dostal|pQIkas|$|
 |$|znehodnocenE|kusi|lze|podle|novotnEho|kupit|na|burzAG|$|
-|$|staCI|takovE|CIslo|k|tomu|!abixom|se|pQibliZovali|g|vispjelIm|zemIm?
+|$|staCI|takovE|CIslo|k|tomu|!abixom|se|pQibliZovali|k|vispjelIm|zemIm?
 |$|je|tPpjelivI|#|v|devjetadvaceTi|leteG|!uS|mA|Jeco|za|seby|$|
 |$|bilo|to|skuteCJe|Jeco|jinEho|#|neS|na|co|sem|ze|zAmoRI|zviklI|$|
 |$|lidE|se|!osvjeZujI|vzduxem|pQet|klubem|!i|nApoji|v|baru|$|
@@ -53,7 +53,7 @@
 |$|zAroveJ|!upozorJil|#|Ze|sykromE|firmi|musI|spLJovat|!urCitE|podmINki|#|ne^upQesJil|fSak|jakE|$|
 |$|poCasI|si|zaTIm|s|poRadateli|mistrofstvI|svjeta|f|klasickEm|liZovAJI|kruTe|zahrAvA|$|
 |$|ti|se|!ofSem|stejJe|prUbjeZJe|mJeJI|#|vjetSiny|zviSujI|$|
-|$|xTela|biste|si|zahrAd|v|dalSIm|gedeonovje|filmu?
+|$|xTela|biste|si|zahrAt|v|dalSIm|gedeonovje|filmu?
 |$|spolu|s|pQAteli|se|proto|rozhodL|!otAski|vipracovat|!a|zAjemcUm|prodAvat|$|
 |$|fspomenete|si|na|floriDe|Jegdi|na|ti|xvIle?
 |$|heskI|!UspjeG|#|to|se|mAlogdi|povede|#|fTipkoval|lener|jeSTe|po|zApase|$|
@@ -63,7 +63,7 @@
 |$|podle|televize|si|muZ|z|beneSovy|viRizoval|!UCti|$|
 |$|CekA|se|#|Ze|!aspoJ|dva|mohy|republiku|!odmItnyt|$|
 |$|ceni|budy|regulovAni|do|dobi|#|gdi|bude|vitvoReno|tPZJI|prostQeDI|$|
-|$|!obhAjkiJe|ZenskIG|prAv|ve|spojenIG|stAteG|se|xistajI|na|novy|steC|$|
+|$|!obhAjkiJe|ZenskIG|prAf|ve|spojenIG|stAteG|se|xistajI|na|novy|steC|$|
 |$|mJel|sem|spoCAtku|velkE|poxibnosTi|#|vUbec|sem|se|na|takovI|!Ukol|necITil|$|
 |$|je|tedi|pravda|#|Ze|fstahi|mezi|nejlepSImi|tenisti|sy|Casto|nepQAtelskE?
 |$|pQetpoklAdA|se|#|Ze|Yditor|bude|ZAdat|posIleJI|rezerf|na|SpatnE|!Uvjeri|$|
@@ -96,5 +96,5 @@
 |$|prI|to|!ale|mJelo|bIt|jinE|#|jen|gdibi|se|!ocitla|na|!obAlce|$|
 |$|tagZe|napQIklat|cukrovinek|se|zvISeJI|cen|tak|rixle|nedotkne?
 |$|holCiCka|mA|navIc|jako|jeDinA|f|roDiJe|jeSTe|!i|stAtJI|pQIsluSnost|slovensky|$|
-|$|tvPDIme|#|Ze|hrAW|bi|nemJel|bId|dvakrAd|vizvAn|k|!obhajobje|$|
+|$|tvPDIme|#|Ze|hrAW|bi|nemJel|bId|dvakrAt|vizvAn|k|!obhajobje|$|
 |$|fSexni|dosavadJI|pokusi|zaloZit|!erotickI|podJik|!i|pro|CeskE|dAmi|skraxovali|$|
