@@ -166,4 +166,5 @@ def assimilation_voiced_consonants(current_char: str, i: int, prev_char: str, se
             current_char_idx = i
             new_char = rules.VOICED_CONSONANTS_PAIR_to_VOICELESS_CONSONANTS_PAIR[current_char]
             sentence = sentence[:current_char_idx] + new_char + sentence[current_char_idx + 1:]
+
     return sentence
