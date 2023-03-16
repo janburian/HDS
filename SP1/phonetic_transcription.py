@@ -28,9 +28,9 @@ def apply_basic_rules(sentences_list: list, basic_rules: dict):
     for sentence in sentences_list:
         pause = '|$|'
         sentence = pause + sentence.lower()
-        for phoneme in basic_rules:
-            char_transcript = basic_rules[phoneme]
-            sentence = sentence.replace(phoneme, char_transcript)
+        for char in basic_rules:
+            char_transcript = basic_rules[char]
+            sentence = sentence.replace(char, char_transcript)
 
         res.append(sentence)
 
