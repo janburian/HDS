@@ -158,3 +158,5 @@ VOICELESS_CONSONANTS_PAIR_to_VOICED_CONSONANTS_PAIR = {
     'C': 'W',
     'Q': 'R',
 }
+
+MONOSYLLABIC_PREPOSITIONS = ['bez', 'nad', 'od', 'ob', 'pod', 'před']

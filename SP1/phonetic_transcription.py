@@ -118,7 +118,7 @@ def change_char(word: str, char: str, next_chars: list, replacement: str):
     return word
 
 
-def apply_chain_rules(sentences_list: list):
+def apply_assimilation(sentences_list: list):
     res = []
     special_chars = ['#', '!', '$']
     for sentence in sentences_list:
@@ -126,15 +126,15 @@ def apply_chain_rules(sentences_list: list):
             current_char = sentence[i]
             prev_char = sentence[i + 1]
 
-            sentence = chain_rule_voiced_consonants(current_char, i, prev_char, sentence, special_chars)
-            sentence = chain_rule_voiceless_consonants(current_char, i, prev_char, sentence)
+            sentence = assimilation_voiced_consonants(current_char, i, prev_char, sentence, special_chars)
+            sentence = assimilation_voiceless_consonants(current_char, i, prev_char, sentence)
 
         res.append(sentence)
 
     return res
 
 
-def chain_rule_voiceless_consonants(current_char: str, i: int, prev_char: str, sentence: str):  # assimilation - voiceless consonants
+def assimilation_voiceless_consonants(current_char: str, i: int, prev_char: str, sentence: str):  # assimilation - voiceless consonants
     if current_char in rules.VOICELESS_CONSONANTS_PAIR and (
             prev_char in rules.VOICED_CONSONANTS_PAIR or prev_char == '|'):
         if prev_char == '|' and i > 0:
@@ -150,7 +150,7 @@ def chain_rule_voiceless_consonants(current_char: str, i: int, prev_char: str, s
     return sentence
 
 
-def chain_rule_voiced_consonants(current_char: str, i: int, prev_char: str, sentence: str, special_chars: list):  # assimilation - voiced consonants
+def assimilation_voiced_consonants(current_char: str, i: int, prev_char: str, sentence: str, special_chars: list):  # assimilation - voiced consonants
     char_after_vertical_bar = ''
     if current_char in rules.VOICED_CONSONANTS_PAIR and (
             prev_char in rules.VOICELESS_CONSONANTS_PAIR or prev_char == '|'):

@@ -28,8 +28,8 @@ if __name__ == "__main__":
     #     output_filename = input_path.name.replace("ortho", "phntrn")
     #     output_path = os.path.join(input_path.parent, output_filename)
 
-    input_path = "vety_HDS.ortho.txt"
-    # input_filename = "ukazka_HDS.ortho.txt"
+    # input_path = "vety_HDS.ortho.txt"
+    input_path = "ukazka_HDS.ortho.txt"
     # input_path = "test.txt"
     # input_path = "spodoba_znelosti.txt"
     output_path = "vety_HDS_transcript.txt"
@@ -43,7 +43,7 @@ if __name__ == "__main__":
     # Processing
     res = phonetic_transcription.apply_basic_rules(sentences_list_orig.copy(), basic_rules)
     res = phonetic_transcription.apply_alophones(res)
-    res = phonetic_transcription.apply_chain_rules(res)
+    res = phonetic_transcription.apply_assimilation(res)
 
     # Saving output
     phonetic_transcription.save_output_file(res, output_path)
