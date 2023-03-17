@@ -30,10 +30,10 @@ if __name__ == "__main__":
     #     output_path = os.path.join(input_path.parent, output_filename)
 
     # Debugging
-    # input_path = "vety_HDS.ortho.txt"
+    input_path = "vety_HDS.ortho.txt"
     # input_path = "ukazka_HDS.ortho.txt"
     # input_path = "test.txt"
-    input_path = "spodoba_znelosti.txt"
+    # input_path = "spodoba_znelosti.txt"
     output_path = "vety_HDS_transcript.txt"
 
     # Reading sentences

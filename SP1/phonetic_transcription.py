@@ -203,11 +203,11 @@ def check_prepositions(sentences_list: list):
         sentence = '|'.join(words)
         res.append(sentence)
 
-    res = check_prepositions_personal_pronouns(res)
+    res = check_s_preposition_personal_pronouns(res)
 
     return res
 
-def check_prepositions_personal_pronouns(sentences_list):
+def check_s_preposition_personal_pronouns(sentences_list):
     res = []
     personal_pronouns = rules.PERSONAL_PRONOUNS
     bad_preposition = 'z'
