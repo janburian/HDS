@@ -123,9 +123,9 @@ VOICED_CONSONANTS_PAIR = ['b', 'd', 'D', 'g', 'v', 'z', 'Z', 'h', 'w', 'W', 'R']
 VOICELESS_CONSONANTS_PAIR = ['p', 't', 'T', 'k', 'f', 's', 'S', 'x', 'c', 'C', 'Q']
 
 # 'm', 'n', 'ň', 'l', 'r', 'j'
-VOICED_CONSONANTS = ['m', 'n', 'J', 'l', 'r', 'j']
+UNIQUE_CONSONANTS = ['m', 'n', 'J', 'l', 'r', 'j']
 
-CONSONANTS_ALL = VOICED_CONSONANTS + VOICELESS_CONSONANTS_PAIR + VOICED_CONSONANTS_PAIR
+CONSONANTS_ALL = UNIQUE_CONSONANTS + VOICELESS_CONSONANTS_PAIR + VOICED_CONSONANTS_PAIR
 
 VOWELS = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
 
@@ -158,3 +158,6 @@ VOICELESS_CONSONANTS_PAIR_to_VOICED_CONSONANTS_PAIR = {
     'C': 'W',
     'Q': 'R',
 }
+
+PERSONAL_PRONOUNS = ['nAmi', 'vAmi', 'vAs',  'nIm', 'jI', 'nI', 'jej', 'Jej',
+                    'jeho', 'Jeho', 'jimi', 'nimi']
