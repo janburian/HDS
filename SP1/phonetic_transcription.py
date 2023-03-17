@@ -207,7 +207,7 @@ def check_prepositions(sentences_list: list):
 
     return res
 
-def check_s_preposition_personal_pronouns(sentences_list):
+def check_s_preposition_personal_pronouns(sentences_list: list):
     res = []
     personal_pronouns = rules.PERSONAL_PRONOUNS
     bad_preposition = 'z'
