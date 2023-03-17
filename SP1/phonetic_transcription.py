@@ -122,6 +122,8 @@ def apply_assimilation(sentences_list: list):
     res = []
     special_chars = ['#', '!', '$']
     for sentence in sentences_list:
+        words = sentence.split('|')
+
         for i in range(len(sentence)-2, 1, -1):  # reversed for cycle (from the end to the beginning of the sentence)
             current_char = sentence[i]
             prev_char = sentence[i + 1]
@@ -139,7 +141,7 @@ def assimilation_voiceless_consonants(current_char: str, i: int, prev_char: str,
             prev_char in rules.VOICED_CONSONANTS_PAIR or prev_char == '|'):
         if prev_char == '|' and i > 0:
             char_after_vertical_bar = sentence[i + 2]
-            if char_after_vertical_bar in rules.VOICED_CONSONANTS_PAIR and char_after_vertical_bar != 'v':
+            if (char_after_vertical_bar in rules.VOICED_CONSONANTS_PAIR) and char_after_vertical_bar != 'v':
                 current_char_idx = i
                 new_char = rules.VOICELESS_CONSONANTS_PAIR_to_VOICED_CONSONANTS_PAIR[current_char]
                 sentence = sentence[:current_char_idx] + new_char + sentence[current_char_idx + 1:]
@@ -168,3 +170,36 @@ def assimilation_voiced_consonants(current_char: str, i: int, prev_char: str, se
             sentence = sentence[:current_char_idx] + new_char + sentence[current_char_idx + 1:]
 
     return sentence
+
+
+def check_prepositions(sentences_list: list):
+    res = []
+    # 'bez', 'nad', 'ob', 'od', 'pod', 'pQed' monosyllabic prepositions (end with voiced pair consonants)
+    # 'k', 's', 'v', 'z' disyllabic prepositions
+    prepositions_bad = ['bes', 'nat', '!op', '!ot', 'pot', 'pQet', 'g', 'f', 's']
+    dict_prepositions = {
+        'bes': 'bez',
+        'nat': 'nad',
+        '!op': '!ob',
+        '!ot': '!od',
+        'pot': 'pod',
+        'pQet': 'pQed',
+        'g': 'k',
+        'f': 'v',
+        's': 'z',
+    }
+
+    for sentence in sentences_list:
+        words = sentence.split('|')
+        for preposition_bad in prepositions_bad:
+            if preposition_bad in words:
+                preposition_idx = words.index(preposition_bad)
+                if preposition_idx < len(words)-1:
+                    word_after_preposition = words[preposition_idx + 1]
+                    first_char = word_after_preposition[0]
+                    if first_char in rules.VOICED_CONSONANTS:
+                        words[preposition_idx] = dict_prepositions[preposition_bad]
+        sentence = '|'.join(words)
+        res.append(sentence)
+
+    return res
