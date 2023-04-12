@@ -30,11 +30,11 @@ if __name__ == "__main__":
     #     output_path = os.path.join(input_path.parent, output_filename)
 
     # Debugging
-    input_path = "sentences_read.csv"
+    input_path = Path("sentences_read.csv")
     # # input_path = "ukazka_HDS.ortho.txt"
     # # input_path = "test.txt"
     # # input_path = "spodoba_znelosti.txt"
-    output_path = "train.ph.epa.csv"
+    output_path = Path("train.ph.epa.csv")
 
     # Reading sentences
     sentences_dict_orig = phonetic_transcription.read_input_file(input_path)

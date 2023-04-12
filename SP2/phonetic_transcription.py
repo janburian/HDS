@@ -16,7 +16,7 @@ def read_input_file(filename: Path):
     return sentences_dict
 
 
-def save_output_file(sentences_dict: dict, filename: str):
+def save_output_file(sentences_dict: dict, filename: Path):
     f = open(filename, 'w', encoding='utf-8')
 
     for key in sentences_dict:
@@ -212,6 +212,7 @@ def check_prepositions(sentences_dict: dict):
     res = check_s_preposition_personal_pronouns(res)
 
     return res
+
 
 def check_s_preposition_personal_pronouns(sentences_dict: dict):
     res = {}
