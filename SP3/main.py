@@ -39,6 +39,6 @@ hours_relative = ["jednu", "dvě", "tři", "čtyři", "pět", "šest", "sedm", "
          "třináct", "čtrnáct", "patnáct", "šestnáct", "sedmnáct", "osmnáct", "devatenáct", "dvacet", "dvacet jedna",
          "dvacet dva", "dvacet tři"]
 
-
-get_times(hours, minutes)
-get_relative_times(hours_relative)
+if __name__ == "__main__":
+    get_times(hours, minutes)
+    get_relative_times(hours_relative)
