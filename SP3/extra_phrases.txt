@@ -18,7 +18,11 @@ kolik je teď volných míst v parkovacím domě <parkovaci_dum>
 kolik volných míst v parkovacím domě <parkovaci_dum>
 kolik zbývá volných míst v parkovacím domě <parkovaci_dum>
 kolik zbývá volných míst v <parkovaci_dum>
-kolik je aktuálně obsazeno v parkovacím domě <parkovaci_dum>
+kolik volných míst v parkovacím domě <parkovaci_dum>
+kolik volných míst v <parkovaci_dum>
+kolik volných míst zbývá v parkovacím domě <parkovaci_dum>
+kolik volných míst zbývá v <parkovaci_dum>
+kolik míst je aktuálně obsazeno v parkovacím domě <parkovaci_dum>
 kolik parkovacích míst je právě teď obsazeno v parkovacím domě <parkovaci_dum>
 kolik parkovacích míst je nyní obsazeno v parkovacím domě <parkovaci_dum>
 kolik parkovacích míst je v tento čas obsazeno v parkovacím domě <parkovaci_dum>
@@ -99,3 +103,25 @@ jak to akuálně vypadá s počtem volných míst v <parkovaci_dum>
 jak to akuálně vypadá s počtem obsazených míst v <parkovaci_dum>
 jak to obvykle vypadá s počtem volných míst v <parkovaci_dum> v <den> v <cas>
 jak to obvykle vypadá s počtem obsazených míst v <parkovaci_dum> v <den> v <cas>
+kolik je v <parkovaci_dum> volných parkovacích míst
+kolik zbývá volných parkovacích míst v <parkovaci_dum>
+kolik obvykle zbývá volných parkovacích míst v <parkovaci_dum> v <den> v <cas>
+jaká je obsazenost v <parkovaci_dum> v <den> v <cas>
+volná místa v <parkovaci_dum> za <rel_cas>
+obsazená místa v <parkovaci_dum> za <rel_cas>
+kolik bude obsazených míst v <parkovaci_dum> za <rel_cas>
+kolik bude volných parkovacích míst v parkovacím domě <parkovaci_dum> za <rel_cas>
+jaká je obvyklá zaplněnost v <parkovaci_dum> v <den> v <cas>
+jaká je obvyklá volná kapacita v <parkovaci_dum> v <den> v <cas>
+jaká je obvyklá zaplněnost v <parkovaci_dum> v <den>
+jaká je obvyklá volná kapacita v <parkovaci_dum> v <den>
+kolik je tam volných míst
+kolik je tam zaplněných míst
+kolik bylo volných míst v <den>
+kolik bylo volných míst v <den> v <cas>
+kolik bylo zaplněných míst v <den>
+kolik bylo zaplněných míst v <den> v <cas>
+zaplněná místa <den> v <cas>
+volná místa <den> v <cas>
+kolik zaparkovaných vozidel se právě teď nachází v parkovacím domě <parkovaci_dum>
+volná místa v <parkovaci_dum> za <cas_rel>

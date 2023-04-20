@@ -1,9 +1,10 @@
 def get_times(hours, minutes):
     f = open("times_output.txt", 'w', encoding='utf-8')
     for hour in hours:
+        f.write(hour + "\n")
         for minute in minutes:
             time = hour + " " + minute
-            f.write(time + '\n')
+            f.write(time + "\n")
     f.close()
 
 def get_relative_times(hours_relative):
@@ -31,7 +32,8 @@ hours = ["jedna", "jednu", "dvě", "tři", "čtyři", "pět", "šest", "sedm", "
          "třináct", "čtrnáct", "patnáct", "šestnáct", "sedmnáct", "osmnáct", "devatenáct", "dvacet", "dvacet jedna",
          "dvacet dva", "dvacet tři"]
 
-minutes = ["pět", "nula pět", "deset", "dvacet", "dvacet pět", "třicet pět", "čtyřicet", "padesát", "padesát pět"] # vynechano patnact, tricet a ctyricet pet
+minutes = ["pět", "nula pět", "deset", "patnáct", "dvacet", "dvacet pět", "třicet",
+           "třicet pět", "čtyřicet", "čtyřicet pět", "padesát", "padesát pět"]
 
 hours_relative = ["jednu", "dvě", "tři", "čtyři", "pět", "šest", "sedm", "osm", "devět", "deset", "jedenáct", "dvanáct",
          "třináct", "čtrnáct", "patnáct", "šestnáct", "sedmnáct", "osmnáct", "devatenáct", "dvacet", "dvacet jedna",

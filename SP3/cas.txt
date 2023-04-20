@@ -4,99 +4,345 @@ nula čtyřicet pět
 nula nula patnáct
 nula nula třicet
 nula nula čtyřicet pět
+jedna
+jedna nula nula
+jedna pět
+jedna nula pět
+jedna deset
+jedna patnáct
+jedna dvacet
+jedna dvacet pět
+jedna třicet
+jedna třicet pět
+jedna čtyřicet
+jedna čtyřicet pět
+jedna padesát
+jedna padesát pět
 jednu
+jednu nula nula
+jednu pět
+jednu nula pět
+jednu deset
 jednu patnáct
+jednu dvacet
+jednu dvacet pět
 jednu třicet
+jednu třicet pět
+jednu čtyřicet
 jednu čtyřicet pět
+jednu padesát
+jednu padesát pět
 dvě
+dvě nula nula
+dvě pět
+dvě nula pět
+dvě deset
 dvě patnáct
+dvě dvacet
+dvě dvacet pět
 dvě třicet
+dvě třicet pět
+dvě čtyřicet
 dvě čtyřicet pět
+dvě padesát
+dvě padesát pět
 tři
+tři nula nula
+tři pět
+tři nula pět
+tři deset
 tři patnáct
+tři dvacet
+tři dvacet pět
 tři třicet
+tři třicet pět
+tři čtyřicet
 tři čtyřicet pět
+tři padesát
+tři padesát pět
 čtyři
+čtyři nula nula
+čtyři pět
+čtyři nula pět
+čtyři deset
 čtyři patnáct
+čtyři dvacet
+čtyři dvacet pět
 čtyři třicet
+čtyři třicet pět
+čtyři čtyřicet
 čtyři čtyřicet pět
+čtyři padesát
+čtyři padesát pět
 pět
+pět nula nula
+pět pět
+pět nula pět
+pět deset
 pět patnáct
+pět dvacet
+pět dvacet pět
 pět třicet
+pět třicet pět
+pět čtyřicet
 pět čtyřicet pět
+pět padesát
+pět padesát pět
 šest
+šest nula nula
+šest pět
+šest nula pět
+šest deset
 šest patnáct
+šest dvacet
+šest dvacet pět
 šest třicet
+šest třicet pět
+šest čtyřicet
 šest čtyřicet pět
+šest padesát
+šest padesát pět
 sedm
+sedm nula nula
+sedm pět
+sedm nula pět
+sedm deset
 sedm patnáct
+sedm dvacet
+sedm dvacet pět
 sedm třicet
+sedm třicet pět
+sedm čtyřicet
 sedm čtyřicet pět
+sedm padesát
+sedm padesát pět
 osm
+osm nula nula
+osm pět
+osm nula pět
+osm deset
 osm patnáct
+osm dvacet
+osm dvacet pět
 osm třicet
+osm třicet pět
+osm čtyřicet
 osm čtyřicet pět
+osm padesát
+osm padesát pět
 devět
+devět nula nula
+devět pět
+devět nula pět
+devět deset
 devět patnáct
+devět dvacet
+devět dvacet pět
 devět třicet
+devět třicet pět
+devět čtyřicet
 devět čtyřicet pět
+devět padesát
+devět padesát pět
 deset
+deset nula nula
+deset pět
+deset nula pět
+deset deset
 deset patnáct
+deset dvacet
+deset dvacet pět
 deset třicet
+deset třicet pět
+deset čtyřicet
 deset čtyřicet pět
+deset padesát
+deset padesát pět
 jedenáct
+jedenáct nula nula
+jedenáct pět
+jedenáct nula pět
+jedenáct deset
 jedenáct patnáct
+jedenáct dvacet
+jedenáct dvacet pět
 jedenáct třicet
+jedenáct třicet pět
+jedenáct čtyřicet
 jedenáct čtyřicet pět
+jedenáct padesát
+jedenáct padesát pět
 dvanáct
+dvanáct nula nula
+dvanáct pět
+dvanáct nula pět
+dvanáct deset
 dvanáct patnáct
+dvanáct dvacet
+dvanáct dvacet pět
 dvanáct třicet
+dvanáct třicet pět
+dvanáct čtyřicet
 dvanáct čtyřicet pět
+dvanáct padesát
+dvanáct padesát pět
 třináct
+třináct nula nula
+třináct pět
+třináct nula pět
+třináct deset
 třináct patnáct
+třináct dvacet
+třináct dvacet pět
 třináct třicet
+třináct třicet pět
+třináct čtyřicet
 třináct čtyřicet pět
+třináct padesát
+třináct padesát pět
 čtrnáct
+čtrnáct nula nula
+čtrnáct pět
+čtrnáct nula pět
+čtrnáct deset
 čtrnáct patnáct
+čtrnáct dvacet
+čtrnáct dvacet pět
 čtrnáct třicet
+čtrnáct třicet pět
+čtrnáct čtyřicet
 čtrnáct čtyřicet pět
+čtrnáct padesát
+čtrnáct padesát pět
 patnáct
+patnáct nula nula
+patnáct pět
+patnáct nula pět
+patnáct deset
 patnáct patnáct
+patnáct dvacet
+patnáct dvacet pět
 patnáct třicet
+patnáct třicet pět
+patnáct čtyřicet
 patnáct čtyřicet pět
+patnáct padesát
+patnáct padesát pět
 šestnáct
+šestnáct nula nula
+šestnáct pět
+šestnáct nula pět
+šestnáct deset
 šestnáct patnáct
+šestnáct dvacet
+šestnáct dvacet pět
 šestnáct třicet
+šestnáct třicet pět
+šestnáct čtyřicet
 šestnáct čtyřicet pět
+šestnáct padesát
+šestnáct padesát pět
 sedmnáct
+sedmnáct nula nula
+sedmnáct pět
+sedmnáct nula pět
+sedmnáct deset
 sedmnáct patnáct
+sedmnáct dvacet
+sedmnáct dvacet pět
 sedmnáct třicet
+sedmnáct třicet pět
+sedmnáct čtyřicet
 sedmnáct čtyřicet pět
+sedmnáct padesát
+sedmnáct padesát pět
 osmnáct
+osmnáct nula nula
+osmnáct pět
+osmnáct nula pět
+osmnáct deset
 osmnáct patnáct
+osmnáct dvacet
+osmnáct dvacet pět
 osmnáct třicet
+osmnáct třicet pět
+osmnáct čtyřicet
 osmnáct čtyřicet pět
+osmnáct padesát
+osmnáct padesát pět
 devatenáct
+devatenáct nula nula
+devatenáct pět
+devatenáct nula pět
+devatenáct deset
 devatenáct patnáct
+devatenáct dvacet
+devatenáct dvacet pět
 devatenáct třicet
+devatenáct třicet pět
+devatenáct čtyřicet
 devatenáct čtyřicet pět
+devatenáct padesát
+devatenáct padesát pět
 dvacet
+dvacet nula nula
+dvacet pět
+dvacet nula pět
+dvacet deset
 dvacet patnáct
+dvacet dvacet
+dvacet dvacet pět
 dvacet třicet
+dvacet třicet pět
+dvacet čtyřicet
 dvacet čtyřicet pět
+dvacet padesát
+dvacet padesát pět
 dvacet jedna
+dvacet jedna nula nula
+dvacet jedna pět
+dvacet jedna nula pět
+dvacet jedna deset
 dvacet jedna patnáct
+dvacet jedna dvacet
+dvacet jedna dvacet pět
 dvacet jedna třicet
+dvacet jedna třicet pět
+dvacet jedna čtyřicet
 dvacet jedna čtyřicet pět
+dvacet jedna padesát
+dvacet jedna padesát pět
 dvacet dva
+dvacet dva nula nula
+dvacet dva pět
+dvacet dva nula pět
+dvacet dva deset
 dvacet dva patnáct
+dvacet dva dvacet
+dvacet dva dvacet pět
 dvacet dva třicet
+dvacet dva třicet pět
+dvacet dva čtyřicet
 dvacet dva čtyřicet pět
+dvacet dva padesát
+dvacet dva padesát pět
 dvacet tři
+dvacet tři nula nula
+dvacet tři pět
+dvacet tři nula pět
+dvacet tři deset
 dvacet tři patnáct
+dvacet tři dvacet
+dvacet tři dvacet pět
 dvacet tři třicet
+dvacet tři třicet pět
+dvacet tři čtyřicet
 dvacet tři čtyřicet pět
+dvacet tři padesát
+dvacet tři padesát pět
+dvacet čtyři nula nula
 nula nula
+nula nula nula nula
 půlnoci
 půlnoc
 půl jedné
@@ -135,222 +381,6 @@ třičtvrtě na devět
 třičtvrtě na deset
 třičtvrtě na jedenáct
 třičtvrtě na dvanáct
-jedna pět
-jedna nula pět
-jedna deset
-jedna dvacet
-jedna dvacet pět
-jedna třicet pět
-jedna čtyřicet
-jedna padesát
-jedna padesát pět
-jednu pět
-jednu nula pět
-jednu deset
-jednu dvacet
-jednu dvacet pět
-jednu třicet pět
-jednu čtyřicet
-jednu padesát
-jednu padesát pět
-dvě pět
-dvě nula pět
-dvě deset
-dvě dvacet
-dvě dvacet pět
-dvě třicet pět
-dvě čtyřicet
-dvě padesát
-dvě padesát pět
-tři pět
-tři nula pět
-tři deset
-tři dvacet
-tři dvacet pět
-tři třicet pět
-tři čtyřicet
-tři padesát
-tři padesát pět
-čtyři pět
-čtyři nula pět
-čtyři deset
-čtyři dvacet
-čtyři dvacet pět
-čtyři třicet pět
-čtyři čtyřicet
-čtyři padesát
-čtyři padesát pět
-pět pět
-pět nula pět
-pět deset
-pět dvacet
-pět dvacet pět
-pět třicet pět
-pět čtyřicet
-pět padesát
-pět padesát pět
-šest pět
-šest nula pět
-šest deset
-šest dvacet
-šest dvacet pět
-šest třicet pět
-šest čtyřicet
-šest padesát
-šest padesát pět
-sedm pět
-sedm nula pět
-sedm deset
-sedm dvacet
-sedm dvacet pět
-sedm třicet pět
-sedm čtyřicet
-sedm padesát
-sedm padesát pět
-osm pět
-osm nula pět
-osm deset
-osm dvacet
-osm dvacet pět
-osm třicet pět
-osm čtyřicet
-osm padesát
-osm padesát pět
-devět pět
-devět nula pět
-devět deset
-devět dvacet
-devět dvacet pět
-devět třicet pět
-devět čtyřicet
-devět padesát
-devět padesát pět
-deset pět
-deset nula pět
-deset deset
-deset dvacet
-deset dvacet pět
-deset třicet pět
-deset čtyřicet
-deset padesát
-deset padesát pět
-jedenáct pět
-jedenáct nula pět
-jedenáct deset
-jedenáct dvacet
-jedenáct dvacet pět
-jedenáct třicet pět
-jedenáct čtyřicet
-jedenáct padesát
-jedenáct padesát pět
-dvanáct pět
-dvanáct nula pět
-dvanáct deset
-dvanáct dvacet
-dvanáct dvacet pět
-dvanáct třicet pět
-dvanáct čtyřicet
-dvanáct padesát
-dvanáct padesát pět
-třináct pět
-třináct nula pět
-třináct deset
-třináct dvacet
-třináct dvacet pět
-třináct třicet pět
-třináct čtyřicet
-třináct padesát
-třináct padesát pět
-čtrnáct pět
-čtrnáct nula pět
-čtrnáct deset
-čtrnáct dvacet
-čtrnáct dvacet pět
-čtrnáct třicet pět
-čtrnáct čtyřicet
-čtrnáct padesát
-čtrnáct padesát pět
-patnáct pět
-patnáct nula pět
-patnáct deset
-patnáct dvacet
-patnáct dvacet pět
-patnáct třicet pět
-patnáct čtyřicet
-patnáct padesát
-patnáct padesát pět
-šestnáct pět
-šestnáct nula pět
-šestnáct deset
-šestnáct dvacet
-šestnáct dvacet pět
-šestnáct třicet pět
-šestnáct čtyřicet
-šestnáct padesát
-šestnáct padesát pět
-sedmnáct pět
-sedmnáct nula pět
-sedmnáct deset
-sedmnáct dvacet
-sedmnáct dvacet pět
-sedmnáct třicet pět
-sedmnáct čtyřicet
-sedmnáct padesát
-sedmnáct padesát pět
-osmnáct pět
-osmnáct nula pět
-osmnáct deset
-osmnáct dvacet
-osmnáct dvacet pět
-osmnáct třicet pět
-osmnáct čtyřicet
-osmnáct padesát
-osmnáct padesát pět
-devatenáct pět
-devatenáct nula pět
-devatenáct deset
-devatenáct dvacet
-devatenáct dvacet pět
-devatenáct třicet pět
-devatenáct čtyřicet
-devatenáct padesát
-devatenáct padesát pět
-dvacet pět
-dvacet nula pět
-dvacet deset
-dvacet dvacet
-dvacet dvacet pět
-dvacet třicet pět
-dvacet čtyřicet
-dvacet padesát
-dvacet padesát pět
-dvacet jedna pět
-dvacet jedna nula pět
-dvacet jedna deset
-dvacet jedna dvacet
-dvacet jedna dvacet pět
-dvacet jedna třicet pět
-dvacet jedna čtyřicet
-dvacet jedna padesát
-dvacet jedna padesát pět
-dvacet dva pět
-dvacet dva nula pět
-dvacet dva deset
-dvacet dva dvacet
-dvacet dva dvacet pět
-dvacet dva třicet pět
-dvacet dva čtyřicet
-dvacet dva padesát
-dvacet dva padesát pět
-dvacet tři pět
-dvacet tři nula pět
-dvacet tři deset
-dvacet tři dvacet
-dvacet tři dvacet pět
-dvacet tři třicet pět
-dvacet tři čtyřicet
-dvacet tři padesát
-dvacet tři padesát pět
 poledne
 odpoledne
 dopoledne
