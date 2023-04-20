@@ -13,6 +13,7 @@ nashledanou
 přeji hezký zbytek dne
 přeji pěkný víkend
 pěkný den
+s pánem bohem
 kolik je teď volných míst v parkovacím domě <parkovaci_dum>
 kolik volných míst v parkovacím domě <parkovaci_dum>
 kolik zbývá volných míst v parkovacím domě <parkovaci_dum>
@@ -78,3 +79,23 @@ kolik obvykle zbývá volných míst v parkovacím domě <parkovaci_dum> ve <den
 kolik obvykle zbývá volných míst v parkovacím domě <parkovaci_dum> ve <den> ve <cas>
 kolik obvykle zbývá volných míst v parkovacím domě <parkovaci_dum> v <den> v <cas>
 kolik obvykle zbývá volných míst v parkovacím domě <parkovaci_dum> v <den> ve <cas>
+kolik volných míst tam je
+kolik volných parkovacích míst tam je
+momentálně volná místa v <parkovaci_dum>
+momentálně neobsazená místa v <parkovaci_dum>
+momentálně prázdná místa v <parkovaci_dum>
+momentálně obsazená místa v <parkovaci_dum>
+kolik bude volných míst v <parkovaci_dum> za <cas_rel>
+jaký je předpoklad volných míst v <parkovaci_dum> za <cas_rel>
+kolik bude obsazených míst v <parkovaci_dum> za <cas_rel>
+jak moc bude obsazeno v <parkovaci_dum> za <cas_rel>
+jak moc bude prázdno v <parkovaci_dum> za <cas_rel>
+jak moc obvykle bývá prázdno v <parkovaci_dum> v <den> v <cas>
+jak moc bývá obsazeno v <parkovaci_dum> v <den> v <cas>
+jak moc je momentálně obsazeno v <parkovaci_dum>
+kolik volných míst bude v <parkovaci_dum> za <cas_rel>
+kolik míst bude obsazených v <parkovaci_dum> za <cas_rel>
+jak to akuálně vypadá s počtem volných míst v <parkovaci_dum>
+jak to akuálně vypadá s počtem obsazených míst v <parkovaci_dum>
+jak to obvykle vypadá s počtem volných míst v <parkovaci_dum> v <den> v <cas>
+jak to obvykle vypadá s počtem obsazených míst v <parkovaci_dum> v <den> v <cas>
