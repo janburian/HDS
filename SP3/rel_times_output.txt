@@ -1,0 +1,23 @@
+jednu hodinu
+dvě hodiny
+tři hodiny
+čtyři hodiny
+pět hodin
+šest hodin
+sedm hodin
+osm hodin
+devět hodin
+deset hodin
+jedenáct hodin
+dvanáct hodin
+třináct hodin
+čtrnáct hodin
+patnáct hodin
+šestnáct hodin
+sedmnáct hodin
+osmnáct hodin
+devatenáct hodin
+dvacet hodin
+dvacet jedna hodin
+dvacet dva hodin
+dvacet tři hodin

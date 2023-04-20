@@ -1,0 +1,216 @@
+jedna pět
+jedna nula pět
+jedna deset
+jedna dvacet
+jedna dvacet pět
+jedna třicet pět
+jedna čtyřicet
+jedna padesát
+jedna padesát pět
+jednu pět
+jednu nula pět
+jednu deset
+jednu dvacet
+jednu dvacet pět
+jednu třicet pět
+jednu čtyřicet
+jednu padesát
+jednu padesát pět
+dvě pět
+dvě nula pět
+dvě deset
+dvě dvacet
+dvě dvacet pět
+dvě třicet pět
+dvě čtyřicet
+dvě padesát
+dvě padesát pět
+tři pět
+tři nula pět
+tři deset
+tři dvacet
+tři dvacet pět
+tři třicet pět
+tři čtyřicet
+tři padesát
+tři padesát pět
+čtyři pět
+čtyři nula pět
+čtyři deset
+čtyři dvacet
+čtyři dvacet pět
+čtyři třicet pět
+čtyři čtyřicet
+čtyři padesát
+čtyři padesát pět
+pět pět
+pět nula pět
+pět deset
+pět dvacet
+pět dvacet pět
+pět třicet pět
+pět čtyřicet
+pět padesát
+pět padesát pět
+šest pět
+šest nula pět
+šest deset
+šest dvacet
+šest dvacet pět
+šest třicet pět
+šest čtyřicet
+šest padesát
+šest padesát pět
+sedm pět
+sedm nula pět
+sedm deset
+sedm dvacet
+sedm dvacet pět
+sedm třicet pět
+sedm čtyřicet
+sedm padesát
+sedm padesát pět
+osm pět
+osm nula pět
+osm deset
+osm dvacet
+osm dvacet pět
+osm třicet pět
+osm čtyřicet
+osm padesát
+osm padesát pět
+devět pět
+devět nula pět
+devět deset
+devět dvacet
+devět dvacet pět
+devět třicet pět
+devět čtyřicet
+devět padesát
+devět padesát pět
+deset pět
+deset nula pět
+deset deset
+deset dvacet
+deset dvacet pět
+deset třicet pět
+deset čtyřicet
+deset padesát
+deset padesát pět
+jedenáct pět
+jedenáct nula pět
+jedenáct deset
+jedenáct dvacet
+jedenáct dvacet pět
+jedenáct třicet pět
+jedenáct čtyřicet
+jedenáct padesát
+jedenáct padesát pět
+dvanáct pět
+dvanáct nula pět
+dvanáct deset
+dvanáct dvacet
+dvanáct dvacet pět
+dvanáct třicet pět
+dvanáct čtyřicet
+dvanáct padesát
+dvanáct padesát pět
+třináct pět
+třináct nula pět
+třináct deset
+třináct dvacet
+třináct dvacet pět
+třináct třicet pět
+třináct čtyřicet
+třináct padesát
+třináct padesát pět
+čtrnáct pět
+čtrnáct nula pět
+čtrnáct deset
+čtrnáct dvacet
+čtrnáct dvacet pět
+čtrnáct třicet pět
+čtrnáct čtyřicet
+čtrnáct padesát
+čtrnáct padesát pět
+patnáct pět
+patnáct nula pět
+patnáct deset
+patnáct dvacet
+patnáct dvacet pět
+patnáct třicet pět
+patnáct čtyřicet
+patnáct padesát
+patnáct padesát pět
+šestnáct pět
+šestnáct nula pět
+šestnáct deset
+šestnáct dvacet
+šestnáct dvacet pět
+šestnáct třicet pět
+šestnáct čtyřicet
+šestnáct padesát
+šestnáct padesát pět
+sedmnáct pět
+sedmnáct nula pět
+sedmnáct deset
+sedmnáct dvacet
+sedmnáct dvacet pět
+sedmnáct třicet pět
+sedmnáct čtyřicet
+sedmnáct padesát
+sedmnáct padesát pět
+osmnáct pět
+osmnáct nula pět
+osmnáct deset
+osmnáct dvacet
+osmnáct dvacet pět
+osmnáct třicet pět
+osmnáct čtyřicet
+osmnáct padesát
+osmnáct padesát pět
+devatenáct pět
+devatenáct nula pět
+devatenáct deset
+devatenáct dvacet
+devatenáct dvacet pět
+devatenáct třicet pět
+devatenáct čtyřicet
+devatenáct padesát
+devatenáct padesát pět
+dvacet pět
+dvacet nula pět
+dvacet deset
+dvacet dvacet
+dvacet dvacet pět
+dvacet třicet pět
+dvacet čtyřicet
+dvacet padesát
+dvacet padesát pět
+dvacet jedna pět
+dvacet jedna nula pět
+dvacet jedna deset
+dvacet jedna dvacet
+dvacet jedna dvacet pět
+dvacet jedna třicet pět
+dvacet jedna čtyřicet
+dvacet jedna padesát
+dvacet jedna padesát pět
+dvacet dva pět
+dvacet dva nula pět
+dvacet dva deset
+dvacet dva dvacet
+dvacet dva dvacet pět
+dvacet dva třicet pět
+dvacet dva čtyřicet
+dvacet dva padesát
+dvacet dva padesát pět
+dvacet tři pět
+dvacet tři nula pět
+dvacet tři deset
+dvacet tři dvacet
+dvacet tři dvacet pět
+dvacet tři třicet pět
+dvacet tři čtyřicet
+dvacet tři padesát
+dvacet tři padesát pět
