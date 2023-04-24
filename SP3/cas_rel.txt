@@ -1,3 +1,28 @@
+deset minut
+patnáct minut
+dvacet minut
+dvacet pět minut
+třicet minut
+třicet pět minut
+čtyřicet minut
+čtyřicet pět minut
+padesát minut
+padesát pět minut
+šedesát minut
+šedesát pět minut
+sedmdesát minut
+sedmdesát pět minut
+osmdesát minut
+osmdesát pět minut
+devadesát minut
+devadesát pět minut
+sto minut
+sto pět minut
+sto deset minut
+sto patnáct minut
+sto dvacet minut
+půl hodiny
+třičtvrtě hodiny
 jednu hodinu
 dvě hodiny
 tři hodiny
@@ -21,3 +46,26 @@ dvacet hodin
 dvacet jedna hodin
 dvacet dva hodin
 dvacet tři hodin
+jeden a půl hodiny
+dvě a půl hodiny
+tři a půl hodiny
+čtyři a půl hodiny
+pět a půl hodiny
+šest a půl hodiny
+sedm a půl hodiny
+osm a půl hodiny
+devět a půl hodiny
+deset a půl hodiny
+jedenáct a půl hodiny
+dvanáct a půl hodiny
+třináct a půl hodiny
+čtrnáct a půl hodiny
+patnáct a půl hodiny
+šestnáct a půl hodiny
+sedmnáct a půl hodiny
+osmnáct a půl hodiny
+devatenáct a půl hodiny
+dvacet a půl hodiny
+dvacet jedna a půl hodiny
+dvacet dva a půl hodiny
+dvacet tři a půl hodiny
