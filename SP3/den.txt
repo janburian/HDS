@@ -7,4 +7,3 @@ sobota
 neděle
 středu
 sobotu
-neděli

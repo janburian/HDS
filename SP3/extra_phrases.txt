@@ -218,3 +218,4 @@ prosím kolik je v <parkovaci_dum> volných míst
 kolik volnejch míst ještě zbývá v <parkovaci_dum>
 počet volnejch míst v <parkovaci_dum>
 kolik bude volných míst v <parkovaci_dum> v <cas>
+
