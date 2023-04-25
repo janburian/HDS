@@ -14,122 +14,128 @@ přeji hezký zbytek dne
 přeji pěkný víkend
 pěkný den
 s pánem bohem
-kolik je teď volných míst v parkovacím domě <parkovaci_dum>
-kolik volných míst v parkovacím domě <parkovaci_dum>
-kolik bude volných míst v parkovacím domě <parkovaci_dum> za <cas_rel>
-kolik bude v <parkovaci_dum> volných míst za <cas_rel>
-kolik zbývá volných míst v parkovacím domě <parkovaci_dum>
-kolik zbývá volných míst v <parkovaci_dum>
-kolik volných míst nyní zbývá v <parkovaci_dum>
-kolik volných míst v parkovacím domě <parkovaci_dum>
-kolik volných míst v <parkovaci_dum>
-kolik míst je aktuálně volných v <parkovaci_dum>
-kolik míst je aktuálně obsazených v <parkovaci_dum>
-kolik parkovacích míst je aktuálně volných v <parkovaci_dum>
-kolik parkovacích míst je aktuálně obsazených v <parkovaci_dum>
-kolik volných míst zbývá v parkovacím domě <parkovaci_dum>
-kolik volných míst zbývá v <parkovaci_dum>
-kolik míst je aktuálně obsazeno v parkovacím domě <parkovaci_dum>
-kolik parkovacích míst je právě teď obsazeno v parkovacím domě <parkovaci_dum>
-kolik parkovacích míst je nyní obsazeno v parkovacím domě <parkovaci_dum>
-kolik parkovacích míst je v tento čas obsazeno v parkovacím domě <parkovaci_dum>
-počet nyní obsazených parkovacích míst v parkovacím domě <parkovaci_dum>
-počet právě teď obsazených parkovacích míst v parkovacím domě <parkovaci_dum>
-počet momentálně obsazených parkovacích míst v parkovacím domě <parkovaci_dum>
-kolik aut se nachází v parkovacím domě <parkovaci_dum>
-aktuálně volná místa v parkovacím domě <parkovaci_dum>
-volná místa v parkovacím domě <parkovaci_dum>
-volná místa v <parkovaci_dum>
-obsazená místa v <parkovaci_dum>
+kolik je teď volných míst v parkovacím domě <parkovaci_dum_1p>
+kolik volných míst v parkovacím domě <parkovaci_dum_1p>
+kolik bude volných míst v parkovacím domě <parkovaci_dum_1p> za <cas_rel>
+kolik bude volných míst v <parkovaci_dum_6p> za <cas_rel>
+kolik bude v <parkovaci_dum_6p> volných míst za <cas_rel>
+kolik zbývá volných míst v parkovacím domě <parkovaci_dum_1p>
+kolik zbývá volných míst v <parkovaci_dum_6p>
+kolik volných míst nyní zbývá v <parkovaci_dum_6p>
+kolik volných míst v parkovacím domě <parkovaci_dum_1p>
+kolik volných míst v <parkovaci_dum_6p>
+kolik míst je aktuálně volných v <parkovaci_dum_6p>
+kolik míst je aktuálně obsazených v <parkovaci_dum_6p>
+kolik je v <parkovaci_dum_6p> volných míst
+kolik míst v <parkovaci_dum_6p> je aktuálně obsazených
+kolik parkovacích míst je aktuálně volných v <parkovaci_dum_6p>
+kolik parkovacích míst je aktuálně obsazených v <parkovaci_dum_6p>
+kolik volných míst zbývá v parkovacím domě <parkovaci_dum_1p>
+kolik volných míst zbývá v <parkovaci_dum_6p>
+kolik míst je aktuálně obsazeno v parkovacím domě <parkovaci_dum_1p>
+kolik parkovacích míst je právě teď obsazeno v parkovacím domě <parkovaci_dum_1p>
+kolik parkovacích míst je nyní obsazeno v parkovacím domě <parkovaci_dum_1p>
+kolik parkovacích míst je v tento čas obsazeno v parkovacím domě <parkovaci_dum_1p>
+počet nyní obsazených parkovacích míst v parkovacím domě <parkovaci_dum_1p>
+počet právě teď obsazených parkovacích míst v parkovacím domě <parkovaci_dum_1p>
+počet momentálně obsazených parkovacích míst v parkovacím domě <parkovaci_dum_1p>
+kolik aut se nachází v parkovacím domě <parkovaci_dum_1p>
+aktuálně volná místa v parkovacím domě <parkovaci_dum_1p>
+volná místa v parkovacím domě <parkovaci_dum_1p>
+volná místa v <parkovaci_dum_6p>
+obsazená místa v <parkovaci_dum_6p>
 obvykle volno v <den+cas>
 minulý týden v <den+cas>
-kolik volných míst je v parkovacím domě <parkovaci_dum> obvykle v <den> v <cas>
-kolik volných míst je v parkovacím domě <parkovaci_dum> obvykle ve <den> v <cas>
-kolik je volných míst v parkovacím domě <parkovaci_dum> obvykle v <den> v <cas>
-kolik je volných míst v parkovacím domě <parkovaci_dum> obvykle ve <den> v <cas>
-kolik je volných míst v parkovacím domě <parkovaci_dum>
-kolik je volných míst v <parkovaci_dum>
-jak volno je v <parkovaci_dum>
-kolik míst je v <parkovaci_dum>
+kolik volných míst je v parkovacím domě <parkovaci_dum_1p> obvykle v <den> v <cas>
+kolik volných míst je v parkovacím domě <parkovaci_dum_1p> obvykle ve <den> v <cas>
+kolik je volných míst v parkovacím domě <parkovaci_dum_1p> obvykle v <den> v <cas>
+kolik je volných míst v parkovacím domě <parkovaci_dum_1p> obvykle ve <den> v <cas>
+kolik je volných míst v parkovacím domě <parkovaci_dum_1p>
+kolik je volných míst v <parkovaci_dum_6p>
+jak volno je v <parkovaci_dum_6p>
+kolik míst je v <parkovaci_dum_6p>
+kolik volných míst je na <parkovaci_dum_6p>
+kolik míst je na <parkovaci_dum_6p>
+kolik prázdných míst je v <parkovaci_dum_6p>
 kolik míst tam je
-jak volno je v <parkovaci_dum> obvykle v <den> v <cas>
-jak volno je v <parkovaci_dum> obvykle v <den>
-jak volno je teď v <parkovaci_dum>
-jak moc je obsazen parkovací dům <parkovaci_dum>
-lze najít volné parkovací místo v parkovacím domě <parkovaci_dum> v tomto čase
-je parkovací dům <parkovaci_dum> momentálně plně obsazen nebo jsou stále k dispozici nějaká volná místa
-kolik je momentálně volných parkovacích míst v parkovacím domě <parkovaci_dum>
-když se chystám přijet do <parkovaci_dum> za <cas_rel> kolik pravděpodobně bude volných parkovacích míst
-když se chystám přijet do parkovacího domu <parkovaci_dum> za <cas_rel> kolik pravděpodobně bude volných parkovacích míst
-kolik bude volných míst v <parkovaci_dum> za <cas_rel>
-kolik bude volných míst v parkovacím domě <parkovaci_dum> za <cas_rel>
-kolik obvykle zbývá volných míst v <parkovaci_dum> ve <den> v <cas>
-kolik obvykle zbývá volných míst v <parkovaci_dum> ve <den> ve <cas>
-kolik obvykle zbývá volných míst v <parkovaci_dum> v <den> ve <cas>
-kolik obvykle zbývá volných míst v <parkovaci_dum> v <den> v <cas>
-počet volných míst v <parkovaci_dum> ve <den> v <cas>
-počet volných míst v <parkovaci_dum> ve <den> ve <cas>
-počet volných míst v <parkovaci_dum> v <den> ve <cas>
-počet volných míst v <parkovaci_dum> v <den> v <cas>
-kolik bude volných míst v <parkovaci_dum> za <cas_rel>
-kolik bude volných míst v parkovacím domě <parkovaci_dum> za <cas_rel>
-volná místa v <parkovaci_dum> za <cas_rel>
-počet volných míst v <parkovaci_dum> za <cas_rel>
+jak volno je v <parkovaci_dum_6p> obvykle v <den> v <cas>
+jak volno je v <parkovaci_dum_6p> obvykle v <den>
+jak volno je teď v <parkovaci_dum_6p>
+jak moc je obsazen parkovací dům <parkovaci_dum_1p>
+lze najít volné parkovací místo v parkovacím domě <parkovaci_dum_1p> v tomto čase
+je parkovací dům <parkovaci_dum_1p> momentálně plně obsazen nebo jsou stále k dispozici nějaká volná místa
+kolik je momentálně volných parkovacích míst v parkovacím domě <parkovaci_dum_1p>
+když se chystám přijet do <parkovaci_dum_6p> za <cas_rel> kolik pravděpodobně bude volných parkovacích míst
+když se chystám přijet do parkovacího domu <parkovaci_dum_1p> za <cas_rel> kolik pravděpodobně bude volných parkovacích míst
+kolik bude volných míst v <parkovaci_dum_6p> za <cas_rel>
+kolik bude volných míst v parkovacím domě <parkovaci_dum_1p> za <cas_rel>
+kolik obvykle zbývá volných míst v <parkovaci_dum_6p> ve <den> v <cas>
+kolik obvykle zbývá volných míst v <parkovaci_dum_6p> ve <den> ve <cas>
+kolik obvykle zbývá volných míst v <parkovaci_dum_6p> v <den> ve <cas>
+kolik obvykle zbývá volných míst v <parkovaci_dum_6p> v <den> v <cas>
+počet volných míst v <parkovaci_dum_6p> ve <den> v <cas>
+počet volných míst v <parkovaci_dum_6p> ve <den> ve <cas>
+počet volných míst v <parkovaci_dum_6p> v <den> ve <cas>
+počet volných míst v <parkovaci_dum_6p> v <den> v <cas>
+kolik bude volných míst v <parkovaci_dum_6p> za <cas_rel>
+kolik bude volných míst v parkovacím domě <parkovaci_dum_1p> za <cas_rel>
+volná místa v <parkovaci_dum_6p> za <cas_rel>
+počet volných míst v <parkovaci_dum_6p> za <cas_rel>
 kolik míst tam je
-kolik volných míst v <parkovaci_dum>
-kolik míst je v <parkovaci_dum>
-jak moc je zaplněn parkovací dům <parkovaci_dum>
-kolik míst je nyní obsazených v parkovacím domě <parkovaci_dum>
-kolik parkovacích míst bývá obvykle obsazených v parkovacím domě <parkovaci_dum> za <cas_rel>
+kolik volných míst v <parkovaci_dum_6p>
+kolik míst je v <parkovaci_dum_6p>
+jak moc je zaplněn parkovací dům <parkovaci_dum_1p>
+kolik míst je nyní obsazených v parkovacím domě <parkovaci_dum_1p>
+kolik parkovacích míst bývá obvykle obsazených v parkovacím domě <parkovaci_dum_1p> za <cas_rel>
 a v <den>
 a v <cas>
 a ve <cas>
 a jak obvykle v <den>
 a jak obvykle ve <den>
-a jak v <parkovaci_dum>
-jaká je obvykle zaplněnost parkovacího domu <parkovaci_dum> v <den> v <cas>
-jaká je obvykle zaplněnost parkovacího domu <parkovaci_dum> ve <den> v <cas>
-jaká je obvykle zaplněnost parkovacího domu <parkovaci_dum> v <den> v <cas>
-jaká je obvykle zaplněnost parkovacího domu <parkovaci_dum> v <den> ve <cas>
+a jak v <parkovaci_dum_6p>
+jaká je obvykle zaplněnost parkovacího domu <parkovaci_dum_1p> v <den> v <cas>
+jaká je obvykle zaplněnost parkovacího domu <parkovaci_dum_1p> ve <den> v <cas>
+jaká je obvykle zaplněnost parkovacího domu <parkovaci_dum_1p> v <den> v <cas>
+jaká je obvykle zaplněnost parkovacího domu <parkovaci_dum_1p> v <den> ve <cas>
 kolik obvykle zbývá volných míst v <den> v <cas>
-kolik obvykle zbývá volných míst v parkovacím domě <parkovaci_dum> ve <den> v <cas>
-kolik obvykle zbývá volných míst v parkovacím domě <parkovaci_dum> ve <den> ve <cas>
-kolik obvykle zbývá volných míst v parkovacím domě <parkovaci_dum> v <den> v <cas>
-kolik obvykle zbývá volných míst v parkovacím domě <parkovaci_dum> v <den> ve <cas>
+kolik obvykle zbývá volných míst v parkovacím domě <parkovaci_dum_1p> ve <den> v <cas>
+kolik obvykle zbývá volných míst v parkovacím domě <parkovaci_dum_1p> ve <den> ve <cas>
+kolik obvykle zbývá volných míst v parkovacím domě <parkovaci_dum_1p> v <den> v <cas>
+kolik obvykle zbývá volných míst v parkovacím domě <parkovaci_dum_1p> v <den> ve <cas>
 kolik volných míst tam je
 kolik volných parkovacích míst tam je
-momentálně volná místa v <parkovaci_dum>
-momentálně neobsazená místa v <parkovaci_dum>
-momentálně prázdná místa v <parkovaci_dum>
-momentálně obsazená místa v <parkovaci_dum>
-kolik bude volných míst v <parkovaci_dum> za <cas_rel>
-jaký je předpoklad volných míst v <parkovaci_dum> za <cas_rel>
-kolik bude obsazených míst v <parkovaci_dum> za <cas_rel>
-jak moc bude obsazeno v <parkovaci_dum> za <cas_rel>
-jak moc bude prázdno v <parkovaci_dum> za <cas_rel>
-jak moc obvykle bývá prázdno v <parkovaci_dum> v <den> v <cas>
-jak moc bývá obsazeno v <parkovaci_dum> v <den> v <cas>
-jak moc je momentálně obsazeno v <parkovaci_dum>
-jak moc je momentálně volno v <parkovaci_dum>
-kolik volných míst bude v <parkovaci_dum> za <cas_rel>
-kolik míst bude obsazených v <parkovaci_dum> za <cas_rel>
-jak to akuálně vypadá s počtem volných míst v <parkovaci_dum>
-jak to akuálně vypadá s počtem obsazených míst v <parkovaci_dum>
-jak to obvykle vypadá s počtem volných míst v <parkovaci_dum> v <den> v <cas>
-jak to obvykle vypadá s počtem obsazených míst v <parkovaci_dum> v <den> v <cas>
-kolik je v <parkovaci_dum> volných parkovacích míst
-kolik zbývá volných parkovacích míst v <parkovaci_dum>
-kolik obvykle zbývá volných parkovacích míst v <parkovaci_dum> v <den> v <cas>
-jaká je obsazenost v <parkovaci_dum> v <den> v <cas>
-volná místa v <parkovaci_dum> za <rel_cas>
-obsazená místa v <parkovaci_dum> za <rel_cas>
-kolik bude obsazených míst v <parkovaci_dum> za <rel_cas>
-kolik bude volných parkovacích míst v parkovacím domě <parkovaci_dum> za <rel_cas>
-kolik bude volných míst v <parkovaci_dum> za <rel_cas>
-jaká je obvyklá zaplněnost v <parkovaci_dum> v <den> v <cas>
-jaká je obvyklá volná kapacita v <parkovaci_dum> v <den> v <cas>
-jaká je obvyklá zaplněnost v <parkovaci_dum> v <den>
-jaká je obvyklá volná kapacita v <parkovaci_dum> v <den>
+momentálně volná místa v <parkovaci_dum_6p>
+momentálně neobsazená místa v <parkovaci_dum_6p>
+momentálně prázdná místa v <parkovaci_dum_6p>
+momentálně obsazená místa v <parkovaci_dum_6p>
+kolik bude volných míst v <parkovaci_dum_6p> za <cas_rel>
+jaký je předpoklad volných míst v <parkovaci_dum_6p> za <cas_rel>
+kolik bude obsazených míst v <parkovaci_dum_6p> za <cas_rel>
+jak moc bude obsazeno v <parkovaci_dum_6p> za <cas_rel>
+jak moc bude prázdno v <parkovaci_dum_6p> za <cas_rel>
+jak moc obvykle bývá prázdno v <parkovaci_dum_6p> v <den> v <cas>
+jak moc bývá obsazeno v <parkovaci_dum_6p> v <den> v <cas>
+jak moc je momentálně obsazeno v <parkovaci_dum_6p>
+jak moc je momentálně volno v <parkovaci_dum_6p>
+kolik volných míst bude v <parkovaci_dum_6p> za <cas_rel>
+kolik míst bude obsazených v <parkovaci_dum_6p> za <cas_rel>
+jak to akuálně vypadá s počtem volných míst v <parkovaci_dum_6p>
+jak to akuálně vypadá s počtem obsazených míst v <parkovaci_dum_6p>
+jak to obvykle vypadá s počtem volných míst v <parkovaci_dum_6p> v <den> v <cas>
+jak to obvykle vypadá s počtem obsazených míst v <parkovaci_dum_6p> v <den> v <cas>
+kolik je v <parkovaci_dum_6p> volných parkovacích míst
+kolik zbývá volných parkovacích míst v <parkovaci_dum_6p>
+kolik obvykle zbývá volných parkovacích míst v <parkovaci_dum_6p> v <den> v <cas>
+jaká je obsazenost v <parkovaci_dum_6p> v <den> v <cas>
+volná místa v <parkovaci_dum_6p> za <rel_cas>
+obsazená místa v <parkovaci_dum_6p> za <rel_cas>
+kolik bude obsazených míst v <parkovaci_dum_6p> za <rel_cas>
+kolik bude volných parkovacích míst v parkovacím domě <parkovaci_dum_1p> za <rel_cas>
+kolik bude volných míst v <parkovaci_dum_6p> za <rel_cas>
+jaká je obvyklá zaplněnost v <parkovaci_dum_6p> v <den> v <cas>
+jaká je obvyklá volná kapacita v <parkovaci_dum_6p> v <den> v <cas>
+jaká je obvyklá zaplněnost v <parkovaci_dum_6p> v <den>
+jaká je obvyklá volná kapacita v <parkovaci_dum_6p> v <den>
 kolik je tam volných míst
 kolik je tam zaplněných míst
 kolik bylo volných míst v <den+cas>
@@ -147,75 +153,76 @@ počet volných míst v <den> v <cas>
 počet volných míst <den+cas>
 počet obsazených míst v <den> v <cas>
 počet obsazených míst <den+cas>
-kolik zaparkovaných vozidel se právě teď nachází v parkovacím domě <parkovaci_dum>
-volná místa v <parkovaci_dum> za <cas_rel>
-je v tuto chvíli nějaké volné parkovací místo v parkovacím domě <parkovaci_dum>
-je v tuto chvíli nějaké volné parkovací místo v <parkovaci_dum>
+kolik zaparkovaných vozidel se právě teď nachází v parkovacím domě <parkovaci_dum_1p>
+kolik zaparkovaných vozidel se právě teď nachází v <parkovaci_dum_6p>
+volná místa v <parkovaci_dum_6p> za <cas_rel>
+je v tuto chvíli nějaké volné parkovací místo v parkovacím domě <parkovaci_dum_1p>
+je v tuto chvíli nějaké volné parkovací místo v <parkovaci_dum_6p>
 kolik dnes bylo volných míst v <cas>
-kolik dnes bylo volných míst v <cas> v <parkovaci_dum>
-mohl byste mi, prosím, říct, kolik zbývá volných míst v parkovacím domě <parkovaci_dum>
-je možné zjistit, kolik je volných míst v parkovacím domě <parkovaci_dum>
-zajímalo by mě, kolik zbývajících volných parkovacích míst ještě zbývá v parkovacím domě <parkovaci_dum>, můžete mi to sdělit
-ráda bych věděla, zda jsou v parkovacím domě <parkovaci_dum> volná místa
-rád bych věděl, zda jsou v parkovacím domě <parkovaci_dum> volná místa
-ráda bych věděla, zda jsou v parkovacím domě <parkovaci_dum> ještě nějaká volná místa
-rád bych věděl, zda jsou v parkovacím domě <parkovaci_dum> ještě nějaká volná místa
-kolik míst ještě zbývá volných v parkovacím domě <parkovaci_dum>
-kolik míst ještě zbývá volných v <parkovaci_dum>
-kolik je ještě prázdných parkovacích míst v <parkovaci_dum> k dispozici
-má parkovací dům <parkovaci_dum> ještě volná místa
-kolik míst ještě nebylo obsazeno v parkovacím domě <parkovaci_dum>
-ještě kolik parkovacích míst zůstává volných v <parkovaci_dum>
-má parkovací dům <parkovaci_dum> ještě volná místa k zaparkování
-má <parkovaci_dum> ještě volná místa k zaparkování
-zůstala nějaká místa volná v parkovacím domě <parkovaci_dum>
-jsou v parkovacím domě <parkovaci_dum> nějaká volná místa
-jsou v <parkovaci_dum> nějaká volná místa
-jsou nějaká volná místa v <parkovaci_dum>
-jsou nějaká volná místa v parkovacím domě <parkovaci_dum>
+kolik dnes bylo volných míst v <cas> v <parkovaci_dum_6p>
+mohl byste mi prosím říct kolik zbývá volných míst v parkovacím domě <parkovaci_dum_1p>
+je možné zjistit kolik je volných míst v parkovacím domě <parkovaci_dum_1p>
+zajímalo by mě kolik zbývajících volných parkovacích míst ještě zbývá v parkovacím domě <parkovaci_dum_1p> můžete mi to sdělit
+ráda bych věděla zda jsou v parkovacím domě <parkovaci_dum_1p> volná místa
+rád bych věděl zda jsou v parkovacím domě <parkovaci_dum_1p> volná místa
+ráda bych věděla zda jsou v parkovacím domě <parkovaci_dum_1p> ještě nějaká volná místa
+rád bych věděl zda jsou v parkovacím domě <parkovaci_dum_1p> ještě nějaká volná místa
+kolik míst ještě zbývá volných v parkovacím domě <parkovaci_dum_1p>
+kolik míst ještě zbývá volných v <parkovaci_dum_6p>
+kolik je ještě prázdných parkovacích míst v <parkovaci_dum_6p> k dispozici
+má parkovací dům <parkovaci_dum_1p> ještě volná místa
+kolik míst ještě nebylo obsazeno v parkovacím domě <parkovaci_dum_1p>
+ještě kolik parkovacích míst zůstává volných v <parkovaci_dum_6p>
+má parkovací dům <parkovaci_dum_1p> ještě volná místa k zaparkování
+má <parkovaci_dum_1p> ještě volná místa k zaparkování
+jsou v <parkovaci_dum_6p> ještě volná místa k zaparkování
+zůstala nějaká místa volná v parkovacím domě <parkovaci_dum_1p>
+jsou v parkovacím domě <parkovaci_dum_1p> nějaká volná místa
+jsou v <parkovaci_dum_6p> nějaká volná místa
+jsou nějaká volná místa v <parkovaci_dum_6p>
+jsou nějaká volná místa v parkovacím domě <parkovaci_dum_1p>
 jsou nějaká volná místa
-jak bývá obsazen parkovací dům <parkovaci_dum> v <den+cas>
-jak bývá volný parkovací dům <parkovaci_dum> v <den+cas>
-jak obsazen bude parkovací dům <parkovaci_dum> za <cas_rel>
-jak volný bude parkovací dům <parkovaci_dum> za <cas_rel>
-jak moc prázdný bude parkovací dům <parkovaci_dum> za <cas_rel>
-kolik je aktuálně volných míst v <parkovaci_dum>
-kolik je aktuálně obsazených míst v <parkovaci_dum>
-jak moc jsou obsazena místa v parkovacím domě <parkovaci_dum>
-počet aktuálně volných míst v parkovacím domě <parkovaci_dum>
-počet aktuálně obsazených míst v parkovacím domě <parkovaci_dum>
-počet aktuálně volných míst v <parkovaci_dum>
-počet aktuálně obsazených míst v <parkovaci_dum>
+jak bývá obsazen parkovací dům <parkovaci_dum_1p> v <den+cas>
+jak bývá volný parkovací dům <parkovaci_dum_1p> v <den+cas>
+jak obsazen bude parkovací dům <parkovaci_dum_1p> za <cas_rel>
+jak volný bude parkovací dům <parkovaci_dum_1p> za <cas_rel>
+jak moc prázdný bude parkovací dům <parkovaci_dum_1p> za <cas_rel>
+kolik je aktuálně volných míst v <parkovaci_dum_6p>
+kolik je aktuálně obsazených míst v <parkovaci_dum_6p>
+jak moc jsou obsazena místa v parkovacím domě <parkovaci_dum_1p>
+počet aktuálně volných míst v parkovacím domě <parkovaci_dum_1p>
+počet aktuálně obsazených míst v parkovacím domě <parkovaci_dum_1p>
+počet aktuálně volných míst v <parkovaci_dum_6p>
+počet aktuálně obsazených míst v <parkovaci_dum_6p>
 volná místa za <cas_rel>
 volná parkovací místa za <cas_rel>
 obsazená místa za <cas_rel>
-volná místa za <cas_rel> v <parkovaci_dum>
-obsazená místa za <cas_rel> v <parkovaci_dum>
+volná místa za <cas_rel> v <parkovaci_dum_6p>
+obsazená místa za <cas_rel> v <parkovaci_dum_6p>
 kolik bude volných míst za <cas_rel>
 kolik bude obsazených míst za <cas_rel>
-kolik bude volných míst v <parkovaci_dum> za <cas_rel>
-kolik bude obsazených míst v <parkovaci_dum> za <cas_rel>
-chystám se přijet do <parkovaci_dum> za <cas_rel> kolik v té době bude volných míst
-chystám se přijet do <parkovaci_dum> za <cas_rel> kolik v té době bude obsazených míst
+kolik bude volných míst v <parkovaci_dum_6p> za <cas_rel>
+kolik bude obsazených míst v <parkovaci_dum_6p> za <cas_rel>
+chystám se přijet do <parkovaci_dum_2p> za <cas_rel> kolik v té době bude volných míst
+chystám se přijet do <parkovaci_dum_2p> za <cas_rel> kolik v té době bude obsazených míst
 kolik míst bude volných za <cas_rel>
 kolik míst bude obsazených za <cas_rel>
-kolik míst bude volných v <parkovaci_dum> za <cas_rel>
-kolik míst bude obsazených <parkovaci_dum> za <cas_rel>
-kolik volných míst bude k dispozici v <parkovaci_dum> za <cas_rel>
-kolik míst nebude volných v <parkovaci_dum> za <cas_rel>
-kolik volných míst ještě zbývá v <parkovaci_dum>
-kolik volných míst ještě zbývá v parkovacím domě <parkovaci_dum>
-na kolika místech v <parkovaci_dum> nyní nelze zaparkovat
-na kolika místech v <parkovaci_dum> lze nyní zaparkovat
-kolik míst v <parkovaci_dum> je zabraných
-jaký je počet nezabraných míst v <parkovaci_dum>
-jaký je počet volných míst v <parkovaci_dum>
-jaký je počet obsazených míst v <parkovaci_dum>
-počet obsazených míst v <parkovaci_dum>
-počet volných míst v <parkovaci_dum>
-hej kolik je volných míst v <parkovaci_dum>
-prosím kolik je v <parkovaci_dum> volných míst
-kolik volnejch míst ještě zbývá v <parkovaci_dum>
-počet volnejch míst v <parkovaci_dum>
-kolik bude volných míst v <parkovaci_dum> v <cas>
-
+kolik míst bude volných v <parkovaci_dum_6p> za <cas_rel>
+kolik míst bude obsazených v <parkovaci_dum_6p> za <cas_rel>
+kolik volných míst bude k dispozici v <parkovaci_dum_6p> za <cas_rel>
+kolik míst nebude volných v <parkovaci_dum_6p> za <cas_rel>
+kolik volných míst ještě zbývá v <parkovaci_dum_6p>
+kolik volných míst ještě zbývá v parkovacím domě <parkovaci_dum_1p>
+na kolika místech v <parkovaci_dum_6p> nyní nelze zaparkovat
+na kolika místech v <parkovaci_dum_6p> lze nyní zaparkovat
+kolik míst v <parkovaci_dum_6p> je zabraných
+jaký je počet nezabraných míst v <parkovaci_dum_6p>
+jaký je počet volných míst v <parkovaci_dum_6p>
+jaký je počet obsazených míst v <parkovaci_dum_6p>
+počet obsazených míst v <parkovaci_dum_6p>
+počet volných míst v <parkovaci_dum_6p>
+hej kolik je volných míst v <parkovaci_dum_6p>
+prosím kolik je v <parkovaci_dum_6p> volných míst
+kolik volnejch míst ještě zbývá v <parkovaci_dum_6p>
+počet volnejch míst v <parkovaci_dum_6p>
+kolik bude volných míst v <parkovaci_dum_6p> v <cas>
