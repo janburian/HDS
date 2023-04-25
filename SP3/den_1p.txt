@@ -5,5 +5,3 @@ středa
 pátek
 sobota
 neděle
-středu
-sobotu
