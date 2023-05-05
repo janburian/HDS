@@ -29,12 +29,15 @@ if __name__ == "__main__":
     #     output_filename = input_path.name.replace("ortho", "phntrn")
     #     output_path = os.path.join(input_path.parent, output_filename)
 
+    # When creating test csv from sentences
+    phonetic_transcription.create_test_csv(Path("vety_HDS.ortho.txt"), Path("vety_HDS.ortho.csv"))
+
     # Debugging
-    input_path = Path("sentences_read.csv")
+    input_path = Path("vety_HDS.ortho.csv")
     # # input_path = "ukazka_HDS.ortho.txt"
     # # input_path = "test.txt"
     # # input_path = "spodoba_znelosti.txt"
-    output_path = Path("train.ph.epa.csv")
+    output_path = Path("test.ph.epa.csv")
 
     # Reading sentences
     sentences_dict_orig = phonetic_transcription.read_input_file(input_path)

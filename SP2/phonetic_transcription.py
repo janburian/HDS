@@ -233,3 +233,15 @@ def check_s_preposition_personal_pronouns(sentences_dict: dict):
         res[key] = sentence
 
     return res
+
+def create_test_csv(filename: Path, output_csv_filename: Path):
+    idx = 0
+    with open(filename, 'r', encoding='utf-8') as file:
+        with open(output_csv_filename, 'w', encoding='utf-8') as output_file:
+            for sentence in file:
+                idx += 1
+                key = "test" + str(idx).zfill(4)
+                sentence_new = key + ";" + sentence
+                output_file.write(sentence_new)
+        output_file.close()
+    file.close()

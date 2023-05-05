@@ -155,5 +155,5 @@ VOICELESS_CONSONANTS_PAIR_to_VOICED_CONSONANTS_PAIR = {
     'Q': 'R',
 }
 
-PERSONAL_PRONOUNS = ['nAmi', 'vAmi', 'vAs',  'nIm', 'jI', 'nI', 'jej', 'Jej',
-                    'jeho', 'Jeho', 'jimi', 'nimi']
+PERSONAL_PRONOUNS = ['nAmi', 'vAmi', 'vAs',  'JIm', 'jI', 'nI', 'jej', 'Jej',
+                    'jeho', 'Jeho', 'Jimi']
