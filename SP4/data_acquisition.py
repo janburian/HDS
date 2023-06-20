@@ -86,8 +86,10 @@ def get_historical_time_daily_statistics(historical_data):
         data_list.append(temp_data)
 
     sorted_list = sorted(data_list, key=lambda x: (x[0], x[1]))
-    get_time_daily_data(sorted_list)
-    print()
+    res = get_time_daily_data(sorted_list)
+    res = create_final_format(res)
+
+    return res
 
 
 def hour_rounder(t):
@@ -98,8 +100,13 @@ def hour_rounder(t):
     return rounded_time
 
 
+def alloc_matrix2d(W, H):
+    """ Pre-allocate a 2D matrix of empty lists. """
+    return [[[] for i in range(W)] for j in range(H)]
+
+
 def get_time_daily_data(data: list):
-    res = np.zeros((24,7,3)) # matrix 24x7
+    res = alloc_matrix2d(7,24)
     weekday_to_idx = {
         'Monday': 0,
         'Tuesday': 1,
@@ -114,12 +121,38 @@ def get_time_daily_data(data: list):
         weekday = data_temp[0]
         weekday_idx = weekday_to_idx[weekday]
         time = data_temp[1]
+        time_idx = int(time.split(':')[0])
         num_occupied_spaces = data_temp[2]
         num_free_spaces = data_temp[3]
 
+        res[time_idx][weekday_idx].append((num_occupied_spaces, num_free_spaces))
+
+    return res
 
 
-    pass
+def count_average_tuples(list_of_tuples):
+    sum_1 = 0
+    sum_2 = 0
+
+    for tuple in list_of_tuples:
+        sum_1 += tuple[0]
+        sum_2 += tuple[1]
+
+    return (round(sum_1 / len(list_of_tuples)), round(sum_2 / len(list_of_tuples)))
+
+
+
+def create_final_format(data: list):
+    res = alloc_matrix2d(7, 24)
+    for i in range(len(data)):
+        sublist_1 = data[i]
+        for j in range(len(sublist_1)):
+            sublist_2 = sublist_1[j]
+            tuple_avg = count_average_tuples(sublist_2)
+            res[i][j] = tuple_avg
+
+    return res
+
 
 def count_average(weekdays: dict):
     res = {}
