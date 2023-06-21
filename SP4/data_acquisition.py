@@ -82,7 +82,11 @@ def get_time_weekday_data(data: pd, times_start_end: list, weekday: str):
     return time_weekday_data
 
 
-# def get_historical_daily_statistics(historical_data):
+def get_actual_info(actual_data: pd):
+    return actual_data.iloc[[0]]
+
+
+# def get_historical_daily_statistics(historical_data_nove_divadlo):
 #     weekdays_list = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 #     weekdays_dictionary = { # {key = weekday, value = [num_occupied_spaces, num_free_spaces, num_weekday],...}
 #         'Monday': [0, 0, 0],
@@ -93,7 +97,7 @@ def get_time_weekday_data(data: pd, times_start_end: list, weekday: str):
 #         'Saturday': [0, 0, 0],
 #         'Sunday': [0, 0, 0],
 #     }
-#     data_array = historical_data.values
+#     data_array = historical_data_nove_divadlo.values
 #
 #     for line in data_array:
 #         capacity = line[1]
@@ -118,10 +122,10 @@ def get_time_weekday_data(data: pd, times_start_end: list, weekday: str):
 #     return res
 
 
-# def get_historical_time_daily_statistics(historical_data):
+# def get_historical_time_daily_statistics(historical_data_nove_divadlo):
 #     data_list = []
 #     weekdays_list = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-#     data_array = historical_data.values
+#     data_array = historical_data_nove_divadlo.values
 #     for line in data_array:
 #         capacity = line[1]
 #         num_occupied_spaces = line[2] + line[3]
@@ -221,17 +225,35 @@ def get_time_weekday_data(data: pd, times_start_end: list, weekday: str):
 #     return res
 
 
+# Obtaining data
+# Historical
+historical_data_nove_divadlo = load_historical_data(Path('./data/data-pd-novedivadlo.csv'))
+historical_data_nove_divadlo = process_table(historical_data_nove_divadlo)
 
-historical_data = load_historical_data(Path('./data/data-pd-novedivadlo.csv'))
-actual_data = get_actual_data('https://onlinedata.plzen.eu/data-pd-rychtarka-actual.php')
+historical_data_rychtarka = load_historical_data(Path('./data/data-pd-rychtarka.csv'))
+historical_data_rychtarka = process_table(historical_data_rychtarka)
 
-historical_data = process_table(historical_data)
-weekday_data = get_weekday_data(historical_data, 'Monday')
-time_weekday_data_1 = get_time_weekday_data(historical_data, ['15:00:00', '16:00:00'], 'Tuesday')
-time_weekday_data_2 = get_time_weekday_data(historical_data, ['16:17:00'], 'Friday')
+# Actual
+url_nove_divadlo = 'https://onlinedata.plzen.eu/data-pd-novedivadlo-actual.php'
+url_rychtarka = 'https://onlinedata.plzen.eu/data-pd-rychtarka-actual.php'
 
-print()
+actual_data_nove_divadlo = get_actual_data(url_nove_divadlo)
+actual_data_rychtarka = get_actual_data(url_rychtarka)
 
-# res = get_historical_daily_statistics(historical_data)
-# res_2 = get_historical_time_daily_statistics(historical_data)
+# Queries
+actual_info_rychtarka = get_actual_info(actual_data_rychtarka)
+actual_info_nove_divadlo = get_actual_info(actual_data_nove_divadlo)
+
+weekday_data = get_weekday_data(historical_data_nove_divadlo, 'Monday')
+time_weekday_data_1 = get_time_weekday_data(historical_data_nove_divadlo, ['15:00:00', '16:00:00'], 'Tuesday')
+time_weekday_data_2 = get_time_weekday_data(historical_data_nove_divadlo, ['00:00:00'], 'Friday')
+
+# Processing queries
+if len(time_weekday_data_2) > 0:
+    print()
+else:
+    print('Empty data.')
+
+# res = get_historical_daily_statistics(historical_data_nove_divadlo)
+# res_2 = get_historical_time_daily_statistics(historical_data_nove_divadlo)
 # print()
