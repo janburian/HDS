@@ -27,6 +27,61 @@ def get_actual_data(url):
         return None
 
 
+def process_table(data: pd):
+    weekdays_indices = []
+    times = []
+    for i in range(len(data)):
+        # ID = data.iloc[i, 0]
+        # capacity = data.iloc[i, 1]
+        # num_occupied_spaces = data.iloc[i, 2] + data.iloc[i, 3]
+        # num_free_spaces = data.iloc[i, 5]
+        timestamp = data.iloc[i, 7]
+
+        timestamp_list = timestamp.split(' ')
+
+        date = timestamp_list[0]
+        time = timestamp_list[1]
+        times.append(time)
+
+        weekday_idx = (pd.Timestamp(date)).day_of_week
+        # weekday_name = weekdays_names[weekday_idx]
+        weekdays_indices.append(weekday_idx)
+
+    data['weekday_idx'] = weekdays_indices
+    data['time'] = times
+
+    return data
+
+
+def get_weekday_data(data: pd, weekday: str):
+    weekdays_list = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    weekday_idx = weekdays_list.index(weekday)
+    weekday_data = data.loc[data['weekday_idx'] == weekday_idx]
+
+    return weekday_data
+
+def get_time_weekday_data(data: pd, times_start_end: list, weekday: str):
+    weekday_data = get_weekday_data(data, weekday)
+    time_delta = timedelta(hours=0, minutes=15)
+
+    # weekday_data['datum_aktualizace'] = pd.to_datetime(weekday_data['datum_aktualizace'])
+    weekday_data['time'] = pd.to_datetime(weekday_data['time'])
+    # test = weekday_data[(weekday_data['datum_aktualizace'] > '2022-10-25 04:30:00') & (weekday_data['datum_aktualizace'] < ' 2022-11-27 11:00:00')]
+    if len(times_start_end) > 1:
+        start_time = times_start_end[0]
+        end_time = times_start_end[1]
+        time_weekday_data = weekday_data[(weekday_data['time'] > start_time) & (weekday_data['time'] < end_time)]
+    else:
+        time = times_start_end[0]
+        time_format = '%H:%M:%S'
+        time = datetime.strptime(time, time_format)
+        time_sub_delta = str(time - time_delta).split(' ')[1]
+        time_add_delta = str(time + time_delta).split(' ')[1]
+        time_weekday_data = weekday_data[(weekday_data['time'] > time_sub_delta) & (weekday_data['time'] < time_add_delta)]
+
+    return time_weekday_data
+
+
 def get_historical_daily_statistics(historical_data):
     weekdays_list = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     weekdays_dictionary = { # {key = weekday, value = [num_occupied_spaces, num_free_spaces, num_weekday],...}
@@ -169,6 +224,11 @@ def count_average(weekdays: dict):
 
 historical_data = load_historical_data(Path('./data/data-pd-novedivadlo.csv'))
 actual_data = get_actual_data('https://onlinedata.plzen.eu/data-pd-rychtarka-actual.php')
+
+historical_data = process_table(historical_data)
+weekday_data = get_weekday_data(historical_data, 'Monday')
+get_time_weekday_data(historical_data, ['15:00:00', '16:00:00'], 'Tuesday')
+get_time_weekday_data(historical_data, ['14:40:00'], 'Friday')
 
 res = get_historical_daily_statistics(historical_data)
 res_2 = get_historical_time_daily_statistics(historical_data)
