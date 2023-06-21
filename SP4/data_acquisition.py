@@ -62,7 +62,7 @@ def get_weekday_data(data: pd, weekday: str):
 
 def get_time_weekday_data(data: pd, times_start_end: list, weekday: str):
     weekday_data = get_weekday_data(data, weekday)
-    time_delta = timedelta(hours=0, minutes=15)
+    time_delta = timedelta(hours=0, minutes=20)
 
     # weekday_data['datum_aktualizace'] = pd.to_datetime(weekday_data['datum_aktualizace'])
     weekday_data['time'] = pd.to_datetime(weekday_data['time'])
@@ -84,6 +84,30 @@ def get_time_weekday_data(data: pd, times_start_end: list, weekday: str):
 
 def get_actual_info(actual_data: pd):
     return actual_data.iloc[[0]]
+
+def count_average(data: pd):
+    num_occupied_spaces = data['kp'] + data['dp_bez_rezervace']
+    num_average_occupied_spaces = num_occupied_spaces.mean()
+
+    num_average_free_spaces = data['volno'].mean()
+
+    return ((num_average_occupied_spaces, num_average_free_spaces))
+
+
+def count_weighted_average(data):
+    times_datetime = [datetime.time(d) for d in data['time']]
+    weights = []
+
+    for time_datetime in times_datetime:
+        weight = int(time_datetime.strftime("%H%M%S"))
+        weights.append(weight)
+
+    num_occupied_spaces = data['kp'] + data['dp_bez_rezervace']
+    weight_avg_occupied_spaces = ((np.array(weights) * num_occupied_spaces).sum()) / np.array(weights).sum()
+
+    weight_avg_free_spaces = ((np.array(weights) * data['volno']).sum()) / np.array(weights).sum()
+
+    return ((round(weight_avg_occupied_spaces), round(weight_avg_free_spaces)))
 
 
 # def get_historical_daily_statistics(historical_data_nove_divadlo):
@@ -245,15 +269,16 @@ actual_info_rychtarka = get_actual_info(actual_data_rychtarka)
 actual_info_nove_divadlo = get_actual_info(actual_data_nove_divadlo)
 
 weekday_data = get_weekday_data(historical_data_nove_divadlo, 'Monday')
-time_weekday_data_1 = get_time_weekday_data(historical_data_nove_divadlo, ['15:00:00', '16:00:00'], 'Tuesday')
-time_weekday_data_2 = get_time_weekday_data(historical_data_nove_divadlo, ['00:00:00'], 'Friday')
+time_weekday_data_1 = get_time_weekday_data(historical_data_nove_divadlo, ['15:00:00', '16:00:00'], 'Wednesday')
+time_weekday_data_2 = get_time_weekday_data(historical_data_nove_divadlo, ['02:45:00'], 'Tuesday')
 
 # Processing queries
-if len(time_weekday_data_2) > 0:
-    print()
+if len(time_weekday_data_1) > 0:
+    weightened_avg = count_weighted_average(time_weekday_data_1)
+    average = count_average(time_weekday_data_1)
 else:
     print('Empty data.')
 
 # res = get_historical_daily_statistics(historical_data_nove_divadlo)
 # res_2 = get_historical_time_daily_statistics(historical_data_nove_divadlo)
-# print()
+print()
