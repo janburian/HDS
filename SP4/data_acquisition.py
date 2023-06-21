@@ -1,3 +1,4 @@
+import time
 from pathlib import Path
 import numpy as np
 import pandas as pd
@@ -8,6 +9,8 @@ from datetime import datetime, timedelta
 
 def load_historical_data(path_to_data: Path):
     historical_data = pd.read_csv(path_to_data)
+    timestamp_conversion = pd.to_datetime(historical_data['datum_aktualizace'])
+    historical_data['datum_aktualizace'] = timestamp_conversion
 
     return historical_data
 
@@ -56,9 +59,88 @@ def process_table(data: pd):
 def get_weekday_data(data: pd, weekday: str):
     weekdays_list = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     weekday_idx = weekdays_list.index(weekday)
-    weekday_data = data.loc[data['weekday_idx'] == weekday_idx]
-
+    test = data['datum_aktualizace']
+    weekday_data = data.loc[data['datum_aktualizace'].day_of_week == weekday_idx]
+    # time.strptime(str(data['datum_aktualizace'])).tm_wday
     return weekday_data
+
+
+def get_IDs_weekday(data: pd, weekday: str):
+    IDs = []
+    weekdays_list = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    weekday_idx = weekdays_list.index(weekday)
+    for i in range(len(data)):
+        timestamp = data.iloc[i, 7]
+        # timestamp = time.strptime(timestamp, '%Y-%m-%d %H:%M:%S')
+
+        if timestamp.day_of_week == weekday_idx:
+            IDs.append(i)
+
+    return IDs
+
+
+def get_IDs_month(data: pd, month: str):
+    IDs = []
+    months_list = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
+                   'November', 'December']
+    month_idx = months_list.index(month)
+    for i in range(len(data)):
+        timestamp = data.iloc[i, 7]
+        # timestamp = time.strptime(timestamp, '%Y-%m-%d %H:%M:%S')
+
+        if timestamp.month == month_idx:
+            IDs.append(i)  # ID from 1; not from zero; otherwise IndexOutOfBounds in next phase
+
+    return IDs
+
+
+def get_IDs_time(data: pd, times_start_end):
+    time_delta = timedelta(hours=0, minutes=20)
+    IDs = []
+
+    if len(times_start_end) > 1:
+        start_timestamp = datetime.strptime(times_start_end[0], '%H:%M:%S')
+        end_timestamp = datetime.strptime(times_start_end[1], '%H:%M:%S')
+
+        start = start_timestamp.time()
+        end = end_timestamp.time()
+
+        for i in range(len(data)):
+            timestamp = data.iloc[i, 7]
+            time = timestamp.time()
+            if time >= start and time <= end:
+                IDs.append(data.iloc[i, 0])
+
+        return IDs
+
+    else:
+        one_time_timestamp = datetime.strptime(times_start_end[0], '%H:%M:%S')
+        one_time = one_time_timestamp.time()
+
+        time_sub_delta = one_time - time_delta
+        time_add_delta = one_time + time_delta
+
+        for i in range(len(data)):
+            timestamp = data.iloc[i, 7]
+            time = timestamp.time()
+            if time >= time_sub_delta and time <= time_add_delta:
+                IDs.append(i)
+
+        return IDs
+
+
+def get_data_time_day(data: pd, day, times_start_end):
+    day_IDs = get_IDs_weekday(data, day)
+    print(max(day_IDs))
+    day_relevant_data = data.iloc[day_IDs]
+    day_relevant_data.reset_index(drop=True)
+    time_day_IDs = get_IDs_time(day_relevant_data, ['18:00:00', '19:00:00'])
+    # day_time_relevant_data = data.iloc[time_day_IDs]
+    day_time_relevant_data = day_relevant_data.loc[day_relevant_data['ID'].isin(time_day_IDs)]
+
+    return day_time_relevant_data
+
+
 
 def get_time_weekday_data(data: pd, times_start_end: list, weekday: str):
     weekday_data = get_weekday_data(data, weekday)
@@ -252,10 +334,10 @@ def count_weighted_average(data):
 # Obtaining data
 # Historical
 historical_data_nove_divadlo = load_historical_data(Path('./data/data-pd-novedivadlo.csv'))
-historical_data_nove_divadlo = process_table(historical_data_nove_divadlo)
+# historical_data_nove_divadlo = process_table(historical_data_nove_divadlo)
 
 historical_data_rychtarka = load_historical_data(Path('./data/data-pd-rychtarka.csv'))
-historical_data_rychtarka = process_table(historical_data_rychtarka)
+# historical_data_rychtarka = process_table(historical_data_rychtarka)
 
 # Actual
 url_nove_divadlo = 'https://onlinedata.plzen.eu/data-pd-novedivadlo-actual.php'
@@ -265,8 +347,12 @@ actual_data_nove_divadlo = get_actual_data(url_nove_divadlo)
 actual_data_rychtarka = get_actual_data(url_rychtarka)
 
 # Queries
-actual_info_rychtarka = get_actual_info(actual_data_rychtarka)
-actual_info_nove_divadlo = get_actual_info(actual_data_nove_divadlo)
+# actual_info_rychtarka = get_actual_info(actual_data_rychtarka)
+# actual_info_nove_divadlo = get_actual_info(actual_data_nove_divadlo)
+
+get_IDs_weekday(historical_data_nove_divadlo, 'Monday')
+get_IDs_month(historical_data_nove_divadlo, 'January')
+get_data_time_day(historical_data_nove_divadlo, 'Tuesday', ['18:00:00', '19:00:00'])
 
 weekday_data = get_weekday_data(historical_data_nove_divadlo, 'Monday')
 time_weekday_data_1 = get_time_weekday_data(historical_data_nove_divadlo, ['15:00:00', '16:00:00'], 'Wednesday')
