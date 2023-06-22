@@ -159,10 +159,12 @@ def get_actual_info(actual_data: pd):
 def count_average(data: pd):
     num_occupied_spaces = data['kp'] + data['dp_bez_rezervace']
     num_average_occupied_spaces = num_occupied_spaces.mean()
+    num_average_occupied_spaces_percent = (num_average_occupied_spaces / data['Kapacita'].mean()) * 100
 
     num_average_free_spaces = data['volno'].mean()
+    num_average_free_spaces_percent = 100 - num_average_occupied_spaces_percent
 
-    return num_average_occupied_spaces, num_average_free_spaces
+    return round(num_average_occupied_spaces), num_average_occupied_spaces_percent, round(num_average_free_spaces), num_average_free_spaces_percent
 
 
 # Obtaining data
@@ -187,17 +189,17 @@ actual_info_nove_divadlo = get_actual_info(actual_data_nove_divadlo)
 weekday_data = get_data_weekday(historical_data_nove_divadlo, 'Thursday')
 month_data = get_data_month(historical_data_nove_divadlo, 'July')
 certain_date_data = get_data_certain_date(historical_data_nove_divadlo, 2018, 12, 24)
-certain_date_time_data = get_data_certain_date_time(historical_data_nove_divadlo, 2021, 12, 10, 13, 40, 0)
+certain_date_time_data = get_data_certain_date_time(historical_data_nove_divadlo, 2023, 5, 18, 16, 15, 0)
 weekday_time_data_1 = get_data_weekday_time(historical_data_nove_divadlo, 'Tuesday', ['18:00:00', '19:00:00'])
 weekday_time_data_2 = get_data_weekday_time(historical_data_nove_divadlo, 'Saturday', ['06:00:00'])
 
 # Processing queries
+count_average(weekday_time_data_2)
+count_average(certain_date_time_data)
 # if len(time_weekday_data_1) > 0:
 #     weightened_avg = count_weighted_average(time_weekday_data_1)
 #     average = count_average(time_weekday_data_1)
 # else:
 #     print('Empty data.')
 
-# res = get_historical_daily_statistics(historical_data_nove_divadlo)
-# res_2 = get_historical_time_daily_statistics(historical_data_nove_divadlo)
 print()
