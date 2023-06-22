@@ -142,9 +142,8 @@ def get_IDs_between_start_end(data, times_start_end):
 
 def get_data_weekday_time(data: pd, day, times_start_end):
     day_indices = get_indices_weekday(data, day)
-    print(max(day_indices))
+    # print(max(day_indices))
     day_relevant_data = data.iloc[day_indices]
-    day_relevant_data.reset_index(drop=True)
     time_day_IDs = get_IDs_time(day_relevant_data, times_start_end)
     # day_time_relevant_data = data.iloc[time_day_IDs]
     day_time_relevant_data = day_relevant_data.loc[day_relevant_data['ID'].isin(time_day_IDs)]
@@ -153,18 +152,27 @@ def get_data_weekday_time(data: pd, day, times_start_end):
 
 
 def get_actual_info(actual_data: pd):
-    return actual_data.iloc[[0]]
+    relevant_data = actual_data.iloc[[0]]
+    capacity = relevant_data['Kapacita'][0]
+    last_update_str = relevant_data['datum_aktualizace'][0]
+    num_occupied_spaces = relevant_data['kp'][0] + relevant_data['dp_bez_rezervace'][0]
+    num_free_spaces = relevant_data['volno'][0]
+
+    occupied_spaces_percent = round((num_occupied_spaces / capacity) * 100)
+    free_spaces_percent = round((num_free_spaces / capacity) * 100)
+
+    return  capacity, num_occupied_spaces, num_free_spaces, occupied_spaces_percent, free_spaces_percent, last_update_str
 
 
 def count_average(data: pd):
     num_occupied_spaces = data['kp'] + data['dp_bez_rezervace']
-    num_average_occupied_spaces = num_occupied_spaces.mean()
-    num_average_occupied_spaces_percent = (num_average_occupied_spaces / data['Kapacita'].mean()) * 100
+    num_average_occupied_spaces = round(num_occupied_spaces.mean())
+    average_occupied_spaces_percent = round((num_average_occupied_spaces / data['Kapacita'].mean()) * 100)
 
-    num_average_free_spaces = data['volno'].mean()
-    num_average_free_spaces_percent = 100 - num_average_occupied_spaces_percent
+    num_average_free_spaces = round(data['volno'].mean())
+    average_free_spaces_percent = round(100 - average_occupied_spaces_percent)
 
-    return round(num_average_occupied_spaces), num_average_occupied_spaces_percent, round(num_average_free_spaces), num_average_free_spaces_percent
+    return num_average_occupied_spaces, average_occupied_spaces_percent, num_average_free_spaces, average_free_spaces_percent
 
 
 # Obtaining data
@@ -183,9 +191,11 @@ actual_data_nove_divadlo = get_actual_data(url_nove_divadlo)
 actual_data_rychtarka = get_actual_data(url_rychtarka)
 
 # Queries
+# Actual data
 actual_info_rychtarka = get_actual_info(actual_data_rychtarka)
 actual_info_nove_divadlo = get_actual_info(actual_data_nove_divadlo)
 
+# Historical data
 weekday_data = get_data_weekday(historical_data_nove_divadlo, 'Thursday')
 month_data = get_data_month(historical_data_nove_divadlo, 'July')
 certain_date_data = get_data_certain_date(historical_data_nove_divadlo, 2018, 12, 24)
@@ -202,4 +212,3 @@ count_average(certain_date_time_data)
 # else:
 #     print('Empty data.')
 
-print()
