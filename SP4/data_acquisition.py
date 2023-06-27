@@ -161,10 +161,10 @@ def get_actual_info(actual_data: pd):
     occupied_spaces_percent = round((num_occupied_spaces / capacity) * 100)
     free_spaces_percent = round((num_free_spaces / capacity) * 100)
 
-    return  capacity, num_occupied_spaces, num_free_spaces, occupied_spaces_percent, free_spaces_percent, last_update_str
+    return capacity, num_occupied_spaces, num_free_spaces, occupied_spaces_percent, free_spaces_percent, last_update_str
 
 
-def count_average(data: pd):
+def count_statistics(data: pd):
     num_occupied_spaces = data['kp'] + data['dp_bez_rezervace']
     num_average_occupied_spaces = round(num_occupied_spaces.mean())
     average_occupied_spaces_percent = round((num_average_occupied_spaces / data['Kapacita'].mean()) * 100)
@@ -178,10 +178,7 @@ def count_average(data: pd):
 # Obtaining data
 # Historical
 historical_data_nove_divadlo = load_historical_data(Path('./data/data-pd-novedivadlo.csv'))
-# historical_data_nove_divadlo = process_table(historical_data_nove_divadlo)
-
 historical_data_rychtarka = load_historical_data(Path('./data/data-pd-rychtarka.csv'))
-# historical_data_rychtarka = process_table(historical_data_rychtarka)
 
 # Actual
 url_nove_divadlo = 'https://onlinedata.plzen.eu/data-pd-novedivadlo-actual.php'
@@ -200,12 +197,12 @@ weekday_data = get_data_weekday(historical_data_nove_divadlo, 'Thursday')
 month_data = get_data_month(historical_data_nove_divadlo, 'July')
 certain_date_data = get_data_certain_date(historical_data_nove_divadlo, 2018, 12, 24)
 certain_date_time_data = get_data_certain_date_time(historical_data_nove_divadlo, 2023, 5, 18, 16, 15, 0)
-weekday_time_data_1 = get_data_weekday_time(historical_data_nove_divadlo, 'Tuesday', ['18:00:00', '19:00:00'])
+# weekday_time_data_1 = get_data_weekday_time(historical_data_nove_divadlo, 'Tuesday', ['18:00:00', '19:00:00'])
 weekday_time_data_2 = get_data_weekday_time(historical_data_nove_divadlo, 'Saturday', ['06:00:00'])
 
 # Processing queries
-count_average(weekday_time_data_2)
-count_average(certain_date_time_data)
+count_statistics(weekday_time_data_2)
+count_statistics(certain_date_time_data)
 # if len(time_weekday_data_1) > 0:
 #     weightened_avg = count_weighted_average(time_weekday_data_1)
 #     average = count_average(time_weekday_data_1)
