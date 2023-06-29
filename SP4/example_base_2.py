@@ -1,11 +1,12 @@
+# Modules import 
 from dialog import SpeechCloudWS, Dialog
 import logging
 from pathlib import Path
 from datetime import datetime, timedelta
-import data_acquisition
-import os
 import re
-import math
+
+# Own modules import 
+import data_acquisition
 import translator
 
 class ParkingHouseDialog(Dialog):
@@ -24,16 +25,23 @@ class ParkingHouseDialog(Dialog):
 
 
     async def get_data(self):
+        print("Getting data...Please wait.")
         # Historical
-        historical_data_nove_divadlo = data_acquisition.load_historical_data(Path('./data/data-pd-novedivadlo.csv'))
-        historical_data_rychtarka = data_acquisition.load_historical_data(Path('./data/data-pd-rychtarka.csv'))
-        
-        # Actual 
-        url_nove_divadlo = 'https://onlinedata.plzen.eu/data-pd-novedivadlo-actual.php'
-        url_rychtarka = 'https://onlinedata.plzen.eu/data-pd-rychtarka-actual.php'
+        #historical_data_nove_divadlo = data_acquisition.load_historical_data(Path('./data/data-pd-novedivadlo.csv'))
+        #historical_data_rychtarka = data_acquisition.load_historical_data(Path('./data/data-pd-rychtarka.csv'))
 
-        actual_data_nove_divadlo = data_acquisition.get_actual_data(url_nove_divadlo)
-        actual_data_rychtarka = data_acquisition.get_actual_data(url_rychtarka)
+        url_nove_divadlo_historical = 'https://onlinedata.plzen.eu/data-pd-novedivadlo.php'
+        url_rychtarka_historical = 'https://onlinedata.plzen.eu/data-pd-rychtarka.php'
+
+        historical_data_nove_divadlo = data_acquisition.get_data(url_nove_divadlo_historical, 'historical')
+        historical_data_rychtarka = data_acquisition.get_data(url_rychtarka_historical, 'historical')
+        
+        # Actual data
+        url_nove_divadlo_actual = 'https://onlinedata.plzen.eu/data-pd-novedivadlo-actual.php'
+        url_rychtarka_actual = 'https://onlinedata.plzen.eu/data-pd-rychtarka-actual.php'
+
+        actual_data_nove_divadlo = data_acquisition.get_data(url_nove_divadlo_actual, 'actual')
+        actual_data_rychtarka = data_acquisition.get_data(url_rychtarka_actual, 'actual')
 
         return historical_data_nove_divadlo, historical_data_rychtarka, actual_data_nove_divadlo, actual_data_rychtarka
 
@@ -42,16 +50,14 @@ class ParkingHouseDialog(Dialog):
         grammars = self.grammar_from_dict("command", {
                 "end": {"konec","skonči","ukončit"}, 
                 "continue": {"pokračuj", "pokračovat", "další"},
-                "help": {"nápověda", "pomoc", "help", "jsem ztracen"}}) 
+                "help": {"nápověda", "pomoc", "help", "jsem ztracen"},
+                "bye": {"nashledanou", "děkuji a nashledanou"}}) 
         
         grammars += self.grammar_from_dict("confirm", 
                 {"confirm":{"potvrzuji", "potvrzuju", "potvrzuje", "přesně tak", "ano"}})
 
         grammars += self.grammar_from_dict("not_confirm", 
                 {"not_confirm":{"nepotvrzuji", "nepotvrzuju", "nepotvrzuje", "ne"}})
-
-        grammars += self.grammar_from_dict("change", 
-                {"change":{"změnit", "změnil", "a v"}})
 
         grammars += self.grammar_from_dict("parking_house", {
                 "Rychtářka": {"Rychtářce", "v rychtářce", "na Rychtářce", "na rychtářce", "Rychtářka", "Rychtářky"},
@@ -65,70 +71,70 @@ class ParkingHouseDialog(Dialog):
                 "Friday": {"pátek", "pátkem", "pátku"}, 
                 "Saturday": {"sobota", "soboty", "sobotě", "sobotu", "soboto", "sobotou"},
                 "Sunday": {"neděle", "nedělí", "neděli"},
-                "tomorrow":{"zítra", "další den", "následující den", "v dalším dni", "v následujícím dni"}, 
-                "day_after_tomorrow":{"pozítří"},
-                "day_before_yesterday":{"předevčírem"},
-                "yesterday":{"včera", "předchozí den", " v předchozím dni"},
-                "last_monday":{"minulé pondělí"},
-                "last_tuesday":{"minulé úterý"},
-                "last_wednesday":{"minulou středu"},
-                "last_thursday":{"minulý čtvrtek"},
-                "last_friday":{"minulý pátek"},
-                "last_saturday":{"minulou sobotu"},
-                "last_sunday":{"minulou neděli"}
+                "today_1":{"zítra", "další den", "následující den", "v dalším dni", "v následujícím dni"}, 
+                "today_2":{"pozítří"},
+                "today_-1":{"včera", "předchozí den", " v předchozím dni"},
+                "today_-2":{"předevčírem"},
+                "last_Monday":{"minulé pondělí"},
+                "last_Tuesday":{"minulé úterý"},
+                "last_Wednesday":{"minulou středu", "minulá středa"},
+                "last_Thursday":{"minulý čtvrtek"},
+                "last_Friday":{"minulý pátek"},
+                "last_Saturday":{"minulou sobotu", "minulá sobota"},
+                "last_Sunday":{"minulou neděli", "minulá neděle"}
                 })
         
         grammars += self.grammar_from_dict("time", {
                 "now": {"aktuálně", "aktuální", "právě teď", "nyní", "v tento čas", "teď", "v současné době", "současná doba", "v tomto čase"}, 
-                "01:00:00": {"v jednu ráno", "jedna ráno", "v jednu ráno", "jedna ráno", "v jedna nula nula", "v jednu nula nula"},
+                "01:00:00": {"v jednu ráno", "jedna ráno", "v jednu ráno", "jedna ráno", "v jedna nula nula", "v jednu nula nula", "jedna hodina", "jednu hodinu"},
                 "01:30:00": {"v jednu třicet ráno", "jedna třicet ráno", "v jedna třicet", "v jednu třicet", "půl druhé ráno"},
-                "02:00:00": {"ve dvě ráno", "ve dvě nula nula", "dvě ráno", "dvě hodiny ráno"},
+                "02:00:00": {"ve dvě ráno", "ve dvě nula nula", "dvě ráno", "dvě hodiny ráno", "dvě hodiny"},
                 "02:30:00": {"ve dvě třicet ráno", "ve dvě třicet", "půl třetí ráno"},
-                "03:00:00": {"ve tři ráno", "tři hodiny ráno", "ve tři nula nula"},
+                "03:00:00": {"ve tři ráno", "tři hodiny ráno", "ve tři nula nula", "tři hodiny"},
                 "03:30:00": {"ve tři třicet ráno", "ve tři třicet", "půl čtvrté ráno"},
-                "04:00:00": {"ve čtyři ráno", "ve čtyři hodiny ráno", "ve čtyři nula nula"},
+                "04:00:00": {"ve čtyři ráno", "ve čtyři hodiny ráno", "ve čtyři nula nula", "čtyři hodiny"},
                 "04:30:00": {"ve čtyři třicet ráno", "ve čtyři třicet", "půl páté ráno"},
-                "05:00:00": {"v pět ráno", "pět ráno", "pět hodin ráno", "v pět nula nula"},
+                "05:00:00": {"v pět ráno", "pět ráno", "pět hodin ráno", "v pět nula nula", "pět hodin"},
                 "05:30:00": {"v pět třicet ráno", "pět třicet ráno", "půl šesté ráno"},
-                "06:00:00": {"v šest ráno", "šest ráno", "šest hodin ráno", "v šest nula nula"},
+                "06:00:00": {"v šest ráno", "šest ráno", "šest hodin ráno", "v šest nula nula", "šest hodin"},
                 "06:30:00": {"v šest třicet ráno", "šest třicet ráno", "v šest třicet", "šest třicet", "půl sedmé ráno"},
-                "07:00:00": {"sedm ráno", "sedm hodin ráno", "v sedm ráno", "sedm", "v sedm"},
+                "07:00:00": {"sedm ráno", "sedm hodin ráno", "v sedm ráno", "sedm", "v sedm", "sedm hodin"},
                 "07:30:00": {"sedm třicet", "půl osmé ráno", "o půl osmé ráno", "sedm třicet ráno", "v sedm třicet ráno"},
-                "08:00:00": {"v osm ráno", "osm ráno", "osm hodin ráno", "v osm nula nula", "osm nula nula"},
+                "08:00:00": {"v osm ráno", "osm ráno", "osm hodin ráno", "v osm nula nula", "osm nula nula", "osm hodin"},
                 "08:30:00": {"osm třicet ráno", "v osm třicet ráno", "půl deváté ráno", "v půl deváté ráno", "o půl deváté ráno"},
-                "09:00:00": {"devět ráno", "v devět ráno", "v devět hodin ráno",  "devět nula nula ráno", "v devět nula nula"},
+                "09:00:00": {"devět ráno", "v devět ráno", "v devět hodin ráno",  "devět nula nula ráno", "v devět nula nula", "devět hodin"},
                 "09:30:00": {"devět třicet ráno", "v devět třicet ráno", "půl desátá ráno", "v půl desáté ráno"},
-                "10:00:00": {"deset ráno", "deset hodin ráno", "deset nula nula ráno", "v deset nula nula ráno", "v deset ráno"},
+                "10:00:00": {"deset ráno", "deset hodin ráno", "deset nula nula ráno", "v deset nula nula ráno", "v deset ráno", "deset hodin"},
                 "10:30:00": {"deset třicet ráno", "v deset třicet ráno", "v půl jedenácté ráno", "půl jedenáctá ráno"},
-                "11:00:00": {"jedenáct ráno", "jedenáct hodin ráno", "jedenáct ráno", "jedenáct nula nula ráno", "jedenáct nula nula ráno"},
+                "11:00:00": {"jedenáct ráno", "jedenáct hodin ráno", "jedenáct ráno", "jedenáct nula nula ráno", "jedenáct nula nula ráno", "jedenáct hodin"},
                 "11:30:00": {"jedenáct třicet ráno", "v jedenáct třicet ráno", "v půl dvanácté ráno", "o půl dvanácté ráno"},
-                "12:00:00": {"poledne", "v poledne", "o poledni", "dvanáct nula nula", "dvanáct hodin v poledne"},
+                "12:00:00": {"poledne", "v poledne", "o poledni", "dvanáct nula nula", "dvanáct hodin v poledne", "dvanáct hodin"},
                 "12:30:00": {"dvanáct třicet", "dvanáct třicet odpoledne", "ve dvanáct třicet", "v půl jedné odpoledne"},
-                "13:00:00": {"třináct", "třináct hodin", "třináct nula nula", "ve třináct", "ve třináct nula nula", "v jednu odpoledne"},
+                "13:00:00": {"třináct", "třináct hodin", "třináct nula nula", "ve třináct", "ve třináct nula nula", "v jednu odpoledne", "třináct hodin"},
                 "13:30:00": {"ve třináct třicet", "třináct třicet", "půl druhé odpoledne"},
-                "14:00:00": {"čtrnáct nula nula", "čtrnáct", "čtrnáct hodin", "ve dvě odpoledne", "dvě odpoledne", "ve čtrnáct"},
+                "14:00:00": {"čtrnáct nula nula", "čtrnáct", "čtrnáct hodin", "ve dvě odpoledne", "dvě odpoledne", "ve čtrnáct", "čtrnáct hodin"},
                 "14:30:00": {"čtrnáct třicet", "ve čtrnáct třicet", "v půl třetí odpoledne", "půl třetí odpoledne"},
-                "15:00:00": {"v patnáct nula nula", "patnáct hodin", "ve tři odpoledne", "v patnáct"},
+                "15:00:00": {"v patnáct nula nula", "patnáct hodin", "ve tři odpoledne", "v patnáct", "patnáct hodin"},
                 "15:30:00": {"v patnáct třicet", "patnáct třicet", "půl čtvrté odpoledne", "v půl čtvrté odpoledne"},
-                "16:00:00": {"šestnáct nula nula", "v šestnáct nula nula", "v šestnáct", "v šestnáct hodin", "ve čtyři hodiny odpoledne", "čtyři hodiny odpoledne"},
+                "16:00:00": {"šestnáct nula nula", "v šestnáct nula nula", "v šestnáct", "v šestnáct hodin", "ve čtyři hodiny odpoledne", "čtyři hodiny odpoledne", "šestnáct hodin"},
                 "16:30:00": {"šestnáct třicet", "v šestnáct třicet", "v půl páté odpoledne", "o půl páté odpoledne"},
-                "17:00:00": {"sedmnáct nula nula", "v sedmnáct nula nula", "sedmnáct hodin", "pět hodin odpoledne", "v pět hodin odpoledne"},
+                "17:00:00": {"sedmnáct nula nula", "v sedmnáct nula nula", "sedmnáct hodin", "pět hodin odpoledne", "v pět hodin odpoledne", "sedmnáct hodin"},
                 "17:30:00": {"sedmnáct třicet", "v sedmnáct třicet", "v půl šesté odpoledne", "v půl šesté večer", "o půl šesté večer"},
                 "18:00:00": {"osmnáct", "osmnáct nula nula", "šest večer", "osmnáct hodin"},
                 "18:30:00": {"osmnáct třicet", "o půl sedmé večer", "půl sedmá večer"},
-                "19:00:00": {"devatenáct nula nula", "sedm večer", "devatenáct hodin", "sedm hodin večer"},
+                "19:00:00": {"devatenáct nula nula", "sedm večer", "devatenáct hodin", "sedm hodin večer", "devatenáct hodin"},
                 "19:30:00": {"devatenáct třicet", "půl osmá večer", "v půl osmé večer", "sedm třicet večer"},
-                "20:00:00": {"dvacet nula nula", "osm večer", "ve dvacet hodin", "osm hodin večer", "osmá večerní"},
+                "20:00:00": {"dvacet nula nula", "osm večer", "ve dvacet hodin", "osm hodin večer", "osmá večerní", "dvacet hodin"},
                 "20:30:00": {"dvacet třicet", "půl devátá večer", "o půl deváté večer", "v půl deváté večer"},
                 "21:00:00": {"dvacet jedna nula nula", "devět hodin večer", "dvacet jedna hodin"},
                 "21:30:00": {"dvacet jedna třicet", "půl desátá večer", "o půl desáté večer", "v půl desátý večer"},
-                "22:00:00": {"dvacet dva nula nula", "ve dvacet dva hodin", "v deset hodin večer"},
+                "22:00:00": {"dvacet dva nula nula", "ve dvacet dva hodin", "v deset hodin večer", "dvacet dva hodin"},
                 "22:30:00": {"dvacet dva třicet", "půl jedenáctá večer", "o půl jedenácté večer", "v půl jedenácté večer", "půl jedenáctá večerní"},
-                "23:00:00": {"dvacet tři nula nula", "jedenáct večer", "jedenáct hodin večer"},
+                "23:00:00": {"dvacet tři nula nula", "jedenáct večer", "jedenáct hodin večer", "dvacet tři hodin"},
                 "23:30:00": {"dvacet tři třicet", "o půl dvanácté večer", "v půl dvanácté večer"},
-                "00:00:00": {"dvacet čtyři nula nula", "půlnoc", "o půlnoci", "nula nula nula nula"}, 
+                "00:00:00": {"dvacet čtyři nula nula", "půlnoc", "půlnoci", "nula nula nula nula"}, 
                 "00:30:00": {"nula třicet", "o půl jedné v noci", "o půl jedné ráno", "v půl jedné v noci", "v půl jedné ráno"}, 
-                "rel_1_hour": {"za hodinu", "za jednu hodinu"}, 
+                "rel_1_hour": {"za hodinu","za jednu hodinu"}, 
                 "rel_2_hours": {"za dvě hodiny", "za sto dvacet minut"},
                 "rel_3_hours": {"za tři hodiny", "za tři_hodiny", "za sto osmdesát minut"},
                 "rel_4_hours": {"za čtyři_hodiny", "za dvě stě čyřicet minut"},
@@ -147,13 +153,13 @@ class ParkingHouseDialog(Dialog):
         grammars += self.grammar_from_dict("statistics", {
                 "free_spaces_%": {"volná místa v %", "volná kapacita v %", "volná v %"},
                 "free_spaces": {"počet volných míst","volná místa","volno", "neprázdná místa", "volných míst", "volná kapacita", "volná", "volných"}, 
-                "occupied_spaces": {"počet obsazených míst", "obsazená místa", "zaplněnost", "obsazená", "zaplněná", "obsazenost", "aktuální počet aut", "obsazeno"},
+                "occupied_spaces": {"počet obsazených míst", "obsazená místa", "obsazených parkovacích míst", "obsazených míst", "zaplněnost", "obsazená", "zaplněná", "obsazenost", "aktuální počet aut", "obsazeno"},
                 "capacity": {"kapacita", "kapacitou", "maximální kapacita", "celkový počet míst"},
                 "occupied_spaces_%": {"obsazená místa %", "obsazenost %", "zaplněná kapacita %"},
                 })
         
         grammars += self.grammar_from_dict("yes_no_questions", {
-                "available": {"jsou volná místa", "jsou dostupná", "je volno", "je místo", "jsou volná místa", "je k dispozici", "vejdu se do", "je ještě místo", "je tam ještě místo", "je tam volno", "je tam volná kapacita"},
+                "available": {"jsou volná místa", "jsou dostupná", "je volno", "je tam místo", "je místo", "jsou volná místa", "je k dispozici", "ještě volno", "vejdu se do", "je ještě místo", "je tam ještě místo", "je tam volno", "je tam volná kapacita"},
                 "nonavailable": {"je plno", "je narváno", "je tam plno"}
                 })
         
@@ -167,12 +173,18 @@ class ParkingHouseDialog(Dialog):
         print(weekday_idx)
 
         return weekdays[weekday_idx]
+    
+
+    async def get_weekday_string(self, idx: int):
+        weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        return weekdays[idx]
 
 
     async def get_frame_dictionary(self, result: list):
         relative_times_list = ["now", "rel_1_hour", "rel_2_hours", "rel_3_hours", "rel_4_hours", "rel_5_hours", "rel_6_hours", "rel_7_hours", "rel_8_hours",
                 "rel_9_hours", "rel_10_hours", "rel_11_hours", "rel_12_hours", "rel-0.5-hour", "rel-1-hour", "rel-1.5-hours", "rel-2-hours"]
         recognized_entities = result.entity_types
+
         frame_dict = {"parking_house": "", # Frame dictionary inicialization
                       "time": "now", 
                       "weekday": await self.get_todays_day(), 
@@ -190,7 +202,7 @@ class ParkingHouseDialog(Dialog):
                     break
         
         if "parking_house" in recognized_entities:
-            parking_house = result.parking_houses.first
+            parking_house = result.parking_house.first
             frame_dict["parking_house"] = parking_house
 
         if "time" in recognized_entities:
@@ -284,6 +296,32 @@ class ParkingHouseDialog(Dialog):
             return False, missing_entities
         
 
+    async def get_date_previous_day(self, input_day, start_date=None):
+        # https://www.tutorialspoint.com/how-to-determine-last-friday-s-date-using-python
+        weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday','Friday', 'Saturday', 'Sunday']
+        if start_date is None:
+            # assiging today's date(current date) to the start date
+            start_date = datetime.today()
+            # getting the weekday number
+            day_number = start_date.weekday()
+            # Get the index of the target weekday
+            day_number_target = weekdays.index(input_day)
+            # getting the last weekday
+            days_ago = (7 + day_number - day_number_target) % 7
+
+        # checking whether the above days ago result is equal to 0
+        if days_ago == 0:
+            # assigning 7 to the days ago
+            days_ago = 7
+
+        # Subtract the above number of days from the current date(start date)
+        # to get the last week's date of the given day
+        target_date = start_date - timedelta(days=days_ago)
+
+        # returning the last week's date of the input date
+        return target_date
+
+
     async def process_data(self, data_frame: dict, data):
         translate_dict = {
             "free_spaces": "volná místa", 
@@ -314,25 +352,83 @@ class ParkingHouseDialog(Dialog):
         time_regex = r'^\d{2}:\d{2}:\d{2}$'
         historical_data = data[data_idx]
         actual_data = data[data_idx + 2]
+        todays_weekday = await self.get_todays_day()
         statistics_data = []
 
-        if re.match(time_regex, time): # Historical data
+        if re.match(time_regex, time) and "_" not in weekday: # Historical data (checking if time is in correct format: 00:00:00)
             res = data_acquisition.get_data_weekday_time(historical_data, weekday, [time])
             statistics_data = data_acquisition.count_statistics(res)
 
-        elif time == "now": # Actual
+        elif time == "now" and weekday != todays_weekday and "_" not in weekday: # Undefined time, defined weekday
+            res = data_acquisition.get_data_weekday_time(historical_data, weekday, [(datetime.now()).strftime('%H:%M:%S')])
+            statistics_data = data_acquisition.count_statistics(res)
+
+        elif time == "now" and weekday == todays_weekday: # Actual
             statistics_data = data_acquisition.get_actual_info(actual_data)
 
-        elif "rel_" in time: # Future (based on historical data) - approximation
+        elif "rel_" in time and weekday == todays_weekday: # Future (based on historical data) - approximation
             relative_time_hours = re.findall(r'\d+', time)[0]
             time_delta = (datetime.now() + timedelta(hours=int(relative_time_hours))).strftime('%H:%M:%S')
 
             res = data_acquisition.get_data_weekday_time(historical_data, weekday, [time_delta])
             statistics_data = data_acquisition.count_statistics(res)
 
-        elif "rel-" in time: # Past (based on actual data) - approximation # TODO
-            relative_time_hours = re.findall(r'[-+]?\d*\.\d+|\d+', time)[0]
-            time_delta = (datetime.now() - timedelta(hours=int(relative_time_hours))).strftime('%H:%M:%S')
+        elif "rel-" in time and weekday == todays_weekday: # Past (based on actual data) - approximation
+            relative_time_hours = re.findall(r'\d+', time)[0]
+            #time_delta = (datetime.now() - timedelta(hours=int(relative_time_hours))).strftime('%H:%M:%S')
+            time_delta = (datetime.now() - timedelta(hours=int(relative_time_hours)))
+
+            res = data_acquisition.get_data_certain_date_time(actual_data, time_delta.year, time_delta.month, time_delta.day, time_delta.hour, time_delta.minute, 0)
+            statistics_data = data_acquisition.count_statistics(res)
+
+        elif "_" in weekday:
+            rel_day = weekday
+
+            if "today_" in rel_day:
+                number_days_from_today = int(re.findall(r'[-+]?\d+', rel_day)[0])
+                print(number_days_from_today)
+                if number_days_from_today > 0: # Future (Approximation)
+                    current_date = datetime.now().date()
+                    next_day_date = current_date + timedelta(days=number_days_from_today)
+                    next_weekday_idx = next_day_date.weekday()
+                    next_weekday_str = await self.get_weekday_string(next_weekday_idx)
+                    if time == "now": # unspecified time -> getting statistics based on the whole day
+                        res = data_acquisition.get_data_weekday(historical_data, next_weekday_str)
+                        statistics_data = data_acquisition.count_statistics(res)
+                    elif re.match(time_regex, time):
+                        res = data_acquisition.get_data_weekday_time(historical_data, next_weekday_str, [time])
+                        statistics_data = data_acquisition.count_statistics(res)
+                   
+                elif number_days_from_today < 0: # Past (know exact statistics)
+                    current_date = datetime.now().date()
+                    previous_weekday_date = current_date - timedelta(days=abs(number_days_from_today))
+                    print(previous_weekday_date)
+                    day = previous_weekday_date.day
+                    month = previous_weekday_date.month
+                    year = previous_weekday_date.year
+                    if time == "now":
+                        res = data_acquisition.get_data_certain_date(historical_data, year, month, day)
+                        statistics_data = data_acquisition.count_statistics(res)
+                    elif re.match(time_regex, time):
+                        time_datetime = datetime.strptime(time, "%H:%M:%S")
+                        res = data_acquisition.get_data_certain_date_time(historical_data, year, month, day, time_datetime.hour, time_datetime.minute, 0) 
+                        statistics_data = data_acquisition.count_statistics(res)
+            else:
+                rel_weekday = weekday.split("_")[1] 
+                previous_date = await self.get_date_previous_day(rel_weekday)
+                day = previous_date.day
+                month = previous_date.month
+                year = previous_date.year
+                print(day)
+                print(month)
+                print(year)
+                if time == "now":
+                    res = data_acquisition.get_data_certain_date(historical_data, year, month, day)
+                    statistics_data = data_acquisition.count_statistics(res)
+                elif re.match(time_regex, time):
+                    time_datetime = datetime.strptime(time, "%H:%M:%S")
+                    res = data_acquisition.get_data_certain_date_time(historical_data, year, month, day, time_datetime.hour, time_datetime.minute, 0) 
+                    statistics_data = data_acquisition.count_statistics(res)
 
         print(statistics_data)
 
@@ -345,7 +441,10 @@ class ParkingHouseDialog(Dialog):
         parking_house = data_frame["parking_house"]
         weekday = data_frame["weekday"]
 
-        if time == "now":
+        time_regex = time_regex = r'^\d{2}:\d{2}:\d{2}$'
+        todays_weekday = await self.get_todays_day()
+
+        if time == "now" and weekday == todays_weekday: # Actual
             if statistics == "free_spaces":
                 num_free_spaces = statistics_data[1]
                 print(num_free_spaces)
@@ -367,7 +466,7 @@ class ParkingHouseDialog(Dialog):
                 capacity = statistics_data[0] + statistics_data[1]
                 await self.synthesize_and_wait(text=("Maximální kapacita parkovacího domu {} je {} parkovacích míst.").format(parking_house, capacity))
             
-        elif "rel_" in time:
+        elif "rel_" in time: # Relative time based on actual data (Future)
             #relative_time_hours = re.findall(r'[-+]?\d*\.\d+|\d+', time)[0]
             relative_time_cz_str = translator.get_czech_text_time_day(time)
         
@@ -377,7 +476,7 @@ class ParkingHouseDialog(Dialog):
 
             elif statistics == "occupied_spaces":
                 num_occupied_spaces = statistics_data[0]
-                await self.synthesize_and_wait(text=("Pravděpodobný počet obsazených míst v parkovacím domě {} za {} je {}.").format(parking_house, relative_time_cz_str, num_occupied_spaces))
+                await self.synthesize_and_wait(text=("Pravděpodobný počet obsazených míst v parkovacím domě {} {} je {}.").format(parking_house, relative_time_cz_str, num_occupied_spaces))
 
             elif statistics == "occupied_spaces_%":
                 num_occupied_spaces_percent = statistics_data[2]
@@ -391,7 +490,7 @@ class ParkingHouseDialog(Dialog):
                 capacity = statistics_data[0] + statistics_data[1]
                 await self.synthesize_and_wait(text=("Pravděpodobná maximální kapacita parkovacího domu {} {} je {} parkovacích míst.").format(parking_house, relative_time_cz_str, capacity))
 
-        elif "rel-" in time:
+        elif "rel-" in time: # Relative time based on actual data (Past)
             relative_time_cz_str = translator.get_czech_text_time_day(time)
             #relative_time_hours = re.findall(r'[-+]?\d*\.\d+|\d+', time)[0]
             if statistics == "free_spaces":
@@ -414,7 +513,106 @@ class ParkingHouseDialog(Dialog):
                 capacity = statistics_data[0] + statistics_data[1]
                 await self.synthesize_and_wait(text=("Maximální kapacita parkovacího domu {} {} činila {} parkovacích míst.").format(parking_house, relative_time_cz_str, capacity))
 
-        else: 
+        elif time == "now" and ("today_" in weekday or "last_" in weekday): # Undefined time, defined relative day
+            if "today_" in weekday:
+                number_days_from_today = int(re.findall(r'[-+]?\d+', weekday)[0])
+            else:
+                number_days_from_today = -10 # past in case of last Monday, Tuesday, etc.
+            rel_day_cz_str = translator.get_czech_text_time_day(weekday)
+            if number_days_from_today < 0: # Past
+                if statistics == "free_spaces":
+                    num_free_spaces = statistics_data[1]
+                    await self.synthesize_and_wait(text=("Počet volných míst v parkovacím domě {} {} činil {} parkovacích míst.").format(parking_house, rel_day_cz_str, num_free_spaces))
+
+                elif statistics == "occupied_spaces":
+                    num_occupied_spaces = statistics_data[0]
+                    await self.synthesize_and_wait(text=("Obsazenost parkovacího domu {} {} činila {} parkovacích míst.").format(parking_house, rel_day_cz_str, num_occupied_spaces))
+
+                elif statistics == "occupied_spaces_%":
+                    num_occupied_spaces_percent = statistics_data[2]
+                    await self.synthesize_and_wait(text=("{} bylo v parkovacím domě {} obsazeno {} procent parkovacích míst.").format(rel_day_cz_str, parking_house, num_occupied_spaces_percent))
+
+                elif statistics == "free_spaces_%":
+                    num_free_spaces_percent = statistics_data[3]
+                    await self.synthesize_and_wait(text=("{} bylo v parkovacím domě {} volných {} procent parkovacích míst.").format(rel_day_cz_str, parking_house, num_free_spaces_percent))
+
+                elif statistics == "capacity":
+                    capacity = statistics_data[0] + statistics_data[1]
+                    await self.synthesize_and_wait(text=("Maximální kapacita parkovacího domu {} {} činila {} parkovacích míst.").format(parking_house, rel_day_cz_str, capacity))
+        
+            elif number_days_from_today >= 1: # Future
+                if statistics == "free_spaces":
+                    num_free_spaces = statistics_data[1]
+                    await self.synthesize_and_wait(text=("{} bude pravděpodobně v tomto čase v parkovacím domě {} volných {} parkovacích míst.").format(rel_day_cz_str, parking_house, num_free_spaces))
+
+                elif statistics == "occupied_spaces":
+                    num_occupied_spaces = statistics_data[0]
+                    await self.synthesize_and_wait(text=("{} bude pravděpodobně v tomto čase v parkovacím domě {} obsazených {} parkovacích míst.").format(rel_day_cz_str, parking_house, num_occupied_spaces))
+
+                elif statistics == "occupied_spaces_%":
+                    num_occupied_spaces_percent = statistics_data[2]
+                    await self.synthesize_and_wait(text=("{} bude v parkovacím domě {} obsazeno pravděpodobně {} procent parkovacích míst.").format(rel_day_cz_str, parking_house, num_occupied_spaces_percent))
+
+                elif statistics == "free_spaces_%":
+                    num_free_spaces_percent = statistics_data[3]
+                    await self.synthesize_and_wait(text=("{} bude v parkovacím domě {} pravděpodobně {} procent volných parkovacích míst.").format(rel_day_cz_str, parking_house, num_free_spaces_percent))
+
+                elif statistics == "capacity":
+                    capacity = statistics_data[0] + statistics_data[1]
+                    await self.synthesize_and_wait(text=("Maximální kapacita parkovacího domu {} bude {} činit {} parkovacích míst.").format(parking_house, rel_day_cz_str, capacity))
+        
+        elif re.match(time_regex, time) and "today_" in weekday or "last_" in weekday: # Defined time, defined relative day
+            if "today_" in weekday:
+                number_days_from_today = int(re.findall(r'[-+]?\d+', weekday)[0])
+            else:
+                number_days_from_today = -10
+            rel_day_cz_str = translator.get_czech_text_time_day(weekday)
+            time_cz_str = translator.get_czech_text_time_day(time)
+
+            if number_days_from_today < 0: # Past
+                if statistics == "free_spaces":
+                    num_free_spaces = statistics_data[1]
+                    await self.synthesize_and_wait(text=("Počet volných míst v parkovacím domě {} {} {} činil {} parkovacích míst.").format(parking_house, rel_day_cz_str, time_cz_str, num_free_spaces))
+
+                elif statistics == "occupied_spaces":
+                    num_occupied_spaces = statistics_data[0]
+                    await self.synthesize_and_wait(text=("Obsazenost parkovacího domu {} {} {} činila {} parkovacích míst.").format(parking_house, rel_day_cz_str, time_cz_str, num_occupied_spaces))
+
+                elif statistics == "occupied_spaces_%":
+                    num_occupied_spaces_percent = statistics_data[2]
+                    await self.synthesize_and_wait(text=("{} {} bylo v parkovacím domě {} obsazeno {} procent parkovacích míst.").format(rel_day_cz_str, time_cz_str, parking_house, num_occupied_spaces_percent))
+
+                elif statistics == "free_spaces_%":
+                    num_free_spaces_percent = statistics_data[3]
+                    await self.synthesize_and_wait(text=("{} {} bylo v parkovacím domě {} volných {} procent parkovacích míst.").format(rel_day_cz_str, time_cz_str, parking_house, num_free_spaces_percent))
+
+                elif statistics == "capacity":
+                    capacity = statistics_data[0] + statistics_data[1]
+                    await self.synthesize_and_wait(text=("Maximální kapacita parkovacího domu {} {} {} činila {} parkovacích míst.").format(parking_house, rel_day_cz_str, time_cz_str, capacity))
+        
+            elif number_days_from_today >= 1: # Future
+                if statistics == "free_spaces":
+                    num_free_spaces = statistics_data[1]
+                    await self.synthesize_and_wait(text=("{} {} bude pravděpodobně v tomto čase v parkovacím domě {} volných {} parkovacích míst.").format(rel_day_cz_str, time_cz_str, parking_house, num_free_spaces))
+
+                elif statistics == "occupied_spaces":
+                    num_occupied_spaces = statistics_data[0]
+                    await self.synthesize_and_wait(text=("{} {} bude pravděpodobně v tomto čase v parkovacím domě {} obsazených {} parkovacích míst.").format(rel_day_cz_str, time_cz_str, parking_house, num_occupied_spaces))
+
+                elif statistics == "occupied_spaces_%":
+                    num_occupied_spaces_percent = statistics_data[2]
+                    await self.synthesize_and_wait(text=("{} {} bude v parkovacím domě {} obsazeno pravděpodobně {} procent parkovacích míst.").format(rel_day_cz_str, time_cz_str, parking_house, num_occupied_spaces_percent))
+
+                elif statistics == "free_spaces_%":
+                    num_free_spaces_percent = statistics_data[3]
+                    await self.synthesize_and_wait(text=("{} {} bude v parkovacím domě {} pravděpodobně {} procent volných parkovacích míst.").format(rel_day_cz_str, time_cz_str, parking_house, num_free_spaces_percent))
+
+                elif statistics == "capacity":
+                    capacity = statistics_data[0] + statistics_data[1]
+                    await self.synthesize_and_wait(text=("Maximální kapacita parkovacího domu {} bude {} {} činit {} parkovacích míst.").format(parking_house, rel_day_cz_str, time_cz_str, capacity))
+        
+
+        else: # Defined time and weekday
             time_cz_str = translator.get_czech_text_time_day(time)
             weekday_cz_str = translator.get_czech_text_time_day(weekday)
 
@@ -461,12 +659,12 @@ class ParkingHouseDialog(Dialog):
                 result = await self.recognize_and_wait_for_slu_result(timeout=10.)
                 recognized_entities = result.entity_types
                 if "parking_house" in recognized_entities:
-                    frame_dict["parking_house"] = result.parking_houses.first
+                    frame_dict["parking_house"] = result.parking_house.first
                     break
                 else: 
                     idx += 1
         else:
-            frame_dict["parking_house"] = result.parking_houses.first
+            frame_dict["parking_house"] = result.parking_house.first
     
         if (await self.check_frame_complete(frame_dict))[0] == False:
             await self.synthesize_and_wait(text=f"Nebyl specifikován parkovací dům. Nelze zjistit aktuální stav.")
@@ -509,8 +707,60 @@ class ParkingHouseDialog(Dialog):
                 await self.synthesize_and_wait(text=("Ne, v parkovacím domě {} ještě nejsou všechna místa obsazena. Volných míst zbývá ještě {}.").format(parking_house, num_free_spaces))
 
 
-    async def change_state(self):
-        pass
+    async def update_frame_dictionary(self, frame_dict: dict, result):
+        relative_times_list = ["now", "rel_1_hour", "rel_2_hours", "rel_3_hours", "rel_4_hours", "rel_5_hours", "rel_6_hours", "rel_7_hours", "rel_8_hours",
+                "rel_9_hours", "rel_10_hours", "rel_11_hours", "rel_12_hours", "rel-0.5-hour", "rel-1-hour", "rel-1.5-hours", "rel-2-hours"]
+        recognized_entities = result.entity_types
+        
+        original_frame_dict = frame_dict.copy()
+        
+        if "parking_house" in recognized_entities:
+            parking_house = result.parking_house.first
+            frame_dict["parking_house"] = parking_house
+
+        if "time" in recognized_entities:
+            time = result.time.first
+            frame_dict["time"] = time
+
+            #if frame_dict["time"] in relative_times_list:
+            #    frame_dict["weekday"] = await self.get_todays_day()
+
+        if "weekday" in recognized_entities:
+            weekday = result.weekday.first
+            frame_dict["weekday"] = weekday
+
+        if "statistics" in recognized_entities:
+            statistics = result.statistics.first
+            frame_dict["statistics"] = statistics
+
+        if original_frame_dict == frame_dict:
+            await self.synthesize_and_wait(text=("Vstupní informace zůstaly beze změn."))
+
+        return frame_dict
+
+
+    async def update_yes_no_frame_dictionary(self, frame_dict: dict, result):
+        recognized_entities = result.entity_types
+        original_frame_dict = frame_dict.copy()
+        
+        status = result.yes_no_questions.first
+        
+        if "parking_house" in recognized_entities:
+            frame_dict["parking_house"] = result.parking_house.first
+
+        if "status" in recognized_entities:
+             if status == "available":
+                frame_dict["statistics"] = "free_spaces"
+
+             else:
+                frame_dict["statistics"] = "occupied_spaces"
+
+        if original_frame_dict == frame_dict:
+            await self.synthesize_and_wait(text=("Vstupní informace zůstaly beze změn."))
+
+        print(original_frame_dict)
+        print(frame_dict)
+        return frame_dict
 
 
     async def slu(self, data: tuple):
@@ -521,8 +771,19 @@ class ParkingHouseDialog(Dialog):
         await self.define_slu_grammars(grammars)
         end = False
 
+        num_iterations = 0
+        temp_yes_no_quest = False
+        temp_quest = False
+
         while True:
-            await self.synthesize_and_wait(text="Prosím, řekněte svůj požadavek.")
+            result = []
+            if num_iterations == 0:
+                frame_dict = {}
+                frame_dict_yes_no_quest = {}
+                await self.synthesize_and_wait(text="Prosím, řekněte svůj požadavek.")
+            else: 
+                await self.synthesize_and_wait(text="Prosím, opět řekněte svůj požadavek.")
+
             result = await self.recognize_and_wait_for_slu_result(timeout=10.)
 
             if result.command:
@@ -533,31 +794,64 @@ class ParkingHouseDialog(Dialog):
                     await self.synthesize_and_wait(text=f"Rozpoznán příkaz konec, ukončuji dialog. Přeji hezký zbytek dne.")
                     break
 
+                elif "bye" in command:
+                    await self.synthesize_and_wait(text=f"Konec dialogu a nashledanou. Přeji hezký zbutek dne.")
+                    break
+
                 elif "continue" in command:
                     await self.synthesize_and_wait(text=f"Rozpoznán příkaz pokračovat, pokračuji v dialogu.")
+                    num_iterations += 1
                     continue
 
                 elif "help" in command:
                     await self.synthesize_and_wait(text=f"Rozpoznán příkaz nápověda. Řekněte prosím alespoň jednu z následujících informací: den v týdnu, čas, parkovací dům (Rychtářka nebo Nové divadlo) nebo statistika, která vás zajímá.")
                     continue
 
-            else:
-                if "yes_no_questions" not in result.entity_types:
-                    frame_dict = await self.get_frame_dictionary(result)
-                    if frame_dict == None:
-                        continue
-                    missing_info = await self.determine_missing_info(frame_dict)
-                    if len(missing_info) >= 1:
-                        complete_info = await self.tell_missing_info(missing_info, frame_dict)
-                        print(complete_info)
-                    print(frame_dict)
-                    statistics_data = await self.process_data(frame_dict, data) # Zjisteni statistiky
-                    await self.tell_data_according_to_query(frame_dict, statistics_data) # Oznameni dat uzivateli
+            elif len(result.entity_types) == 0:
+                await self.synthesize_and_wait(text=f"Nebyly zaznamenány žádné informace, zkuste to prosím znovu.")
+                continue
 
-                elif "yes_no_questions" in result.entity_types:
+            elif ("yes_no_questions" in result.entity_types) or (temp_yes_no_quest == True and temp_quest == False):
+                if num_iterations == 0:
                     frame_dict_yes_no_quest = await self.get_frame_dict_yes_no_questions(result) # TODO: if frame = None
-                    actual_data = await self.get_actual_data(frame_dict_yes_no_quest, data)
-                    await self.tell_data_according_to_yes_no_questions(frame_dict_yes_no_quest, actual_data)
+                    temp_yes_no_quest = True
+                    print(temp_yes_no_quest)
+                    print(temp_quest)
+                else:
+                    print("TESTOVACI")
+                    frame_dict_yes_no_quest = await self.update_yes_no_frame_dictionary(frame_dict_yes_no_quest, result)
+                num_iterations += 1
+                actual_data = await self.get_actual_data(frame_dict_yes_no_quest, data)
+                await self.tell_data_according_to_yes_no_questions(frame_dict_yes_no_quest, actual_data)
+
+            elif ("yes_no_questions" not in result.entity_types) or (temp_quest == True and temp_yes_no_quest == False):
+                if num_iterations == 0:
+                    frame_dict = await self.get_frame_dictionary(result)
+                    temp_quest = True
+                else:
+                    frame_dict = await self.update_frame_dictionary(frame_dict, result)
+                num_iterations += 1
+                if frame_dict == None:
+                    continue
+                missing_info = await self.determine_missing_info(frame_dict)
+                if len(missing_info) > 0:
+                    complete_info = await self.tell_missing_info(missing_info, frame_dict)
+                    print(complete_info)
+                print(frame_dict)
+                statistics_data = await self.process_data(frame_dict, data) # Zjisteni statistiky
+                await self.tell_data_according_to_query(frame_dict, statistics_data) # Oznameni dat uzivateli
+
+            await self.synthesize_and_wait(text=f"Mohu pro Vás ještě něco udělat?")
+            res = await self.recognize_and_wait_for_slu_result(timeout=10.)
+    
+            if res.confirm.first:
+                continue
+            elif res.not_confirm.first:
+                await self.synthesize_and_wait(text=f"Ukončuji dialog. Přeji hezký zbytek dne.")
+                break
+            else: 
+                await self.synthesize_and_wait(text=f"Nebyl zaznamenán žádný příkaz. Ukončuji dialog. Přeji hezký zbytek dne.")
+                break
 
 
 if __name__ == '__main__':
