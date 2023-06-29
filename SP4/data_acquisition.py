@@ -13,18 +13,28 @@ def load_historical_data(path_to_data: Path):
     return historical_data
 
 
-def get_actual_data(url):
+def get_data(url, type_data: str):
     r = requests.get(url)
 
     if r.status_code == 200:  # url OK
-        actual_data_str = str(r.content, 'utf-8')
-        actual_data = pd.read_csv(StringIO(actual_data_str))
+        data_str = str(r.content, 'utf-8')
+        data = pd.read_csv(StringIO(data_str))
+        timestamp_conversion = pd.to_datetime(data['datum_aktualizace'])
+        data['datum_aktualizace'] = timestamp_conversion
 
-        print('Actual data downloaded successfully.')
-        return actual_data
+        if type_data == "actual":
+            print('Actual data downloaded successfully.')
+        elif type_data == "historical":
+            print("Historical data downloaded successfully.")
+
+        return data
 
     else:
-        print('ERROR: Actual data downloaded unsuccessfully.')
+        if type_data == "actual":
+            print('ERROR: Actual data downloaded unsuccessfully.')
+        elif type_data == "historical":
+            print('ERROR: Historical data downloaded unsuccessfully.')
+
         return None
 
 
@@ -154,7 +164,7 @@ def get_data_weekday_time(data: pd, day, times_start_end):
 def get_actual_info(actual_data: pd):
     relevant_data = actual_data.iloc[[0]]
     capacity = relevant_data['Kapacita'][0]
-    last_update_str = relevant_data['datum_aktualizace'][0]
+    last_update_str = str(relevant_data['datum_aktualizace'][0])
     num_occupied_spaces = relevant_data['kp'][0] + relevant_data['dp_bez_rezervace'][0]
     num_free_spaces = relevant_data['volno'][0]
 
@@ -177,15 +187,24 @@ def count_statistics(data: pd):
 
 # Obtaining data
 # Historical
-historical_data_nove_divadlo = load_historical_data(Path('./data/data-pd-novedivadlo.csv'))
-historical_data_rychtarka = load_historical_data(Path('./data/data-pd-rychtarka.csv'))
+# historical_data_nove_divadlo = load_historical_data(Path('./data/data-pd-novedivadlo.csv'))
+# historical_data_rychtarka = load_historical_data(Path('./data/data-pd-rychtarka.csv'))
+
+# historical_data_nove_divadlo = load_historical_data(Path('./data/data-pd-novedivadlo.csv'))
+# historical_data_rychtarka = load_historical_data(Path('./data/data-pd-rychtarka.csv'))
+
+url_nove_divadlo_historical = 'https://onlinedata.plzen.eu/data-pd-novedivadlo.php'
+url_rychtarka_historical = 'https://onlinedata.plzen.eu/data-pd-rychtarka.php'
+
+historical_data_nove_divadlo = get_data(url_nove_divadlo_historical, "historical")
+historical_data_rychtarka = get_data(url_rychtarka_historical, "historical")
 
 # Actual
-url_nove_divadlo = 'https://onlinedata.plzen.eu/data-pd-novedivadlo-actual.php'
-url_rychtarka = 'https://onlinedata.plzen.eu/data-pd-rychtarka-actual.php'
+url_nove_divadlo_actual = 'https://onlinedata.plzen.eu/data-pd-novedivadlo-actual.php'
+url_rychtarka_actual = 'https://onlinedata.plzen.eu/data-pd-rychtarka-actual.php'
 
-actual_data_nove_divadlo = get_actual_data(url_nove_divadlo)
-actual_data_rychtarka = get_actual_data(url_rychtarka)
+actual_data_nove_divadlo = get_data(url_nove_divadlo_actual, "actual")
+actual_data_rychtarka = get_data(url_rychtarka_actual, "actual")
 
 # Queries
 # Actual data
