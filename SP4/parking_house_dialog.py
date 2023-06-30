@@ -24,6 +24,7 @@ class ParkingHouseDialog(Dialog):
         #await self.synthesize_and_wait("Dobrý den. Jsem hlasový dialogový systém, který pro Vás zjišťuje zaplněnost plzeňských parkovacích domů Rychtářka a Nové divadlo.", voice="Jiri210")
 
 
+    # Getting data
     async def get_data(self):
         print("Getting data...Please wait.")
         # Historical
@@ -46,6 +47,7 @@ class ParkingHouseDialog(Dialog):
         return historical_data_nove_divadlo, historical_data_rychtarka, actual_data_nove_divadlo, actual_data_rychtarka
 
 
+    # Defining grammars
     async def prepare_grammars(self):
         grammars = self.grammar_from_dict("command", {
                 "end": {"konec","skonči","ukončit"}, 
@@ -166,6 +168,7 @@ class ParkingHouseDialog(Dialog):
         return grammars
     
 
+    # Returns string of the todays day 
     async def get_todays_day(self):
         weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
         dt_now = datetime.now()
@@ -175,11 +178,14 @@ class ParkingHouseDialog(Dialog):
         return weekdays[weekday_idx]
     
 
+    # Returns weekday according to index (Monday = 0, Tuesday = 1,...)
     async def get_weekday_string(self, idx: int):
         weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+
         return weekdays[idx]
 
 
+    # Returns frame dictionary with the recognized entities
     async def get_frame_dictionary(self, result: list):
         relative_times_list = ["now", "rel_1_hour", "rel_2_hours", "rel_3_hours", "rel_4_hours", "rel_5_hours", "rel_6_hours", "rel_7_hours", "rel_8_hours",
                 "rel_9_hours", "rel_10_hours", "rel_11_hours", "rel_12_hours", "rel-0.5-hour", "rel-1-hour", "rel-1.5-hours", "rel-2-hours"]
@@ -223,6 +229,7 @@ class ParkingHouseDialog(Dialog):
         return frame_dict
     
     
+    # Returns missing information which is missing in dictionary
     async def determine_missing_info(self, data_frame: dict):
         missing_info = []
         for key in data_frame:
@@ -232,8 +239,8 @@ class ParkingHouseDialog(Dialog):
         return missing_info
     
 
-    # Function to convert
-    async def listToString(self, s):
+    # Function to convert list to string
+    async def list_to_string(self, s):
     
         # initialize an empty string
         str1 = " "
@@ -242,6 +249,7 @@ class ParkingHouseDialog(Dialog):
         return (str1.join(s))
 
 
+    # Tell the user the info which is missing
     async def tell_missing_info(self, missing_info: list, data_frame: dict):
         translate_dictionary = {
             "parking_house": "parkovací dům", 
@@ -259,7 +267,7 @@ class ParkingHouseDialog(Dialog):
                 missing_entities_text_list.append(text)
                 
             await self.synthesize(text="Prosím, řekněte mi následující chybějící údaj či údaje")
-            await self.synthesize_and_wait(text=await self.listToString(missing_entities_text_list))
+            await self.synthesize_and_wait(text=await self.list_to_string(missing_entities_text_list))
             result = await self.recognize_and_wait_for_slu_result(timeout=15.)
             recognized_entities = result.entity_types
 
@@ -281,6 +289,7 @@ class ParkingHouseDialog(Dialog):
                 missing_entities_text_list.clear()
                     
 
+    # Checks if data frame is complete
     async def check_frame_complete(self, data_frame: dict):
         num_missing_entities = 0
         missing_entities = []
@@ -296,6 +305,7 @@ class ParkingHouseDialog(Dialog):
             return False, missing_entities
         
 
+    # Returns the date of the previous day, for example the date of last Sunday
     async def get_date_previous_day(self, input_day, start_date=None):
         # https://www.tutorialspoint.com/how-to-determine-last-friday-s-date-using-python
         weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday','Friday', 'Saturday', 'Sunday']
@@ -322,6 +332,7 @@ class ParkingHouseDialog(Dialog):
         return target_date
 
 
+    # Data processing based on user's input
     async def process_data(self, data_frame: dict, data):
         translate_dict = {
             "free_spaces": "volná místa", 
@@ -392,8 +403,8 @@ class ParkingHouseDialog(Dialog):
                     next_day_date = current_date + timedelta(days=number_days_from_today)
                     next_weekday_idx = next_day_date.weekday()
                     next_weekday_str = await self.get_weekday_string(next_weekday_idx)
-                    if time == "now": # unspecified time -> getting statistics based on the whole day
-                        res = data_acquisition.get_data_weekday(historical_data, next_weekday_str)
+                    if time == "now": # unspecified time -> getting statistics in current time # TODO
+                        res = data_acquisition.get_data_weekday_time(historical_data, next_weekday_str, [(datetime.now()).strftime('%H:%M:%S')])
                         statistics_data = data_acquisition.count_statistics(res)
                     elif re.match(time_regex, time):
                         res = data_acquisition.get_data_weekday_time(historical_data, next_weekday_str, [time])
@@ -406,8 +417,8 @@ class ParkingHouseDialog(Dialog):
                     day = previous_weekday_date.day
                     month = previous_weekday_date.month
                     year = previous_weekday_date.year
-                    if time == "now":
-                        res = data_acquisition.get_data_certain_date(historical_data, year, month, day)
+                    if time == "now": # TODO
+                        res = data_acquisition.get_data_certain_date_time(historical_data, year, month, day, datetime.now().hour, datetime.now().minute, 0)
                         statistics_data = data_acquisition.count_statistics(res)
                     elif re.match(time_regex, time):
                         time_datetime = datetime.strptime(time, "%H:%M:%S")
@@ -422,8 +433,8 @@ class ParkingHouseDialog(Dialog):
                 print(day)
                 print(month)
                 print(year)
-                if time == "now":
-                    res = data_acquisition.get_data_certain_date(historical_data, year, month, day)
+                if time == "now": # TODO
+                    res = data_acquisition.get_data_certain_date_time(historical_data, year, month, day, datetime.now().hour, datetime.now().minute, 0)
                     statistics_data = data_acquisition.count_statistics(res)
                 elif re.match(time_regex, time):
                     time_datetime = datetime.strptime(time, "%H:%M:%S")
@@ -435,6 +446,7 @@ class ParkingHouseDialog(Dialog):
         return statistics_data
 
 
+    # Tells result to the user
     async def tell_data_according_to_query(self, data_frame: dict, statistics_data: tuple):
         time = data_frame["time"]
         statistics = data_frame["statistics"]
@@ -522,23 +534,23 @@ class ParkingHouseDialog(Dialog):
             if number_days_from_today < 0: # Past
                 if statistics == "free_spaces":
                     num_free_spaces = statistics_data[1]
-                    await self.synthesize_and_wait(text=("Počet volných míst v parkovacím domě {} {} činil {} parkovacích míst.").format(parking_house, rel_day_cz_str, num_free_spaces))
+                    await self.synthesize_and_wait(text=("Počet volných míst v parkovacím domě {} v tomto čase {} činil {} parkovacích míst.").format(parking_house, rel_day_cz_str, num_free_spaces))
 
                 elif statistics == "occupied_spaces":
                     num_occupied_spaces = statistics_data[0]
-                    await self.synthesize_and_wait(text=("Obsazenost parkovacího domu {} {} činila {} parkovacích míst.").format(parking_house, rel_day_cz_str, num_occupied_spaces))
+                    await self.synthesize_and_wait(text=("Obsazenost parkovacího domu {} {} činila v tomto čase {} parkovacích míst.").format(parking_house, rel_day_cz_str, num_occupied_spaces))
 
                 elif statistics == "occupied_spaces_%":
                     num_occupied_spaces_percent = statistics_data[2]
-                    await self.synthesize_and_wait(text=("{} bylo v parkovacím domě {} obsazeno {} procent parkovacích míst.").format(rel_day_cz_str, parking_house, num_occupied_spaces_percent))
+                    await self.synthesize_and_wait(text=("{} bylo v parkovacím domě {} v tomto čase obsazeno {} procent parkovacích míst.").format(rel_day_cz_str, parking_house, num_occupied_spaces_percent))
 
                 elif statistics == "free_spaces_%":
                     num_free_spaces_percent = statistics_data[3]
-                    await self.synthesize_and_wait(text=("{} bylo v parkovacím domě {} volných {} procent parkovacích míst.").format(rel_day_cz_str, parking_house, num_free_spaces_percent))
+                    await self.synthesize_and_wait(text=("{} bylo v parkovacím domě {} v tomto čase volných {} procent parkovacích míst.").format(rel_day_cz_str, parking_house, num_free_spaces_percent))
 
                 elif statistics == "capacity":
                     capacity = statistics_data[0] + statistics_data[1]
-                    await self.synthesize_and_wait(text=("Maximální kapacita parkovacího domu {} {} činila {} parkovacích míst.").format(parking_house, rel_day_cz_str, capacity))
+                    await self.synthesize_and_wait(text=("Maximální kapacita parkovacího domu {} {} v tomto čase činila {} parkovacích míst.").format(parking_house, rel_day_cz_str, capacity))
         
             elif number_days_from_today >= 1: # Future
                 if statistics == "free_spaces":
@@ -551,15 +563,15 @@ class ParkingHouseDialog(Dialog):
 
                 elif statistics == "occupied_spaces_%":
                     num_occupied_spaces_percent = statistics_data[2]
-                    await self.synthesize_and_wait(text=("{} bude v parkovacím domě {} obsazeno pravděpodobně {} procent parkovacích míst.").format(rel_day_cz_str, parking_house, num_occupied_spaces_percent))
+                    await self.synthesize_and_wait(text=("{} v tomto čase bude v parkovacím domě {} obsazeno pravděpodobně {} procent parkovacích míst.").format(rel_day_cz_str, parking_house, num_occupied_spaces_percent))
 
                 elif statistics == "free_spaces_%":
                     num_free_spaces_percent = statistics_data[3]
-                    await self.synthesize_and_wait(text=("{} bude v parkovacím domě {} pravděpodobně {} procent volných parkovacích míst.").format(rel_day_cz_str, parking_house, num_free_spaces_percent))
+                    await self.synthesize_and_wait(text=("{} v tomto čase bude v parkovacím domě {} pravděpodobně {} procent volných parkovacích míst.").format(rel_day_cz_str, parking_house, num_free_spaces_percent))
 
                 elif statistics == "capacity":
                     capacity = statistics_data[0] + statistics_data[1]
-                    await self.synthesize_and_wait(text=("Maximální kapacita parkovacího domu {} bude {} činit {} parkovacích míst.").format(parking_house, rel_day_cz_str, capacity))
+                    await self.synthesize_and_wait(text=("Maximální kapacita parkovacího domu {} bude v tomto čase {} činit {} parkovacích míst.").format(parking_house, rel_day_cz_str, capacity))
         
         elif re.match(time_regex, time) and "today_" in weekday or "last_" in weekday: # Defined time, defined relative day
             if "today_" in weekday:
@@ -593,11 +605,11 @@ class ParkingHouseDialog(Dialog):
             elif number_days_from_today >= 1: # Future
                 if statistics == "free_spaces":
                     num_free_spaces = statistics_data[1]
-                    await self.synthesize_and_wait(text=("{} {} bude pravděpodobně v tomto čase v parkovacím domě {} volných {} parkovacích míst.").format(rel_day_cz_str, time_cz_str, parking_house, num_free_spaces))
+                    await self.synthesize_and_wait(text=("{} {} bude pravděpodobně v parkovacím domě {} volných {} parkovacích míst.").format(rel_day_cz_str, time_cz_str, parking_house, num_free_spaces))
 
                 elif statistics == "occupied_spaces":
                     num_occupied_spaces = statistics_data[0]
-                    await self.synthesize_and_wait(text=("{} {} bude pravděpodobně v tomto čase v parkovacím domě {} obsazených {} parkovacích míst.").format(rel_day_cz_str, time_cz_str, parking_house, num_occupied_spaces))
+                    await self.synthesize_and_wait(text=("{} {} bude pravděpodobně v parkovacím domě {} obsazených {} parkovacích míst.").format(rel_day_cz_str, time_cz_str, parking_house, num_occupied_spaces))
 
                 elif statistics == "occupied_spaces_%":
                     num_occupied_spaces_percent = statistics_data[2]
@@ -637,6 +649,7 @@ class ParkingHouseDialog(Dialog):
                 await self.synthesize_and_wait(text=("Obvyklá maximálná kapacita parkovacího domu {} ve dni {} {} činí {} parkovacích míst.").format(parking_house, weekday_cz_str, time_cz_str, capacity))
 
 
+    # Getting the frame dictionary for YES/NO questions
     async def get_frame_dict_yes_no_questions(self, result):
         recognized_entities = result.entity_types
         frame_dict = {"parking_house": "", # Frame dictionary inicialization
@@ -674,6 +687,7 @@ class ParkingHouseDialog(Dialog):
             return frame_dict
 
 
+    # Getting actual data
     async def get_actual_data(self, frame_dict_yes_no: dict, data):
         parking_house = frame_dict_yes_no["parking_house"]
 
@@ -688,6 +702,7 @@ class ParkingHouseDialog(Dialog):
         return statistics_data
         
 
+    # Tells the result of YES/NO question to the user
     async def tell_data_according_to_yes_no_questions(self, frame_dict_yes_no: dict, statistics_data):
         parking_house = frame_dict_yes_no["parking_house"]
         statistics = frame_dict_yes_no["statistics"]
@@ -707,9 +722,8 @@ class ParkingHouseDialog(Dialog):
                 await self.synthesize_and_wait(text=("Ne, v parkovacím domě {} ještě nejsou všechna místa obsazena. Volných míst zbývá ještě {}.").format(parking_house, num_free_spaces))
 
 
+    # Updating frame dictionary, if user wants to continue in a dialog
     async def update_frame_dictionary(self, frame_dict: dict, result):
-        relative_times_list = ["now", "rel_1_hour", "rel_2_hours", "rel_3_hours", "rel_4_hours", "rel_5_hours", "rel_6_hours", "rel_7_hours", "rel_8_hours",
-                "rel_9_hours", "rel_10_hours", "rel_11_hours", "rel_12_hours", "rel-0.5-hour", "rel-1-hour", "rel-1.5-hours", "rel-2-hours"]
         recognized_entities = result.entity_types
         
         original_frame_dict = frame_dict.copy()
@@ -739,6 +753,7 @@ class ParkingHouseDialog(Dialog):
         return frame_dict
 
 
+    # Updating YES/NO frame dictionary, if user wants to continue in a dialog
     async def update_yes_no_frame_dictionary(self, frame_dict: dict, result):
         recognized_entities = result.entity_types
         original_frame_dict = frame_dict.copy()
@@ -763,13 +778,10 @@ class ParkingHouseDialog(Dialog):
         return frame_dict
 
 
+    # Spoken language understanding
     async def slu(self, data: tuple):
-        now = datetime.now()
-        current_time = now.strftime("%H:%M:%S")
-        
         grammars = await self.prepare_grammars()
         await self.define_slu_grammars(grammars)
-        end = False
 
         num_iterations = 0
         temp_yes_no_quest = False
@@ -813,12 +825,11 @@ class ParkingHouseDialog(Dialog):
 
             elif ("yes_no_questions" in result.entity_types) or (temp_yes_no_quest == True and temp_quest == False):
                 if num_iterations == 0:
-                    frame_dict_yes_no_quest = await self.get_frame_dict_yes_no_questions(result) # TODO: if frame = None
+                    frame_dict_yes_no_quest = await self.get_frame_dict_yes_no_questions(result)
                     temp_yes_no_quest = True
-                    print(temp_yes_no_quest)
-                    print(temp_quest)
+                    #print(temp_yes_no_quest)
+                    #print(temp_quest)
                 else:
-                    print("TESTOVACI")
                     frame_dict_yes_no_quest = await self.update_yes_no_frame_dictionary(frame_dict_yes_no_quest, result)
                 num_iterations += 1
                 actual_data = await self.get_actual_data(frame_dict_yes_no_quest, data)
