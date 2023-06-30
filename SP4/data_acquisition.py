@@ -25,7 +25,7 @@ def get_data(url, type_data: str):
         if type_data == "actual":
             print('Actual data downloaded successfully.')
         elif type_data == "historical":
-            print("Historical data downloaded successfully.")
+            print('Historical data downloaded successfully.')
 
         return data
 
@@ -112,7 +112,7 @@ def get_data_certain_date(data: pd, year: int, month: int, day: int):
 
 
 def get_IDs_time(data: pd, times_start_end):
-    time_delta = timedelta(hours=0, minutes=20)
+    time_delta = timedelta(hours=0, minutes=30)
 
     if len(times_start_end) > 1:
         return get_IDs_between_start_end(data, times_start_end)
@@ -150,7 +150,7 @@ def get_IDs_between_start_end(data, times_start_end):
     return IDs
 
 
-def get_data_weekday_time(data: pd, day, times_start_end):
+def get_data_weekday_time(data: pd, day: str, times_start_end: list):
     day_indices = get_indices_weekday(data, day)
     # print(max(day_indices))
     day_relevant_data = data.iloc[day_indices]
@@ -171,7 +171,7 @@ def get_actual_info(actual_data: pd):
     occupied_spaces_percent = round((num_occupied_spaces / capacity) * 100)
     free_spaces_percent = round((num_free_spaces / capacity) * 100)
 
-    return capacity, num_occupied_spaces, num_free_spaces, occupied_spaces_percent, free_spaces_percent, last_update_str
+    return num_occupied_spaces, num_free_spaces, occupied_spaces_percent, free_spaces_percent, last_update_str
 
 
 def count_statistics(data: pd):
@@ -182,49 +182,4 @@ def count_statistics(data: pd):
     num_average_free_spaces = round(data['volno'].mean())
     average_free_spaces_percent = round(100 - average_occupied_spaces_percent)
 
-    return num_average_occupied_spaces, average_occupied_spaces_percent, num_average_free_spaces, average_free_spaces_percent
-
-
-# Obtaining data
-# Historical
-# historical_data_nove_divadlo = load_historical_data(Path('./data/data-pd-novedivadlo.csv'))
-# historical_data_rychtarka = load_historical_data(Path('./data/data-pd-rychtarka.csv'))
-
-# historical_data_nove_divadlo = load_historical_data(Path('./data/data-pd-novedivadlo.csv'))
-# historical_data_rychtarka = load_historical_data(Path('./data/data-pd-rychtarka.csv'))
-
-url_nove_divadlo_historical = 'https://onlinedata.plzen.eu/data-pd-novedivadlo.php'
-url_rychtarka_historical = 'https://onlinedata.plzen.eu/data-pd-rychtarka.php'
-
-historical_data_nove_divadlo = get_data(url_nove_divadlo_historical, "historical")
-historical_data_rychtarka = get_data(url_rychtarka_historical, "historical")
-
-# Actual
-url_nove_divadlo_actual = 'https://onlinedata.plzen.eu/data-pd-novedivadlo-actual.php'
-url_rychtarka_actual = 'https://onlinedata.plzen.eu/data-pd-rychtarka-actual.php'
-
-actual_data_nove_divadlo = get_data(url_nove_divadlo_actual, "actual")
-actual_data_rychtarka = get_data(url_rychtarka_actual, "actual")
-
-# Queries
-# Actual data
-actual_info_rychtarka = get_actual_info(actual_data_rychtarka)
-actual_info_nove_divadlo = get_actual_info(actual_data_nove_divadlo)
-
-# Historical data
-weekday_data = get_data_weekday(historical_data_nove_divadlo, 'Thursday')
-month_data = get_data_month(historical_data_nove_divadlo, 'July')
-certain_date_data = get_data_certain_date(historical_data_nove_divadlo, 2018, 12, 24)
-certain_date_time_data = get_data_certain_date_time(historical_data_nove_divadlo, 2023, 5, 18, 16, 15, 0)
-# weekday_time_data_1 = get_data_weekday_time(historical_data_nove_divadlo, 'Tuesday', ['18:00:00', '19:00:00'])
-weekday_time_data_2 = get_data_weekday_time(historical_data_nove_divadlo, 'Saturday', ['06:00:00'])
-
-# Processing queries
-count_statistics(weekday_time_data_2)
-count_statistics(certain_date_time_data)
-# if len(time_weekday_data_1) > 0:
-#     weightened_avg = count_weighted_average(time_weekday_data_1)
-#     average = count_average(time_weekday_data_1)
-# else:
-#     print('Empty data.')
-
+    return num_average_occupied_spaces, num_average_free_spaces, average_occupied_spaces_percent, average_free_spaces_percent
