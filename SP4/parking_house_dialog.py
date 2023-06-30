@@ -17,11 +17,10 @@ class ParkingHouseDialog(Dialog):
 
         await self.slu(data)
 
-        await self.synthesize_and_wait(text="Konec dialogu. Přeji pěkný zbytek dne a nashledanou.", voice="Jiri210")
+        await self.synthesize_and_wait(text="Konec dialogu. Přeji pěkný zbytek dne a nashledanou.")
     
     async def welcome(self):
-        pass
-        #await self.synthesize_and_wait("Dobrý den. Jsem hlasový dialogový systém, který pro Vás zjišťuje zaplněnost plzeňských parkovacích domů Rychtářka a Nové divadlo.", voice="Jiri210")
+        await self.synthesize_and_wait("Dobrý den. Jsem hlasový dialogový systém, který pro Vás zjišťuje zaplněnost plzeňských parkovacích domů Rychtářka a Nové divadlo.")
 
 
     # Getting data
@@ -403,7 +402,7 @@ class ParkingHouseDialog(Dialog):
                     next_day_date = current_date + timedelta(days=number_days_from_today)
                     next_weekday_idx = next_day_date.weekday()
                     next_weekday_str = await self.get_weekday_string(next_weekday_idx)
-                    if time == "now": # unspecified time -> getting statistics in current time # TODO
+                    if time == "now": # unspecified time -> getting statistics in current time
                         res = data_acquisition.get_data_weekday_time(historical_data, next_weekday_str, [(datetime.now()).strftime('%H:%M:%S')])
                         statistics_data = data_acquisition.count_statistics(res)
                     elif re.match(time_regex, time):
@@ -417,7 +416,7 @@ class ParkingHouseDialog(Dialog):
                     day = previous_weekday_date.day
                     month = previous_weekday_date.month
                     year = previous_weekday_date.year
-                    if time == "now": # TODO
+                    if time == "now":
                         res = data_acquisition.get_data_certain_date_time(historical_data, year, month, day, datetime.now().hour, datetime.now().minute, 0)
                         statistics_data = data_acquisition.count_statistics(res)
                     elif re.match(time_regex, time):
@@ -433,7 +432,7 @@ class ParkingHouseDialog(Dialog):
                 print(day)
                 print(month)
                 print(year)
-                if time == "now": # TODO
+                if time == "now":
                     res = data_acquisition.get_data_certain_date_time(historical_data, year, month, day, datetime.now().hour, datetime.now().minute, 0)
                     statistics_data = data_acquisition.count_statistics(res)
                 elif re.match(time_regex, time):
